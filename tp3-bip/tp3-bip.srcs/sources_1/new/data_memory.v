@@ -5,6 +5,8 @@
 //  to the memory, the output remains unchanged.  This is the most power efficient write mode.
 //  If a reset or enable is not necessary, it may be tied off or removed from the code.
 
+// ------!!!!!!!!!!------ LIMPIAR ------!!!!!!!!!!------
+
 module data_memory
 #(
   parameter RAM_WIDTH = 16,                  // Specify RAM data width
@@ -16,11 +18,12 @@ module data_memory
   input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr,         // Address bus, width determined from RAM_DEPTH
   input  wire [RAM_WIDTH-1:0]           i_data,         // RAM input data
   input  wire                           i_clk,          // Clock
+  input  wire 							i_read_enable;  // Read enable
   input  wire                           i_write_enable, // Write enable
   output wire [RAM_WIDTH-1:0]           o_data          // RAM output data
  );
 
-  wire enable     = 1'b1; //RAM Enable, for additional power savings, disable port when not in use
+  wire enable     = 1'b1; // RAM Enable, for additional power savings, disable port when not in use
   wire reset      = 1'b0; // Output reset (does not affect memory contents)
   wire reg_enable = 1'b0; // Output register enable
 
@@ -45,7 +48,7 @@ module data_memory
     if (enable)
       if (i_write_enable)
         DRAM[i_addr] <= i_data;
-      else
+      else if(i_read_enable)
         ram_data <= DRAM[i_addr];
 
   //  The following code generates HIGH_PERFORMANCE (use output register) or LOW_LATENCY (no output register)
