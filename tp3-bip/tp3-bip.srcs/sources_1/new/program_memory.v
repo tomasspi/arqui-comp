@@ -10,10 +10,8 @@
 module program_memory
 #(
   parameter RAM_WIDTH = 16,                  // Specify RAM data width
-  parameter RAM_DEPTH = 2048,                // Specify RAM depth (number of entries)
-  parameter RAM_PERFORMANCE = "LOW_LATENCY", // Select "HIGH_PERFORMANCE" or "LOW_LATENCY" 
-  parameter INIT_FILE = ""                   // Specify name/location of RAM initialization file if using one (leave blank if not)
- )
+  parameter RAM_DEPTH = 2048                // Specify RAM depth (number of entries)
+  )
 (
   input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr, // Address bus, width determined from RAM_DEPTH
   input                                 i_clk,  // Clock
@@ -30,19 +28,20 @@ module program_memory
   reg [RAM_WIDTH-1:0] ram_data = {RAM_WIDTH{1'b0}};
 
   // The following code either initializes the memory values to a specified file or to all zeros to match hardware
-  generate
-    if (INIT_FILE != "") begin: use_init_file
-      initial
-        $readmemh(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
-    end else begin: init_bram_to_zero
-      integer ram_index;
-      initial
-        for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          PRAM[ram_index] = {RAM_WIDTH{1'b0}}; 
-    end
-  endgenerate
 
-  always @(posedge i_clk)
+    initial begin
+    PRAM[0] = 16'b00010_000_0000_0001;   //Load variable 0x01 => ACC=DRAM[0x01]
+    PRAM[1] = 16'b00101_000_0000_0010;    //Add immediate +0x2 => ACC=DRAM[0x01]+0x02
+    PRAM[2] = 16'b00001_000_0000_1001;    //Store in 0x9 =>DRAM[0x09]=ACC
+    PRAM[3] = 16'b00011_000_0000_1000;    //Load immediate 0x08 => ACC=0x08
+    PRAM[4] = 16'b00110_000_0000_0010;    //Substract variable in 0x02 => ACC=0x08-DRAM[0x02]
+    PRAM[5] = 16'b00100_000_0000_0010;    //Add variable in 0x02 => ACC=0x08
+    PRAM[6] = 16'b00111_000_0000_0100;    // Substract immediate 0x04 => ACC = 0x04
+    PRAM[7] = 16'b00000_000_0000_0000;  // Halt
+
+    end
+
+  always @(negedge i_clk)
     if (enable)
       if (write_enable)
         PRAM[i_addr] <= input_data;
@@ -50,28 +49,8 @@ module program_memory
         ram_data <= PRAM[i_addr];
 
   //  The following code generates HIGH_PERFORMANCE (use output register) or LOW_LATENCY (no output register)
-  generate
-    if (RAM_PERFORMANCE == "LOW_LATENCY") begin: no_output_register
-
       // The following is a 1 clock cycle read latency at the cost of a longer clock-to-out timing
        assign o_data = ram_data;
-
-    end else begin: output_register
-
-      // The following is a 2 clock cycle read latency with improve clock-to-out timing
-
-      reg [RAM_WIDTH-1:0] douta_reg = {RAM_WIDTH{1'b0}};
-
-      always @(posedge i_clk)
-        if (reset)
-          douta_reg <= {RAM_WIDTH{1'b0}};
-        else if (reg_enable)
-          douta_reg <= ram_data;
-
-      assign o_data = douta_reg;
-
-    end
-  endgenerate
 
   //  The following function calculates the address width based on specified RAM depth
   function integer clogb2;

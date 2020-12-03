@@ -31,6 +31,7 @@ module control
         pc <= pc + 1'b1;
  end
  
+ 
  op_decoder u_op_decoder
  (
     .i_reset(i_reset),

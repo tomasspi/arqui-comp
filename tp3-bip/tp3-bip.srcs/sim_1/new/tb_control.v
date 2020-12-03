@@ -30,7 +30,7 @@ module tb_control();
         #100 reset = 1'b0;
         #100 reset = 1'b1;
         
-        instruction = 15'b001010000000001; //la idea era hacer el acumulador +1(?
+        instruction = 16'b0010100000000001; //la idea era hacer el acumulador +1(?
            
         #100
         
@@ -53,7 +53,7 @@ module tb_control();
             .i_instruction(instruction), 
             .o_operand(operand), .o_sel_a(sel_a),
             .o_sel_b(sel_b), .o_write_acc(write_acc),
-            .o_operacion(operacion), .o_write_ram(write_ram),
+            .o_operacion(operation), .o_write_ram(write_ram),
             .o_read_ram(read_ram), .o_addr(addr) 
         );   
 endmodule
