@@ -20,7 +20,7 @@ module control
  wire        write_pc;
  wire        opcode;
  
- assign opcode    = i_instruction[15 -: 11];
+ assign opcode    = i_instruction[15:11]; // = [15-:5]
  assign o_operand = i_instruction[10:0];
  assign o_add     = pc;
  

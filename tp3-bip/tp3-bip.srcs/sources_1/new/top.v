@@ -3,8 +3,8 @@
 
 module top
 (
-    input i_clk,
-    input i_reset,
+    input  i_clk,
+    input  i_reset,
     output o_locked
 );
 
