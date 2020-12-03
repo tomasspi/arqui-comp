@@ -16,9 +16,9 @@ module control
     output wire [10:0] o_addr
 );
  
- reg  [10:0] pc;
- wire        write_pc;
- wire        opcode;
+ reg  [10:0]    pc;
+ wire           write_pc;
+ wire [4:0]     opcode;
  
  assign opcode    = i_instruction[15:11]; // = [15-:5]
  assign o_operand = i_instruction[10:0];
