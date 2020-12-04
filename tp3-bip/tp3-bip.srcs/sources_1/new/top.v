@@ -8,14 +8,14 @@ module top
     output o_locked
 );
 
-wire clk_out;
+//wire clk_out;
 
-clock u_clock
-(
-    .clk_in1(i_clk),
-    .reset(i_reset),
-    .clk_out1(clk_out),
-    .locked(o_locked)
-);
+//clock u_clock
+//(
+//    .clk_in1(i_clk),
+//    .reset(i_reset),
+//    .clk_out1(clk_out),
+//    .locked(o_locked)
+//);
 
 endmodule
