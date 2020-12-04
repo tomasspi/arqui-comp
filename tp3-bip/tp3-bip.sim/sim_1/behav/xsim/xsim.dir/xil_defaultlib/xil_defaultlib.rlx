@@ -2,7 +2,12 @@
 2020.1
 May 27 2020
 20:09:33
-D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
-D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.srcs/sim_1/new/tb_control.v,1607032120,verilog,,,,tb_control,,,,,,,,
-D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.srcs/sources_1/new/control.v,1607032535,verilog,,D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v,,control,,,,,,,,
-D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v,1607010286,verilog,,D:/Aixa/Trabajos de la facu/Arquitectura/TP3/arqui2020/tp3-bip/tp3-bip.srcs/sim_1/new/tb_control.v,,op_decoder,,,,,,,,
+E:/Arqui/tp3-bip/tp3-bip.sim/sim_1/behav/xsim/glbl.v,1607020626,verilog,,,,glbl,,,,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_control.v,1607046386,verilog,,,,tb_control,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_datapath.v,1607050685,verilog,,,,tb_datapath,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.v,1607039741,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/datapath.v,,clock,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock_clk_wiz.v,1607039741,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.v,,clock_clk_wiz,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/control.v,1607043711,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v,,control,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/datapath.v,1607047834,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_datapath.v,,datapath,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v,1606949709,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_control.v,,op_decoder,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/program_memory.v,1607038455,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_control.v,,program_memory,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
