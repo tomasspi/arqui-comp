@@ -22,7 +22,7 @@ module control
  
  assign opcode    = i_instruction[15:11]; // = [15-:5]
  assign o_operand = i_instruction[10:0];
- assign o_add     = pc;
+ assign o_addr    = pc;
  
  always@(posedge i_clk)begin:update_pc
     if(i_reset)
@@ -31,7 +31,7 @@ module control
         pc <= pc + 1'b1;
  end
  
- 
+ // Intancia modulo decodificador 
  op_decoder u_op_decoder
  (
     .i_reset(i_reset),
@@ -43,6 +43,5 @@ module control
     .o_operacion(o_operacion),
     .o_write_ram(o_write_ram),
     .o_read_ram(o_read_ram)
- );
- 
+ ); 
 endmodule
