@@ -12,7 +12,7 @@ module datapath
     input  [15:0] i_memory_data,
     
     output [15:0] o_memory_data,
-    output [11:0] o_data_addr
+    output [10:0] o_data_addr
 );
 
 	//multiplexores
