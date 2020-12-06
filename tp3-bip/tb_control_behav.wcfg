@@ -3,83 +3,78 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_datapath_behav.wdb" id="1">
+      <db_ref path="tb_bip_i_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_datapath" />
+            <top_module name="tb_bip_i" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="536176fs"></ZoomStartTime>
-      <ZoomEndTime time="950882fs"></ZoomEndTime>
-      <Cursor1Time time="617427fs"></Cursor1Time>
+      <ZoomStartTime time="539461fs"></ZoomStartTime>
+      <ZoomEndTime time="822396fs"></ZoomEndTime>
+      <Cursor1Time time="585566fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="194"></NameColumnWidth>
-      <ValueColumnWidth column_width="131"></ValueColumnWidth>
+      <NameColumnWidth column_width="107"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
-   <wvobject fp_name="/tb_datapath/clk" type="logic">
+   <WVObjectSize size="13" />
+   <wvobject fp_name="/tb_bip_i/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/clk_out" type="logic">
+   <wvobject fp_name="/tb_bip_i/clk_out" type="logic">
       <obj_property name="ElementShortName">clk_out</obj_property>
       <obj_property name="ObjectShortName">clk_out</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/locked" type="logic">
-      <obj_property name="ElementShortName">locked</obj_property>
-      <obj_property name="ObjectShortName">locked</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_datapath/reset" type="logic">
+   <wvobject fp_name="/tb_bip_i/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/sel_a" type="array">
-      <obj_property name="ElementShortName">sel_a[1:0]</obj_property>
-      <obj_property name="ObjectShortName">sel_a[1:0]</obj_property>
+   <wvobject fp_name="/tb_bip_i/instruccion" type="array">
+      <obj_property name="ElementShortName">instruccion[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruccion[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/sel_b" type="logic">
-      <obj_property name="ElementShortName">sel_b</obj_property>
-      <obj_property name="ObjectShortName">sel_b</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_datapath/write_acc" type="logic">
-      <obj_property name="ElementShortName">write_acc</obj_property>
-      <obj_property name="ObjectShortName">write_acc</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_datapath/operation" type="logic">
-      <obj_property name="ElementShortName">operation</obj_property>
-      <obj_property name="ObjectShortName">operation</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_datapath/operando" type="array">
-      <obj_property name="ElementShortName">operando[11:0]</obj_property>
-      <obj_property name="ObjectShortName">operando[11:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_datapath/i_memory_data" type="array">
-      <obj_property name="ElementShortName">i_memory_data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">i_memory_data[15:0]</obj_property>
+   <wvobject fp_name="/tb_bip_i/in_data" type="array">
+      <obj_property name="ElementShortName">in_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">in_data[15:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/u_datapath/acc" type="array">
-      <obj_property name="ElementShortName">acc[15:0]</obj_property>
-      <obj_property name="ObjectShortName">acc[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject fp_name="/tb_bip_i/program_memory" type="array">
+      <obj_property name="ElementShortName">program_memory[10:0]</obj_property>
+      <obj_property name="ObjectShortName">program_memory[10:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/addr" type="array">
-      <obj_property name="ElementShortName">addr[11:0]</obj_property>
-      <obj_property name="ObjectShortName">addr[11:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject fp_name="/tb_bip_i/data_addr" type="array">
+      <obj_property name="ElementShortName">data_addr[10:0]</obj_property>
+      <obj_property name="ObjectShortName">data_addr[10:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/u_datapath/alu_out" type="array">
-      <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_out[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject fp_name="/tb_bip_i/out_data" type="array">
+      <obj_property name="ElementShortName">out_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">out_data[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_datapath/o_memory_data" type="array">
-      <obj_property name="ElementShortName">o_memory_data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">o_memory_data[15:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject fp_name="/tb_bip_i/write_ram" type="logic">
+      <obj_property name="ElementShortName">write_ram</obj_property>
+      <obj_property name="ObjectShortName">write_ram</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bip_i/read_ram" type="logic">
+      <obj_property name="ElementShortName">read_ram</obj_property>
+      <obj_property name="ObjectShortName">read_ram</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bip_i/data_memory_out" type="array">
+      <obj_property name="ElementShortName">data_memory_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_memory_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bip_i/data_memory_in" type="array">
+      <obj_property name="ElementShortName">data_memory_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_memory_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_bip_i/locked" type="logic">
+      <obj_property name="ElementShortName">locked</obj_property>
+      <obj_property name="ObjectShortName">locked</obj_property>
    </wvobject>
 </wave_config>

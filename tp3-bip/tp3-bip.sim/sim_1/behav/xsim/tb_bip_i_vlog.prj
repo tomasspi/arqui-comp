@@ -1,0 +1,15 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../tp3-bip.srcs/sources_1/ip/clock" \
+"../../../../tp3-bip.srcs/sources_1/ip/clock/clock_clk_wiz.v" \
+"../../../../tp3-bip.srcs/sources_1/ip/clock/clock.v" \
+"../../../../tp3-bip.srcs/sources_1/new/bip_i.v" \
+"../../../../tp3-bip.srcs/sources_1/new/control.v" \
+"../../../../tp3-bip.srcs/sources_1/new/datapath.v" \
+"../../../../tp3-bip.srcs/sources_1/new/op_decoder.v" \
+"../../../../tp3-bip.srcs/sim_1/new/tb_bip_i.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
