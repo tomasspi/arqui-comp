@@ -26,10 +26,14 @@ module data_memory
   reg [RAM_WIDTH-1:0] DRAM [RAM_DEPTH-1:0];
   reg [RAM_WIDTH-1:0] ram_data = {RAM_WIDTH{1'b0}};
 
-  initial begin
-    DRAM[1] = 16'b0000_0000_0000_0001;
-    DRAM[2] = 16'b0000_0000_0000_0010;
-  end
+ //carga datos en la memoria de 0 a 1023
+ generate
+    reg [RAM_WIDTH-1:0] ram_index;
+    initial begin
+        for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
+          DRAM[ram_index] = {ram_index};
+    end
+ endgenerate
 
   always @(negedge i_clk)
     if (enable)
