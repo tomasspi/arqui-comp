@@ -13,7 +13,7 @@ module program_memory
  (
   input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr, // Address bus, width determined from RAM_DEPTH
   input                                 i_clk,  // Clock
-  output wire [RAM_WIDTH-1:0]           o_data  // RAM output data
+  output wire [RAM_WIDTH-1:0]           o_instruction  // RAM output data
  );
 
   wire [RAM_WIDTH-1:0] input_data   = 0; // RAM input data
