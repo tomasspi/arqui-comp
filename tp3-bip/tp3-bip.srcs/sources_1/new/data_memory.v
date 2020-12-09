@@ -11,12 +11,13 @@ module data_memory
   parameter RAM_DEPTH = 1024                // Specify RAM depth (number of entries)
  )
  (
-  input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr,         // Address bus, width determined from RAM_DEPTH
-  input  wire [RAM_WIDTH-1:0]           i_data,         // RAM input data
-  input  wire                           i_clk,          // Clock
-  input  wire 							i_read_enable,  // Read enable
-  input  wire                           i_write_enable, // Write enable
-  output wire [RAM_WIDTH-1:0]           o_data          // RAM output data
+  input  wire                   i_valid,
+  input  wire [10:0]            i_addr,         // Address bus, width determined from RAM_DEPTH
+  input  wire [RAM_WIDTH-1:0]   i_data,         // RAM input data
+  input  wire                   i_clk,          // Clock
+  input  wire 					i_read_enable,  // Read enable
+  input  wire                   i_write_enable, // Write enable
+  output wire [RAM_WIDTH-1:0]   o_data          // RAM output data
  );
 
   wire enable     = 1'b1; // RAM Enable, for additional power savings, disable port when not in use
@@ -35,20 +36,13 @@ module data_memory
     end
  endgenerate
 
-  always @(negedge i_clk)
-    if (enable)
+  always @(posedge i_clk)
+    if (enable && i_valid)
       if (i_write_enable)
         DRAM[i_addr] <= i_data;
       else if(i_read_enable)
         ram_data <= DRAM[i_addr];
 
  assign o_data = ram_data;
-
-  //  The following function calculates the address width based on specified RAM depth
-  function integer clogb2;
-    input integer depth;
-      for (clogb2=0; depth>0; clogb2=clogb2+1)
-        depth = depth >> 1;
-  endfunction
 
 endmodule

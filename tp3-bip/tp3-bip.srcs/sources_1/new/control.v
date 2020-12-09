@@ -4,6 +4,7 @@ module control
 (
     input  wire        i_clk,
     input  wire        i_reset,
+    input  wire        i_valid,
     input  wire [15:0] i_instruction,
     
     output wire [10:0] o_operand,
@@ -27,14 +28,14 @@ module control
  always@(posedge i_clk)begin:update_pc
     if(i_reset)
         pc <= 11'b0;
-    else if(write_pc)
+    else if(write_pc && i_valid)
         pc <= pc + 1'b1;
  end
  
  // Intancia modulo decodificador 
  op_decoder u_op_decoder
  (
-    .i_reset(i_reset),
+    .i_valid(i_valid),
     .i_opcode(opcode),
     .o_write_pc(write_pc),
     .o_sel_a(o_sel_a),

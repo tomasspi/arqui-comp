@@ -3,6 +3,7 @@
 module bip_i
 (
     input         i_clk, i_reset,
+    input         i_valid,
     input  [15:0] i_data_memory,  // entrada de data memory (DM)
     input  [15:0] i_instruction,  // entrada de program memory (PM)
     output [10:0] o_pc,           // program counter (entrada a 'addr' de PM)
@@ -24,6 +25,7 @@ module bip_i
     (
         .i_clk(i_clk), 
         .i_reset(i_reset),
+        .i_valid(i_valid),
         .i_instruction(i_instruction), 
         .o_operand(operando), 
         .o_sel_a(sel_a),
@@ -38,7 +40,7 @@ module bip_i
     // Datapath
     datapath u_datapath
     (
-        .i_clk(i_clk), .i_reset(i_reset),
+        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_sel_a(sel_a),
         .i_sel_b(sel_b),
         .i_write_acc(write_acc),
