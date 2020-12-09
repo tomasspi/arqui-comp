@@ -2,7 +2,7 @@
 
 module op_decoder
 (
-    input  wire       i_reset,
+    input  wire       i_valid,
     input  wire [4:0] i_opcode,
     
     output reg        o_write_pc,
@@ -30,79 +30,127 @@ module op_decoder
 	localparam [1:0] RESULTADO = 2'b10;//hora de sintesis
 
     always@(*)begin:decode
-        if(i_reset)
-            o_write_pc = 1'b0;
-        else
-            o_write_pc = 1'b1;
-            
-        //valores iniciales
-        o_sel_a     = MEMORIA;
-        o_sel_b     = MEMORIA;
-		
-        o_write_acc = 1'b0;
-        o_operacion = 1'b0;
-        o_write_ram = 1'b0;
-        o_read_ram  = 1'b0;
         
-        case(i_opcode)
-            HLT:
-            begin
-                o_write_pc = 1'b0; 
-            end
-            
-            STO: //escribir en memoria
-            begin
-                o_write_ram = 1'b1;
-            end
-            
-            LD: //cargar desde memoria
-            begin
-                o_write_acc = 1'b1;
-                o_read_ram  = 1'b1;
-            end
-            
-            LDI: //cargar literal
-            begin
-                o_sel_a     = OPERANDO;
-                o_write_acc = 1'b1;
-            end
-            
-            ADD: //sumar desde memoria
-            begin
-                o_sel_a     = RESULTADO;
-                o_sel_b     = MEMORIA;
-                o_write_acc = 1'b1;
-                o_read_ram  = 1'b1;
-            end
-            
-            ADDI: //sumar literal
-            begin
-                o_sel_a     = RESULTADO;
-                o_sel_b     = OPERANDO;
-                o_write_acc = 1'b1;
-            end
-            
-            SUB: //restar desde memoria
-            begin
-                o_sel_a     = RESULTADO;
-                o_sel_b     = MEMORIA;
-                o_operacion = 1'b1;
-                o_write_acc = 1'b1;
-                o_read_ram  = 1'b1;
-            end
-            
-            SUBI: //restar literal
-            begin
-                o_sel_a     = RESULTADO;
-                o_sel_b     = OPERANDO;
-                o_operacion = 1'b1;
-                o_write_acc = 1'b1;
-            end
-            
-            default:
-            begin
-                o_write_pc = 1'b0;
-            end
-        endcase
+        if(i_valid)
+        begin                                        
+            case(i_opcode)
+                HLT:
+                begin
+                    o_write_pc  = 1'b0; 
+                    
+                    o_sel_a     = MEMORIA;
+                    o_sel_b     = MEMORIA;
+                    o_write_acc = 1'b0;
+                    o_operacion = 1'b0;
+                    o_write_ram = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+                
+                STO: //escribir en memoria
+                begin
+                    o_write_pc  = 1'b1;
+                    o_write_ram = 1'b1;
+                    
+                    o_sel_a     = MEMORIA;
+                    o_sel_b     = MEMORIA;
+                    o_write_acc = 1'b0;
+                    o_operacion = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+                
+                LD: //cargar desde memoria
+                begin
+                    o_write_pc  = 1'b1;
+                    o_write_acc = 1'b1;
+                    o_read_ram  = 1'b1;
+                    
+                    o_sel_a     = MEMORIA;
+                    o_sel_b     = MEMORIA;
+                    o_operacion = 1'b0;
+                    o_write_ram = 1'b0;                    
+                end
+                
+                LDI: //cargar literal
+                begin
+                    o_write_pc  = 1'b1;
+                    o_sel_a     = OPERANDO;
+                    o_write_acc = 1'b1;
+                    
+                    o_sel_b     = MEMORIA;
+                    o_operacion = 1'b0;
+                    o_write_ram = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+                
+                ADD: //sumar desde memoria
+                begin
+                    o_write_pc  = 1'b1;
+                    o_sel_a     = RESULTADO;
+                    o_sel_b     = MEMORIA;
+                    o_write_acc = 1'b1;
+                    o_read_ram  = 1'b1;                    
+                    o_operacion = 1'b0;
+                    
+                    o_write_ram = 1'b0;
+                end
+                
+                ADDI: //sumar literal
+                begin
+                    o_write_pc  = 1'b1;
+                    o_sel_a     = RESULTADO;
+                    o_sel_b     = OPERANDO;
+                    o_write_acc = 1'b1;
+                    o_operacion = 1'b0;
+                    
+                    o_write_ram = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+                
+                SUB: //restar desde memoria
+                begin
+                    o_write_pc  = 1'b1;
+                    o_sel_a     = RESULTADO;
+                    o_sel_b     = MEMORIA;
+                    o_operacion = 1'b1;
+                    o_write_acc = 1'b1;
+                    o_read_ram  = 1'b1;
+                    
+                    o_write_ram = 1'b0;
+                end
+                
+                SUBI: //restar literal
+                begin
+                    o_write_pc  = 1'b1;
+                    o_sel_a     = RESULTADO;
+                    o_sel_b     = OPERANDO;
+                    o_operacion = 1'b1;
+                    o_write_acc = 1'b1;
+                   
+                    o_write_ram = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+                
+                default:
+                begin
+                    o_write_pc  = 1'b0;
+                    o_sel_a     = MEMORIA;
+                    o_sel_b     = MEMORIA;
+                    o_write_acc = 1'b0;
+                    o_operacion = 1'b0;
+                    o_write_ram = 1'b0;
+                    o_read_ram  = 1'b0;
+                end
+            endcase
+        end
+        else
+        begin
+            o_write_pc  = 1'b0;
+            o_sel_a     = MEMORIA;
+            o_sel_b     = MEMORIA;
+            o_write_acc = 1'b0;
+            o_operacion = 1'b0;
+            o_write_ram = 1'b0;
+            o_read_ram  = 1'b0;
+        end
     end
 endmodule
