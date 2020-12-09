@@ -1,0 +1,8 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+E:/Arqui/tp3-bip/tp3-bip.sim/sim_1/synth/timing/xsim/tb_bip_i_time_synth.v,1607544862,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_bip_i.v,,RAM256X1S_HD31;RAM256X1S_HD32;RAM256X1S_HD33;RAM256X1S_HD34;RAM256X1S_HD35;RAM256X1S_HD36;RAM256X1S_HD37;RAM256X1S_HD38;RAM256X1S_HD39;RAM256X1S_HD40;RAM256X1S_HD41;RAM256X1S_HD42;RAM256X1S_HD43;RAM256X1S_HD44;RAM256X1S_HD45;RAM256X1S_UNIQ_BASE_;baudrate_generator;bip_i;control;data_memory;datapath;glbl;program_memory;top;tx_uart,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_bip_i.v,1607375204,verilog,,,,tb_bip_i,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_top.v,1607461172,verilog,,,,tb_top,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
+E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_tx.v,1607466086,verilog,,,,tb_tx,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,

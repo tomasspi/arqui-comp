@@ -1,0 +1,8 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../tp3-bip.srcs/sources_1/ip/clock" \
+"tb_tx_time_synth.v" \
+"../../../../../../tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v" \
+"../../../../../tp3-bip.srcs/sim_1/new/tb_tx.v" \
+
+# Do not sort compile order
+nosort

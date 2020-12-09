@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../tp3-bip.srcs/sources_1/ip/clock" \
+"../../../../../../../Aixa/Trabajos de la facu/Arquitectura/TP2/tp2-uart-carrizo-pinero/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v" \
+"../../../../../../../Aixa/Trabajos de la facu/Arquitectura/TP2/tp2-uart-carrizo-pinero/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v" \
+"../../../../tp3-bip.srcs/sim_1/new/tb_tx.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
