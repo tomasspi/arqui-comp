@@ -39,7 +39,7 @@ module tb_bip_i();
         
         wait(locked == 1);
         
-        data_memory_out = $random() % 2048;
+        data_memory_out = 16'b10;
 
         #20 instruccion = 16'b00010_000_0000_0001; // Load variable 0x01 => ACC=DRAM[0x01]
         #20 instruccion = 16'b00101_000_0000_0010; // Add immediate +0x2 => ACC=DRAM[0x01]+0x02
@@ -55,16 +55,17 @@ module tb_bip_i();
  
     always #5 clk = ~clk;  // Simulacion de clock 100MHz
     
-     clock u_clock
-     (
-        .clk_in1(clk),
-        .reset(reset),
-        .clk_out1(clk_out),
-        .locked(locked)
-     );
+    clock u_clock
+    (
+       .clk_in1(clk),
+       .reset(reset),
+       .clk_out1(clk_out),
+       .locked(locked)
+    );
+     
     bip_i u_tb_bip_i
     (
-        .i_clk(clk_out), .i_reset(reset),
+        .i_clk(clk_out), .i_reset(reset), .i_valid(locked),
         .i_instruction(instruccion),
         .i_data_memory(in_data),
         .o_pc(program_memory),
