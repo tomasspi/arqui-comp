@@ -2,22 +2,26 @@
 
 module interfaz_uart
 (
-    input  [10:0] i_pc,
-    output        o_tx_start
+    input  wire [15:0] i_instruccion,
+    input  wire        i_valid,
+    output wire        o_tx_start
 );
 
-    reg [10:0] old_pc;
-    reg        tx_start;
+    localparam [15:0] HLT = 16'b0;
+
+    reg tx_start;
     
     assign o_tx_start = tx_start;
     
     always@(*)begin:check
-        if(i_pc == old_pc)
-            tx_start = 1'b1;
-        else
+        tx_start = 1'b0; 
+        
+        if(i_valid)
         begin
-            old_pc   = i_pc;
-            tx_start = 1'b0;
-        end
+            if(i_instruccion == HLT)
+                tx_start = 1'b1;
+			else
+				tx_start = 1'b0;
+        end        
     end
 endmodule
