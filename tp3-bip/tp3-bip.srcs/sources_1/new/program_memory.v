@@ -11,6 +11,7 @@ module program_memory
   parameter RAM_DEPTH = 2048                // Specify RAM depth (number of entries)
  )
  (
+  input  wire                           i_valid,
   input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr, // Address bus, width determined from RAM_DEPTH
   input                                 i_clk,  // Clock
   output wire [RAM_WIDTH-1:0]           o_instruction  // RAM output data
@@ -35,16 +36,15 @@ module program_memory
   PRAM[5] = 16'b00100_000_0000_0010; // Add variable in 0x02 => ACC=0x08
   PRAM[6] = 16'b00111_000_0000_0100; // Substract immediate 0x04 => ACC = 0x04
   PRAM[7] = 16'b00000_000_0000_0000; // Halt
+  PRAM[7] = 16'b00010_000_0000_0001; // Load variable 0x01 => ACC=DRAM[0x01]
   end
 
-  always @(negedge i_clk)
-    if (enable)
-      if (write_enable)
-        PRAM[i_addr] <= input_data;
-      else
+  always @(negedge i_clk)begin:read_pc
+    if (enable && i_valid)
         ram_data <= PRAM[i_addr];
-
-  assign o_data = ram_data;
+  end
+  
+  assign o_instruction = ram_data;
 
   //  The following function calculates the address width based on specified RAM depth
   function integer clogb2;
