@@ -132,9 +132,11 @@ OPTRACE "set parameters" START { }
   set_property parent.project_path E:/Arqui/tp3-bip/tp3-bip.xpr [current_project]
   set_property ip_output_repo E:/Arqui/tp3-bip/tp3-bip.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+  set_property XPM_LIBRARIES XPM_CDC [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/top.dcp
+  read_ip -quiet E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc E:/Arqui/tp3-bip/tp3-bip.srcs/constrs_1/new/contraints.xdc
 OPTRACE "read constraints: implementation" END { }

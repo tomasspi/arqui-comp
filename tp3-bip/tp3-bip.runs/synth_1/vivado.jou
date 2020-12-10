@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Dec  9 18:15:35 2020
-# Process ID: 10744
+# Start of session at: Thu Dec 10 19:24:04 2020
+# Process ID: 15664
 # Current directory: E:/Arqui/tp3-bip/tp3-bip.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/top.vds

@@ -36,7 +36,6 @@ module program_memory
   PRAM[5] = 16'b00100_000_0000_0010; // Add variable in 0x02 => ACC=0x08
   PRAM[6] = 16'b00111_000_0000_0100; // Substract immediate 0x04 => ACC = 0x04
   PRAM[7] = 16'b00000_000_0000_0000; // Halt
-  PRAM[7] = 16'b00010_000_0000_0001; // Load variable 0x01 => ACC=DRAM[0x01]
   end
 
   always @(negedge i_clk)begin:read_pc

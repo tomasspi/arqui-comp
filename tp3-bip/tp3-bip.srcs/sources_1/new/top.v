@@ -21,15 +21,26 @@ module top
     wire tick;
     wire uart_out, tx_done;
     
+    wire clk_out, locked;
+    
     assign o_tx = uart_out;
     assign o_tx_done = tx_done;
     
     // MODULOS
+    // clk wiz
+    clock u_clock
+     (
+        .clk_in1(i_clk),
+        .reset(i_reset),
+        .clk_out1(clk_out),
+        .locked(locked)
+     );
+    
     
     // BIP I
     bip_i u_bip_i
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked),
         .i_instruction(instruccion),
         .i_data_memory(in_data),
         .o_pc(program_addr),
@@ -42,8 +53,8 @@ module top
     // Memoria de programa
     program_memory u_program_memory
     (
-        .i_valid(i_valid),
-        .i_clk(i_clk),
+        .i_valid(locked),
+        .i_clk(clk_out),
         .i_addr(program_addr),
         .o_instruction(instruccion)
     );
@@ -51,8 +62,8 @@ module top
     // Memoria de datos
     data_memory u_data_memory
     (
-        .i_valid(i_valid),
-        .i_clk(i_clk),
+        .i_valid(locked),
+        .i_clk(clk_out),
         .i_addr(data_addr),
         .i_data(out_data),
         .i_read_enable(read_ram),
@@ -63,8 +74,7 @@ module top
     // Interfaz entre el CPU y le UART
     interfaz_uart u_interfaz_uart
     (
-//        .i_clk(i_clk),
-        .i_valid(i_valid),
+        .i_valid(locked),
         .i_instruccion(instruccion),
         .o_tx_start(tx_start)
     );
@@ -77,7 +87,7 @@ module top
      )
     u_tx_uart
      (
-        .i_clk(i_clk), .i_reset(i_reset),
+        .i_clk(clk_out), .i_reset(i_reset),
 	    .i_tx_start(tx_start), 
 	    .i_ticks(tick),
 	    .i_data_in(out_data),
@@ -92,7 +102,7 @@ module top
      )
     u_bd_generator
     (
-        .i_clk(i_clk), .i_reset(i_reset),
+        .i_clk(clk_out), .i_reset(i_reset),
         .o_tick(tick)
     );
 

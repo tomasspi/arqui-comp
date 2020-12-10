@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Wed Dec  9 17:14:22 2020
+// Date        : Thu Dec 10 19:53:17 2020
 // Host        : Archimedes running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               E:/Arqui/tp3-bip/tp3-bip.sim/sim_1/synth/timing/xsim/tb_bip_i_time_synth.v
@@ -141,7 +141,7 @@ module RAM256X1S_UNIQ_BASE_
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD31
+module RAM256X1S_HD61
    (O,
     A,
     D,
@@ -269,7 +269,7 @@ module RAM256X1S_HD31
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD32
+module RAM256X1S_HD62
    (O,
     A,
     D,
@@ -397,7 +397,7 @@ module RAM256X1S_HD32
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD33
+module RAM256X1S_HD63
    (O,
     A,
     D,
@@ -525,7 +525,7 @@ module RAM256X1S_HD33
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD34
+module RAM256X1S_HD64
    (O,
     A,
     D,
@@ -653,7 +653,7 @@ module RAM256X1S_HD34
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD35
+module RAM256X1S_HD65
    (O,
     A,
     D,
@@ -781,7 +781,7 @@ module RAM256X1S_HD35
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD36
+module RAM256X1S_HD66
    (O,
     A,
     D,
@@ -909,7 +909,7 @@ module RAM256X1S_HD36
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD37
+module RAM256X1S_HD67
    (O,
     A,
     D,
@@ -1037,7 +1037,7 @@ module RAM256X1S_HD37
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD38
+module RAM256X1S_HD68
    (O,
     A,
     D,
@@ -1165,7 +1165,7 @@ module RAM256X1S_HD38
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD39
+module RAM256X1S_HD69
    (O,
     A,
     D,
@@ -1293,7 +1293,7 @@ module RAM256X1S_HD39
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD40
+module RAM256X1S_HD70
    (O,
     A,
     D,
@@ -1421,7 +1421,7 @@ module RAM256X1S_HD40
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD41
+module RAM256X1S_HD71
    (O,
     A,
     D,
@@ -1549,7 +1549,7 @@ module RAM256X1S_HD41
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD42
+module RAM256X1S_HD72
    (O,
     A,
     D,
@@ -1677,7 +1677,7 @@ module RAM256X1S_HD42
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD43
+module RAM256X1S_HD73
    (O,
     A,
     D,
@@ -1805,7 +1805,7 @@ module RAM256X1S_HD43
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD44
+module RAM256X1S_HD74
    (O,
     A,
     D,
@@ -1933,7 +1933,7 @@ module RAM256X1S_HD44
         .WE(WE));
 endmodule
 
-module RAM256X1S_HD45
+module RAM256X1S_HD75
    (O,
     A,
     D,
@@ -2063,12 +2063,13 @@ endmodule
 
 module baudrate_generator
    (\contador_reg[54]_0 ,
-    i_clk_IBUF_BUFG,
+    clk_out1,
     i_reset_IBUF);
   output \contador_reg[54]_0 ;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
   input i_reset_IBUF;
 
+  wire clk_out1;
   wire \contador[0]_i_1_n_0 ;
   wire \contador[0]_i_3_n_0 ;
   wire \contador[0]_i_4_n_0 ;
@@ -2260,7 +2261,6 @@ module baudrate_generator
   wire \contador_reg[8]_i_1_n_5 ;
   wire \contador_reg[8]_i_1_n_6 ;
   wire \contador_reg[8]_i_1_n_7 ;
-  wire i_clk_IBUF_BUFG;
   wire i_reset_IBUF;
   wire o_tx_done_OBUF_inst_i_10_n_0;
   wire o_tx_done_OBUF_inst_i_11_n_0;
@@ -2606,7 +2606,7 @@ module baudrate_generator
   FDSE #(
     .INIT(1'b1)) 
     \contador_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[0]_i_2_n_7 ),
         .Q(contador_reg[0]),
@@ -2623,7 +2623,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[10] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[8]_i_1_n_5 ),
         .Q(contador_reg[10]),
@@ -2631,7 +2631,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[8]_i_1_n_4 ),
         .Q(contador_reg[11]),
@@ -2639,7 +2639,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[12]_i_1_n_7 ),
         .Q(contador_reg[12]),
@@ -2656,7 +2656,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[12]_i_1_n_6 ),
         .Q(contador_reg[13]),
@@ -2664,7 +2664,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[12]_i_1_n_5 ),
         .Q(contador_reg[14]),
@@ -2672,7 +2672,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[12]_i_1_n_4 ),
         .Q(contador_reg[15]),
@@ -2680,7 +2680,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[16] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[16]_i_1_n_7 ),
         .Q(contador_reg[16]),
@@ -2697,7 +2697,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[17] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[16]_i_1_n_6 ),
         .Q(contador_reg[17]),
@@ -2705,7 +2705,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[18] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[16]_i_1_n_5 ),
         .Q(contador_reg[18]),
@@ -2713,7 +2713,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[19] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[16]_i_1_n_4 ),
         .Q(contador_reg[19]),
@@ -2721,7 +2721,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[0]_i_2_n_6 ),
         .Q(contador_reg[1]),
@@ -2729,7 +2729,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[20] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[20]_i_1_n_7 ),
         .Q(contador_reg[20]),
@@ -2746,7 +2746,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[21] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[20]_i_1_n_6 ),
         .Q(contador_reg[21]),
@@ -2754,7 +2754,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[22] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[20]_i_1_n_5 ),
         .Q(contador_reg[22]),
@@ -2762,7 +2762,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[23] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[20]_i_1_n_4 ),
         .Q(contador_reg[23]),
@@ -2770,7 +2770,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[24] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[24]_i_1_n_7 ),
         .Q(contador_reg[24]),
@@ -2787,7 +2787,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[25] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[24]_i_1_n_6 ),
         .Q(contador_reg[25]),
@@ -2795,7 +2795,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[26] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[24]_i_1_n_5 ),
         .Q(contador_reg[26]),
@@ -2803,7 +2803,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[27] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[24]_i_1_n_4 ),
         .Q(contador_reg[27]),
@@ -2811,7 +2811,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[28] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[28]_i_1_n_7 ),
         .Q(contador_reg[28]),
@@ -2828,7 +2828,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[29] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[28]_i_1_n_6 ),
         .Q(contador_reg[29]),
@@ -2836,7 +2836,7 @@ module baudrate_generator
   FDSE #(
     .INIT(1'b1)) 
     \contador_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[0]_i_2_n_5 ),
         .Q(contador_reg[2]),
@@ -2844,7 +2844,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[30] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[28]_i_1_n_5 ),
         .Q(contador_reg[30]),
@@ -2852,7 +2852,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[31] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[28]_i_1_n_4 ),
         .Q(contador_reg[31]),
@@ -2860,7 +2860,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[32] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[32]_i_1_n_7 ),
         .Q(contador_reg[32]),
@@ -2877,7 +2877,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[33] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[32]_i_1_n_6 ),
         .Q(contador_reg[33]),
@@ -2885,7 +2885,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[34] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[32]_i_1_n_5 ),
         .Q(contador_reg[34]),
@@ -2893,7 +2893,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[35] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[32]_i_1_n_4 ),
         .Q(contador_reg[35]),
@@ -2901,7 +2901,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[36] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[36]_i_1_n_7 ),
         .Q(contador_reg[36]),
@@ -2918,7 +2918,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[37] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[36]_i_1_n_6 ),
         .Q(contador_reg[37]),
@@ -2926,7 +2926,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[38] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[36]_i_1_n_5 ),
         .Q(contador_reg[38]),
@@ -2934,7 +2934,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[39] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[36]_i_1_n_4 ),
         .Q(contador_reg[39]),
@@ -2942,7 +2942,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[0]_i_2_n_4 ),
         .Q(contador_reg[3]),
@@ -2950,7 +2950,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[40] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[40]_i_1_n_7 ),
         .Q(contador_reg[40]),
@@ -2967,7 +2967,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[41] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[40]_i_1_n_6 ),
         .Q(contador_reg[41]),
@@ -2975,7 +2975,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[42] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[40]_i_1_n_5 ),
         .Q(contador_reg[42]),
@@ -2983,7 +2983,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[43] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[40]_i_1_n_4 ),
         .Q(contador_reg[43]),
@@ -2991,7 +2991,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[44] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[44]_i_1_n_7 ),
         .Q(contador_reg[44]),
@@ -3008,7 +3008,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[45] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[44]_i_1_n_6 ),
         .Q(contador_reg[45]),
@@ -3016,7 +3016,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[46] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[44]_i_1_n_5 ),
         .Q(contador_reg[46]),
@@ -3024,7 +3024,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[47] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[44]_i_1_n_4 ),
         .Q(contador_reg[47]),
@@ -3032,7 +3032,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[48] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[48]_i_1_n_7 ),
         .Q(contador_reg[48]),
@@ -3049,7 +3049,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[49] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[48]_i_1_n_6 ),
         .Q(contador_reg[49]),
@@ -3057,7 +3057,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[4] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[4]_i_1_n_7 ),
         .Q(contador_reg[4]),
@@ -3074,7 +3074,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[50] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[48]_i_1_n_5 ),
         .Q(contador_reg[50]),
@@ -3082,7 +3082,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[51] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[48]_i_1_n_4 ),
         .Q(contador_reg[51]),
@@ -3090,7 +3090,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[52] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[52]_i_1_n_7 ),
         .Q(contador_reg[52]),
@@ -3107,7 +3107,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[53] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[52]_i_1_n_6 ),
         .Q(contador_reg[53]),
@@ -3115,7 +3115,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[54] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[52]_i_1_n_5 ),
         .Q(contador_reg[54]),
@@ -3123,7 +3123,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[55] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[52]_i_1_n_4 ),
         .Q(contador_reg[55]),
@@ -3131,7 +3131,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[56] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[56]_i_1_n_7 ),
         .Q(contador_reg[56]),
@@ -3148,7 +3148,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[57] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[56]_i_1_n_6 ),
         .Q(contador_reg[57]),
@@ -3156,7 +3156,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[58] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[56]_i_1_n_5 ),
         .Q(contador_reg[58]),
@@ -3164,7 +3164,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[59] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[56]_i_1_n_4 ),
         .Q(contador_reg[59]),
@@ -3172,7 +3172,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[5] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[4]_i_1_n_6 ),
         .Q(contador_reg[5]),
@@ -3180,7 +3180,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[60] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[60]_i_1_n_7 ),
         .Q(contador_reg[60]),
@@ -3197,7 +3197,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[61] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[60]_i_1_n_6 ),
         .Q(contador_reg[61]),
@@ -3205,7 +3205,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[62] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[60]_i_1_n_5 ),
         .Q(contador_reg[62]),
@@ -3213,7 +3213,7 @@ module baudrate_generator
   FDSE #(
     .INIT(1'b1)) 
     \contador_reg[6] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[4]_i_1_n_5 ),
         .Q(contador_reg[6]),
@@ -3221,7 +3221,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[7] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[4]_i_1_n_4 ),
         .Q(contador_reg[7]),
@@ -3229,7 +3229,7 @@ module baudrate_generator
   FDSE #(
     .INIT(1'b1)) 
     \contador_reg[8] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[8]_i_1_n_7 ),
         .Q(contador_reg[8]),
@@ -3246,7 +3246,7 @@ module baudrate_generator
   FDRE #(
     .INIT(1'b0)) 
     \contador_reg[9] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\contador_reg[8]_i_1_n_6 ),
         .Q(contador_reg[9]),
@@ -3422,10 +3422,10 @@ module bip_i
     i_reset_IBUF,
     E,
     \acc_reg[15]_0 ,
-    i_clk_IBUF_BUFG,
+    clk_out1,
     \pc_reg[1]_0 ,
     \pc_reg[0] ,
-    i_valid_IBUF);
+    locked);
   output [3:0]O;
   output [15:0]Q;
   output [3:0]\acc_reg[7] ;
@@ -3442,10 +3442,10 @@ module bip_i
   input i_reset_IBUF;
   input [0:0]E;
   input [15:0]\acc_reg[15]_0 ;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
   input \pc_reg[1]_0 ;
   input [2:0]\pc_reg[0] ;
-  input i_valid_IBUF;
+  input locked;
 
   wire [0:0]D;
   wire [0:0]DI;
@@ -3460,18 +3460,18 @@ module bip_i
   wire [15:0]\acc_reg[15]_0 ;
   wire [3:0]\acc_reg[7] ;
   wire [3:0]\acc_reg[7]_0 ;
-  wire i_clk_IBUF_BUFG;
+  wire clk_out1;
   wire i_reset_IBUF;
-  wire i_valid_IBUF;
+  wire locked;
   wire [2:0]\pc_reg[0] ;
   wire [6:0]\pc_reg[1] ;
   wire \pc_reg[1]_0 ;
   wire [0:0]state_reg;
 
   control u_control_blk
-       (.i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
+       (.clk_out1(clk_out1),
         .i_reset_IBUF(i_reset_IBUF),
-        .i_valid_IBUF(i_valid_IBUF),
+        .locked(locked),
         .\pc_reg[0]_0 (\pc_reg[0] ),
         .\pc_reg[1]_0 (\pc_reg[1] ),
         .\pc_reg[1]_1 (\pc_reg[1]_0 ));
@@ -3489,9 +3489,169 @@ module bip_i
         .\acc_reg[15]_1 (\acc_reg[15]_0 ),
         .\acc_reg[7]_0 (\acc_reg[7] ),
         .\acc_reg[7]_1 (\acc_reg[7]_0 ),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
+        .clk_out1(clk_out1),
         .i_reset_IBUF(i_reset_IBUF),
         .state_reg(state_reg));
+endmodule
+
+module clock
+   (clk_out1,
+    reset,
+    locked,
+    clk_in1);
+  output clk_out1;
+  input reset;
+  output locked;
+  input clk_in1;
+
+  wire clk_in1;
+  wire clk_out1;
+  wire locked;
+  wire reset;
+
+  clock_clk_wiz inst
+       (.clk_in1(clk_in1),
+        .clk_out1(clk_out1),
+        .locked(locked),
+        .reset(reset));
+endmodule
+
+module clock_clk_wiz
+   (clk_out1,
+    reset,
+    locked,
+    clk_in1);
+  output clk_out1;
+  input reset;
+  output locked;
+  input clk_in1;
+
+  wire clk_in1;
+  wire clk_in1_clock;
+  wire clk_out1;
+  wire clk_out1_clock;
+  wire clkfbout_buf_clock;
+  wire clkfbout_clock;
+  wire locked;
+  wire reset;
+  wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_DRDY_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_PSDONE_UNCONNECTED;
+  wire [15:0]NLW_mmcm_adv_inst_DO_UNCONNECTED;
+
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkf_buf
+       (.I(clkfbout_clock),
+        .O(clkfbout_buf_clock));
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  (* CAPACITANCE = "DONT_CARE" *) 
+  (* IBUF_DELAY_VALUE = "0" *) 
+  (* IFD_DELAY_VALUE = "AUTO" *) 
+  IBUF #(
+    .IOSTANDARD("DEFAULT")) 
+    clkin1_ibufg
+       (.I(clk_in1),
+        .O(clk_in1_clock));
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout1_buf
+       (.I(clk_out1_clock),
+        .O(clk_out1));
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  MMCME2_ADV #(
+    .BANDWIDTH("OPTIMIZED"),
+    .CLKFBOUT_MULT_F(10.000000),
+    .CLKFBOUT_PHASE(0.000000),
+    .CLKFBOUT_USE_FINE_PS("FALSE"),
+    .CLKIN1_PERIOD(10.000000),
+    .CLKIN2_PERIOD(0.000000),
+    .CLKOUT0_DIVIDE_F(20.000000),
+    .CLKOUT0_DUTY_CYCLE(0.500000),
+    .CLKOUT0_PHASE(0.000000),
+    .CLKOUT0_USE_FINE_PS("FALSE"),
+    .CLKOUT1_DIVIDE(1),
+    .CLKOUT1_DUTY_CYCLE(0.500000),
+    .CLKOUT1_PHASE(0.000000),
+    .CLKOUT1_USE_FINE_PS("FALSE"),
+    .CLKOUT2_DIVIDE(1),
+    .CLKOUT2_DUTY_CYCLE(0.500000),
+    .CLKOUT2_PHASE(0.000000),
+    .CLKOUT2_USE_FINE_PS("FALSE"),
+    .CLKOUT3_DIVIDE(1),
+    .CLKOUT3_DUTY_CYCLE(0.500000),
+    .CLKOUT3_PHASE(0.000000),
+    .CLKOUT3_USE_FINE_PS("FALSE"),
+    .CLKOUT4_CASCADE("FALSE"),
+    .CLKOUT4_DIVIDE(1),
+    .CLKOUT4_DUTY_CYCLE(0.500000),
+    .CLKOUT4_PHASE(0.000000),
+    .CLKOUT4_USE_FINE_PS("FALSE"),
+    .CLKOUT5_DIVIDE(1),
+    .CLKOUT5_DUTY_CYCLE(0.500000),
+    .CLKOUT5_PHASE(0.000000),
+    .CLKOUT5_USE_FINE_PS("FALSE"),
+    .CLKOUT6_DIVIDE(1),
+    .CLKOUT6_DUTY_CYCLE(0.500000),
+    .CLKOUT6_PHASE(0.000000),
+    .CLKOUT6_USE_FINE_PS("FALSE"),
+    .COMPENSATION("ZHOLD"),
+    .DIVCLK_DIVIDE(1),
+    .IS_CLKINSEL_INVERTED(1'b0),
+    .IS_PSEN_INVERTED(1'b0),
+    .IS_PSINCDEC_INVERTED(1'b0),
+    .IS_PWRDWN_INVERTED(1'b0),
+    .IS_RST_INVERTED(1'b0),
+    .REF_JITTER1(0.010000),
+    .REF_JITTER2(0.010000),
+    .SS_EN("FALSE"),
+    .SS_MODE("CENTER_HIGH"),
+    .SS_MOD_PERIOD(10000),
+    .STARTUP_WAIT("FALSE")) 
+    mmcm_adv_inst
+       (.CLKFBIN(clkfbout_buf_clock),
+        .CLKFBOUT(clkfbout_clock),
+        .CLKFBOUTB(NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED),
+        .CLKFBSTOPPED(NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED),
+        .CLKIN1(clk_in1_clock),
+        .CLKIN2(1'b0),
+        .CLKINSEL(1'b1),
+        .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
+        .CLKOUT0(clk_out1_clock),
+        .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
+        .CLKOUT1(NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED),
+        .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
+        .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
+        .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),
+        .CLKOUT3(NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED),
+        .CLKOUT3B(NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED),
+        .CLKOUT4(NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED),
+        .CLKOUT5(NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED),
+        .CLKOUT6(NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED),
+        .DADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .DCLK(1'b0),
+        .DEN(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .DO(NLW_mmcm_adv_inst_DO_UNCONNECTED[15:0]),
+        .DRDY(NLW_mmcm_adv_inst_DRDY_UNCONNECTED),
+        .DWE(1'b0),
+        .LOCKED(locked),
+        .PSCLK(1'b0),
+        .PSDONE(NLW_mmcm_adv_inst_PSDONE_UNCONNECTED),
+        .PSEN(1'b0),
+        .PSINCDEC(1'b0),
+        .PWRDWN(1'b0),
+        .RST(reset));
 endmodule
 
 module control
@@ -3499,18 +3659,18 @@ module control
     \pc_reg[1]_1 ,
     i_reset_IBUF,
     \pc_reg[0]_0 ,
-    i_valid_IBUF,
-    i_clk_IBUF_BUFG);
+    locked,
+    clk_out1);
   output [6:0]\pc_reg[1]_0 ;
   input \pc_reg[1]_1 ;
   input i_reset_IBUF;
   input [2:0]\pc_reg[0]_0 ;
-  input i_valid_IBUF;
-  input i_clk_IBUF_BUFG;
+  input locked;
+  input clk_out1;
 
-  wire i_clk_IBUF_BUFG;
+  wire clk_out1;
   wire i_reset_IBUF;
-  wire i_valid_IBUF;
+  wire locked;
   wire \pc[0]_i_1_n_0 ;
   wire \pc[1]_i_1_n_0 ;
   wire \pc[2]_i_1_n_0 ;
@@ -3525,7 +3685,7 @@ module control
        (.I0(program_addr[0]),
         .I1(\pc_reg[0]_0 [0]),
         .I2(\pc_reg[0]_0 [1]),
-        .I3(i_valid_IBUF),
+        .I3(locked),
         .I4(\pc_reg[0]_0 [2]),
         .I5(i_reset_IBUF),
         .O(\pc[0]_i_1_n_0 ));
@@ -3551,7 +3711,7 @@ module control
   FDRE #(
     .INIT(1'b0)) 
     \pc_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\pc[0]_i_1_n_0 ),
         .Q(program_addr[0]),
@@ -3559,7 +3719,7 @@ module control
   FDRE #(
     .INIT(1'b0)) 
     \pc_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\pc[1]_i_1_n_0 ),
         .Q(program_addr[1]),
@@ -3567,7 +3727,7 @@ module control
   FDRE #(
     .INIT(1'b0)) 
     \pc_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\pc[2]_i_1_n_0 ),
         .Q(program_addr[2]),
@@ -3629,23 +3789,23 @@ endmodule
 
 module data_memory
    (\ram_data_reg[15]_0 ,
-    i_clk_IBUF_BUFG,
+    clk_out1,
     acc,
-    p_0_in__0,
+    p_0_in,
     Q,
     E);
   output [15:0]\ram_data_reg[15]_0 ;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
   input [15:0]acc;
-  input p_0_in__0;
+  input p_0_in;
   input [3:0]Q;
   input [0:0]E;
 
   wire [0:0]E;
   wire [3:0]Q;
   wire [15:0]acc;
-  wire i_clk_IBUF_BUFG;
-  wire p_0_in__0;
+  wire clk_out1;
+  wire p_0_in;
   wire [15:0]ram_data0;
   wire [15:0]\ram_data_reg[15]_0 ;
 
@@ -3663,8 +3823,8 @@ module data_memory
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[0]),
         .O(ram_data0[0]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3675,12 +3835,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "10" *) 
   (* ram_slice_end = "10" *) 
-  RAM256X1S_HD31 DRAM_reg_0_255_10_10
+  RAM256X1S_HD61 DRAM_reg_0_255_10_10
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[10]),
         .O(ram_data0[10]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3691,12 +3851,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "11" *) 
   (* ram_slice_end = "11" *) 
-  RAM256X1S_HD32 DRAM_reg_0_255_11_11
+  RAM256X1S_HD62 DRAM_reg_0_255_11_11
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[11]),
         .O(ram_data0[11]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3707,12 +3867,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "12" *) 
   (* ram_slice_end = "12" *) 
-  RAM256X1S_HD33 DRAM_reg_0_255_12_12
+  RAM256X1S_HD63 DRAM_reg_0_255_12_12
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[12]),
         .O(ram_data0[12]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3723,12 +3883,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "13" *) 
   (* ram_slice_end = "13" *) 
-  RAM256X1S_HD34 DRAM_reg_0_255_13_13
+  RAM256X1S_HD64 DRAM_reg_0_255_13_13
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[13]),
         .O(ram_data0[13]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3739,12 +3899,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "14" *) 
   (* ram_slice_end = "14" *) 
-  RAM256X1S_HD35 DRAM_reg_0_255_14_14
+  RAM256X1S_HD65 DRAM_reg_0_255_14_14
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[14]),
         .O(ram_data0[14]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3755,12 +3915,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "15" *) 
   (* ram_slice_end = "15" *) 
-  RAM256X1S_HD36 DRAM_reg_0_255_15_15
+  RAM256X1S_HD66 DRAM_reg_0_255_15_15
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[15]),
         .O(ram_data0[15]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3771,12 +3931,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "1" *) 
   (* ram_slice_end = "1" *) 
-  RAM256X1S_HD37 DRAM_reg_0_255_1_1
+  RAM256X1S_HD67 DRAM_reg_0_255_1_1
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[1]),
         .O(ram_data0[1]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hF0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3787,12 +3947,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "2" *) 
   (* ram_slice_end = "2" *) 
-  RAM256X1S_HD38 DRAM_reg_0_255_2_2
+  RAM256X1S_HD68 DRAM_reg_0_255_2_2
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[2]),
         .O(ram_data0[2]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hFF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3803,12 +3963,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "3" *) 
   (* ram_slice_end = "3" *) 
-  RAM256X1S_HD39 DRAM_reg_0_255_3_3
+  RAM256X1S_HD69 DRAM_reg_0_255_3_3
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[3]),
         .O(ram_data0[3]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hFFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3819,12 +3979,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "4" *) 
   (* ram_slice_end = "4" *) 
-  RAM256X1S_HD40 DRAM_reg_0_255_4_4
+  RAM256X1S_HD70 DRAM_reg_0_255_4_4
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[4]),
         .O(ram_data0[4]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hFFFFFFFF00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF00000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3835,12 +3995,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "5" *) 
   (* ram_slice_end = "5" *) 
-  RAM256X1S_HD41 DRAM_reg_0_255_5_5
+  RAM256X1S_HD71 DRAM_reg_0_255_5_5
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[5]),
         .O(ram_data0[5]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hFFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF0000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3851,12 +4011,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "6" *) 
   (* ram_slice_end = "6" *) 
-  RAM256X1S_HD42 DRAM_reg_0_255_6_6
+  RAM256X1S_HD72 DRAM_reg_0_255_6_6
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[6]),
         .O(ram_data0[6]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3867,12 +4027,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "7" *) 
   (* ram_slice_end = "7" *) 
-  RAM256X1S_HD43 DRAM_reg_0_255_7_7
+  RAM256X1S_HD73 DRAM_reg_0_255_7_7
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[7]),
         .O(ram_data0[7]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3883,12 +4043,12 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "8" *) 
   (* ram_slice_end = "8" *) 
-  RAM256X1S_HD44 DRAM_reg_0_255_8_8
+  RAM256X1S_HD74 DRAM_reg_0_255_8_8
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[8]),
         .O(ram_data0[8]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   (* INIT = "256'h0000000000000000000000000000000000000000000000000000000000000000" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-5 {cell *THIS*}}" *) 
   (* RTL_RAM_BITS = "16384" *) 
@@ -3899,16 +4059,16 @@ module data_memory
   (* ram_offset = "0" *) 
   (* ram_slice_begin = "9" *) 
   (* ram_slice_end = "9" *) 
-  RAM256X1S_HD45 DRAM_reg_0_255_9_9
+  RAM256X1S_HD75 DRAM_reg_0_255_9_9
        (.A({1'b0,1'b0,1'b0,1'b0,Q}),
         .D(acc[9]),
         .O(ram_data0[9]),
-        .WCLK(i_clk_IBUF_BUFG),
-        .WE(p_0_in__0));
+        .WCLK(clk_out1),
+        .WE(p_0_in));
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[0]),
         .Q(\ram_data_reg[15]_0 [0]),
@@ -3916,7 +4076,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[10] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[10]),
         .Q(\ram_data_reg[15]_0 [10]),
@@ -3924,7 +4084,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[11]),
         .Q(\ram_data_reg[15]_0 [11]),
@@ -3932,7 +4092,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[12]),
         .Q(\ram_data_reg[15]_0 [12]),
@@ -3940,7 +4100,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[13]),
         .Q(\ram_data_reg[15]_0 [13]),
@@ -3948,7 +4108,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[14]),
         .Q(\ram_data_reg[15]_0 [14]),
@@ -3956,7 +4116,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[15]),
         .Q(\ram_data_reg[15]_0 [15]),
@@ -3964,7 +4124,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[1]),
         .Q(\ram_data_reg[15]_0 [1]),
@@ -3972,7 +4132,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[2]),
         .Q(\ram_data_reg[15]_0 [2]),
@@ -3980,7 +4140,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[3]),
         .Q(\ram_data_reg[15]_0 [3]),
@@ -3988,7 +4148,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[4] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[4]),
         .Q(\ram_data_reg[15]_0 [4]),
@@ -3996,7 +4156,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[5] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[5]),
         .Q(\ram_data_reg[15]_0 [5]),
@@ -4004,7 +4164,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[6] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[6]),
         .Q(\ram_data_reg[15]_0 [6]),
@@ -4012,7 +4172,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[7] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[7]),
         .Q(\ram_data_reg[15]_0 [7]),
@@ -4020,7 +4180,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[8] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[8]),
         .Q(\ram_data_reg[15]_0 [8]),
@@ -4028,7 +4188,7 @@ module data_memory
   FDRE #(
     .INIT(1'b0)) 
     \ram_data_reg[9] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(ram_data0[9]),
         .Q(\ram_data_reg[15]_0 [9]),
@@ -4051,7 +4211,7 @@ module datapath
     i_reset_IBUF,
     E,
     \acc_reg[15]_1 ,
-    i_clk_IBUF_BUFG);
+    clk_out1);
   output [3:0]O;
   output [15:0]Q;
   output [3:0]\acc_reg[7]_0 ;
@@ -4067,7 +4227,7 @@ module datapath
   input i_reset_IBUF;
   input [0:0]E;
   input [15:0]\acc_reg[15]_1 ;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
 
   wire [0:0]D;
   wire [0:0]DI;
@@ -4097,7 +4257,7 @@ module datapath
   wire alu_out0_carry_n_1;
   wire alu_out0_carry_n_2;
   wire alu_out0_carry_n_3;
-  wire i_clk_IBUF_BUFG;
+  wire clk_out1;
   wire i_reset_IBUF;
   wire [0:0]state_reg;
   wire [3:3]NLW_alu_out0_carry__2_CO_UNCONNECTED;
@@ -4106,7 +4266,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [0]),
         .Q(Q[0]),
@@ -4115,7 +4275,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[10] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [10]),
         .Q(Q[10]),
@@ -4124,7 +4284,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [11]),
         .Q(Q[11]),
@@ -4133,7 +4293,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [12]),
         .Q(Q[12]),
@@ -4142,7 +4302,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [13]),
         .Q(Q[13]),
@@ -4151,7 +4311,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [14]),
         .Q(Q[14]),
@@ -4160,7 +4320,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [15]),
         .Q(Q[15]),
@@ -4169,7 +4329,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [1]),
         .Q(Q[1]),
@@ -4178,7 +4338,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [2]),
         .Q(Q[2]),
@@ -4187,7 +4347,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [3]),
         .Q(Q[3]),
@@ -4196,7 +4356,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[4] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [4]),
         .Q(Q[4]),
@@ -4205,7 +4365,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[5] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [5]),
         .Q(Q[5]),
@@ -4214,7 +4374,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[6] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [6]),
         .Q(Q[6]),
@@ -4223,7 +4383,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[7] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [7]),
         .Q(Q[7]),
@@ -4232,7 +4392,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[8] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [8]),
         .Q(Q[8]),
@@ -4241,7 +4401,7 @@ module datapath
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \acc_reg[9] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(E),
         .D(\acc_reg[15]_1 [9]),
         .Q(Q[9]),
@@ -4291,7 +4451,7 @@ module datapath
 endmodule
 
 module program_memory
-   (p_0_in__0,
+   (p_0_in,
     Q,
     E,
     \ram_data_reg[12]_0 ,
@@ -4303,7 +4463,7 @@ module program_memory
     S,
     \ram_data_reg[11]_1 ,
     \ram_data_reg[11]_2 ,
-    i_valid_IBUF,
+    locked,
     \acc_reg[15] ,
     alu_out0_carry__2,
     \FSM_sequential_state_reg_reg[1] ,
@@ -4312,8 +4472,8 @@ module program_memory
     \acc_reg[7] ,
     O,
     D,
-    i_clk_IBUF_BUFG);
-  output p_0_in__0;
+    clk_out1);
+  output p_0_in;
   output [6:0]Q;
   output [0:0]E;
   output [0:0]\ram_data_reg[12]_0 ;
@@ -4325,7 +4485,7 @@ module program_memory
   output [3:0]S;
   output [3:0]\ram_data_reg[11]_1 ;
   output [3:0]\ram_data_reg[11]_2 ;
-  input i_valid_IBUF;
+  input locked;
   input [15:0]\acc_reg[15] ;
   input [14:0]alu_out0_carry__2;
   input \FSM_sequential_state_reg_reg[1] ;
@@ -4334,7 +4494,7 @@ module program_memory
   input [3:0]\acc_reg[7] ;
   input [3:0]O;
   input [6:0]D;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
 
   wire [6:0]D;
   wire [0:0]DI;
@@ -4350,10 +4510,10 @@ module program_memory
   wire [3:0]\acc_reg[7] ;
   wire [14:0]alu_out0_carry__2;
   wire alu_out0_carry_i_6_n_0;
-  wire i_clk_IBUF_BUFG;
-  wire i_valid_IBUF;
+  wire clk_out1;
   wire in;
-  wire p_0_in__0;
+  wire locked;
+  wire p_0_in;
   wire \ram_data_reg[11]_0 ;
   wire [3:0]\ram_data_reg[11]_1 ;
   wire [3:0]\ram_data_reg[11]_2 ;
@@ -4368,14 +4528,14 @@ module program_memory
        (.I0(Q[6]),
         .I1(Q[4]),
         .I2(Q[5]),
-        .I3(i_valid_IBUF),
-        .O(p_0_in__0));
+        .I3(locked),
+        .O(p_0_in));
   LUT6 #(
     .INIT(64'h0000000000000020)) 
     \FSM_sequential_state_reg[1]_i_2 
        (.I0(\FSM_sequential_state_reg[1]_i_4_n_0 ),
         .I1(Q[6]),
-        .I2(i_valid_IBUF),
+        .I2(locked),
         .I3(\FSM_sequential_state_reg_reg[1] ),
         .I4(Q[5]),
         .I5(Q[4]),
@@ -4449,7 +4609,7 @@ module program_memory
     .INIT(8'hC8)) 
     \acc[15]_i_1 
        (.I0(Q[5]),
-        .I1(i_valid_IBUF),
+        .I1(locked),
         .I2(Q[6]),
         .O(\ram_data_reg[12]_0 ));
   LUT5 #(
@@ -4548,7 +4708,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__0_i_1
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [7]),
@@ -4558,7 +4718,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__0_i_2
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [6]),
@@ -4568,7 +4728,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__0_i_3
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [5]),
@@ -4578,7 +4738,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__0_i_4
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [4]),
@@ -4588,7 +4748,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__1_i_1
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [11]),
@@ -4598,7 +4758,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__1_i_2
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [10]),
@@ -4608,7 +4768,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__1_i_3
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [9]),
@@ -4618,7 +4778,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__1_i_4
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [8]),
@@ -4632,13 +4792,13 @@ module program_memory
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(Q[5]),
-        .I4(i_valid_IBUF),
+        .I4(locked),
         .I5(alu_out0_carry__2[14]),
         .O(\ram_data_reg[15] [3]));
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__2_i_2
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [14]),
@@ -4648,7 +4808,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__2_i_3
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [13]),
@@ -4658,7 +4818,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h755FD5FF8AA02A00)) 
     alu_out0_carry__2_i_4
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[4]),
         .I2(Q[6]),
         .I3(\acc_reg[15] [12]),
@@ -4670,12 +4830,12 @@ module program_memory
     alu_out0_carry_i_1
        (.I0(Q[5]),
         .I1(Q[6]),
-        .I2(i_valid_IBUF),
+        .I2(locked),
         .O(DI));
   LUT6 #(
     .INIT(64'h775F88A088A0775F)) 
     alu_out0_carry_i_2
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(\acc_reg[15] [3]),
         .I2(Q[3]),
         .I3(alu_out0_carry_i_6_n_0),
@@ -4685,7 +4845,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h775F88A088A0775F)) 
     alu_out0_carry_i_3
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(\acc_reg[15] [2]),
         .I2(Q[2]),
         .I3(alu_out0_carry_i_6_n_0),
@@ -4695,7 +4855,7 @@ module program_memory
   LUT6 #(
     .INIT(64'h775F88A088A0775F)) 
     alu_out0_carry_i_4
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(\acc_reg[15] [1]),
         .I2(Q[1]),
         .I3(alu_out0_carry_i_6_n_0),
@@ -4705,7 +4865,7 @@ module program_memory
   LUT5 #(
     .INIT(32'hAA802A00)) 
     alu_out0_carry_i_5
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[6]),
         .I2(Q[4]),
         .I3(\acc_reg[15] [0]),
@@ -4722,7 +4882,7 @@ module program_memory
   LUT3 #(
     .INIT(8'h7F)) 
     alu_out0_carry_i_7
-       (.I0(i_valid_IBUF),
+       (.I0(locked),
         .I1(Q[6]),
         .I2(Q[5]),
         .O(in));
@@ -4732,7 +4892,7 @@ module program_memory
     \pc[2]_i_2 
        (.I0(Q[4]),
         .I1(Q[5]),
-        .I2(i_valid_IBUF),
+        .I2(locked),
         .I3(Q[6]),
         .O(\ram_data_reg[11]_0 ));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
@@ -4740,7 +4900,7 @@ module program_memory
     .INIT(16'h00C8)) 
     \ram_data[15]_i_1 
        (.I0(Q[6]),
-        .I1(i_valid_IBUF),
+        .I1(locked),
         .I2(Q[5]),
         .I3(Q[4]),
         .O(E));
@@ -4748,8 +4908,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[0]),
         .Q(Q[0]),
         .R(1'b0));
@@ -4757,8 +4917,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[4]),
         .Q(Q[4]),
         .R(1'b0));
@@ -4766,8 +4926,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[5]),
         .Q(Q[5]),
         .R(1'b0));
@@ -4775,8 +4935,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[6]),
         .Q(Q[6]),
         .R(1'b0));
@@ -4784,8 +4944,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[1]),
         .Q(Q[1]),
         .R(1'b0));
@@ -4793,8 +4953,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[2]),
         .Q(Q[2]),
         .R(1'b0));
@@ -4802,8 +4962,8 @@ module program_memory
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \ram_data_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(i_valid_IBUF),
+       (.C(clk_out1),
+        .CE(locked),
         .D(D[3]),
         .Q(Q[3]),
         .R(1'b0));
@@ -4823,14 +4983,12 @@ module top
   output o_tx_done;
 
   wire [15:0]acc;
-  wire i_clk;
-  wire i_clk_IBUF;
-  wire i_clk_IBUF_BUFG;
+  wire clk_out;
+  (* IBUF_LOW_PWR *) wire i_clk;
   wire i_reset;
   wire i_reset_IBUF;
-  wire i_valid;
-  wire i_valid_IBUF;
   wire [13:11]instruccion;
+  wire locked;
   wire [15:15]next_buffer;
   wire o_tx;
   wire o_tx_OBUF;
@@ -4909,18 +5067,9 @@ module top
 initial begin
  $sdf_annotate("tb_bip_i_time_synth.sdf",,,,"tool_control");
 end
-  BUFG i_clk_IBUF_BUFG_inst
-       (.I(i_clk_IBUF),
-        .O(i_clk_IBUF_BUFG));
-  IBUF i_clk_IBUF_inst
-       (.I(i_clk),
-        .O(i_clk_IBUF));
   IBUF i_reset_IBUF_inst
        (.I(i_reset),
         .O(i_reset_IBUF));
-  IBUF i_valid_IBUF_inst
-       (.I(i_valid),
-        .O(i_valid_IBUF));
   OBUF o_tx_OBUF_inst
        (.I(o_tx_OBUF),
         .O(o_tx));
@@ -4928,8 +5077,8 @@ end
        (.I(o_tx_done_OBUF),
         .O(o_tx_done));
   baudrate_generator u_bd_generator
-       (.\contador_reg[54]_0 (u_bd_generator_n_0),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
+       (.clk_out1(clk_out),
+        .\contador_reg[54]_0 (u_bd_generator_n_0),
         .i_reset_IBUF(i_reset_IBUF));
   bip_i u_bip_i
        (.D(next_buffer),
@@ -4945,19 +5094,24 @@ end
         .\acc_reg[15]_0 (p_0_in),
         .\acc_reg[7] ({u_bip_i_n_20,u_bip_i_n_21,u_bip_i_n_22,u_bip_i_n_23}),
         .\acc_reg[7]_0 ({u_program_memory_n_37,u_program_memory_n_38,u_program_memory_n_39,u_program_memory_n_40}),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
+        .clk_out1(clk_out),
         .i_reset_IBUF(i_reset_IBUF),
-        .i_valid_IBUF(i_valid_IBUF),
+        .locked(locked),
         .\pc_reg[0] (instruccion),
         .\pc_reg[1] ({u_bip_i_n_33,u_bip_i_n_34,u_bip_i_n_35,u_bip_i_n_36,u_bip_i_n_37,u_bip_i_n_38,u_bip_i_n_39}),
         .\pc_reg[1]_0 (u_program_memory_n_10),
         .state_reg(state_reg));
+  clock u_clock
+       (.clk_in1(i_clk),
+        .clk_out1(clk_out),
+        .locked(locked),
+        .reset(i_reset_IBUF));
   data_memory u_data_memory
        (.E(u_program_memory_n_8),
         .Q({u_program_memory_n_4,u_program_memory_n_5,u_program_memory_n_6,u_program_memory_n_7}),
         .acc(acc),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
-        .p_0_in__0(p_0_in__0),
+        .clk_out1(clk_out),
+        .p_0_in(p_0_in__0),
         .\ram_data_reg[15]_0 ({u_data_memory_n_0,u_data_memory_n_1,u_data_memory_n_2,u_data_memory_n_3,u_data_memory_n_4,u_data_memory_n_5,u_data_memory_n_6,u_data_memory_n_7,u_data_memory_n_8,u_data_memory_n_9,u_data_memory_n_10,u_data_memory_n_11,u_data_memory_n_12,u_data_memory_n_13,u_data_memory_n_14,u_data_memory_n_15}));
   program_memory u_program_memory
        (.D({u_bip_i_n_33,u_bip_i_n_34,u_bip_i_n_35,u_bip_i_n_36,u_bip_i_n_37,u_bip_i_n_38,u_bip_i_n_39}),
@@ -4972,9 +5126,9 @@ end
         .\acc_reg[15]_0 ({u_bip_i_n_28,u_bip_i_n_29,u_bip_i_n_30,u_bip_i_n_31}),
         .\acc_reg[7] ({u_bip_i_n_20,u_bip_i_n_21,u_bip_i_n_22,u_bip_i_n_23}),
         .alu_out0_carry__2(acc[15:1]),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
-        .i_valid_IBUF(i_valid_IBUF),
-        .p_0_in__0(p_0_in__0),
+        .clk_out1(clk_out),
+        .locked(locked),
+        .p_0_in(p_0_in__0),
         .\ram_data_reg[11]_0 (u_program_memory_n_10),
         .\ram_data_reg[11]_1 ({u_program_memory_n_37,u_program_memory_n_38,u_program_memory_n_39,u_program_memory_n_40}),
         .\ram_data_reg[11]_2 ({u_program_memory_n_41,u_program_memory_n_42,u_program_memory_n_43,u_program_memory_n_44}),
@@ -4989,7 +5143,7 @@ end
         .\FSM_sequential_state_reg_reg[1]_1 (u_program_memory_n_16),
         .\FSM_sequential_state_reg_reg[1]_2 (u_bd_generator_n_0),
         .Q(acc[14:0]),
-        .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
+        .clk_out1(clk_out),
         .i_reset_IBUF(i_reset_IBUF),
         .o_tx_OBUF(o_tx_OBUF),
         .o_tx_done_OBUF(o_tx_done_OBUF));
@@ -5001,7 +5155,7 @@ module tx_uart
     o_tx_done_OBUF,
     \FSM_sequential_state_reg_reg[0]_0 ,
     i_reset_IBUF,
-    i_clk_IBUF_BUFG,
+    clk_out1,
     \FSM_sequential_state_reg_reg[1]_1 ,
     \FSM_sequential_state_reg_reg[1]_2 ,
     D,
@@ -5011,7 +5165,7 @@ module tx_uart
   output o_tx_done_OBUF;
   output \FSM_sequential_state_reg_reg[0]_0 ;
   input i_reset_IBUF;
-  input i_clk_IBUF_BUFG;
+  input clk_out1;
   input \FSM_sequential_state_reg_reg[1]_1 ;
   input \FSM_sequential_state_reg_reg[1]_2 ;
   input [0:0]D;
@@ -5048,7 +5202,7 @@ module tx_uart
   wire \buffer_reg_n_0_[7] ;
   wire \buffer_reg_n_0_[8] ;
   wire \buffer_reg_n_0_[9] ;
-  wire i_clk_IBUF_BUFG;
+  wire clk_out1;
   wire i_reset_IBUF;
   wire next_bit_counter;
   wire [14:0]next_buffer;
@@ -5107,7 +5261,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \FSM_sequential_state_reg_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\FSM_sequential_state_reg[0]_i_1_n_0 ),
         .Q(state_reg),
@@ -5116,7 +5270,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \FSM_sequential_state_reg_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(\FSM_sequential_state_reg[1]_i_1_n_0 ),
         .Q(\FSM_sequential_state_reg_reg[1]_0 ),
@@ -5175,7 +5329,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \bits_counter_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_bit_counter),
         .D(\bits_counter[0]_i_1_n_0 ),
         .Q(sel0[0]),
@@ -5183,7 +5337,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \bits_counter_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_bit_counter),
         .D(\bits_counter[1]_i_1_n_0 ),
         .Q(sel0[1]),
@@ -5191,7 +5345,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \bits_counter_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_bit_counter),
         .D(\bits_counter[2]_i_1_n_0 ),
         .Q(sel0[2]),
@@ -5199,7 +5353,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \bits_counter_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_bit_counter),
         .D(\bits_counter[3]_i_2_n_0 ),
         .Q(sel0[3]),
@@ -5345,7 +5499,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[0]),
         .Q(buffer),
@@ -5353,7 +5507,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[10] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[10]),
         .Q(\buffer_reg_n_0_[10] ),
@@ -5361,7 +5515,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[11]),
         .Q(\buffer_reg_n_0_[11] ),
@@ -5369,7 +5523,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[12]),
         .Q(\buffer_reg_n_0_[12] ),
@@ -5377,7 +5531,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[13]),
         .Q(\buffer_reg_n_0_[13] ),
@@ -5385,7 +5539,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[14]),
         .Q(\buffer_reg_n_0_[14] ),
@@ -5393,7 +5547,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(D),
         .Q(\buffer_reg_n_0_[15] ),
@@ -5401,7 +5555,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[1]),
         .Q(\buffer_reg_n_0_[1] ),
@@ -5409,7 +5563,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[2]),
         .Q(\buffer_reg_n_0_[2] ),
@@ -5417,7 +5571,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[3]),
         .Q(\buffer_reg_n_0_[3] ),
@@ -5425,7 +5579,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[4] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[4]),
         .Q(\buffer_reg_n_0_[4] ),
@@ -5433,7 +5587,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[5] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[5]),
         .Q(\buffer_reg_n_0_[5] ),
@@ -5441,7 +5595,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[6] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[6]),
         .Q(\buffer_reg_n_0_[6] ),
@@ -5449,7 +5603,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[7] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[7]),
         .Q(\buffer_reg_n_0_[7] ),
@@ -5457,7 +5611,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[8] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[8]),
         .Q(\buffer_reg_n_0_[8] ),
@@ -5465,7 +5619,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \buffer_reg[9] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_buffer_0),
         .D(next_buffer[9]),
         .Q(\buffer_reg_n_0_[9] ),
@@ -5536,7 +5690,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \sampling_counter_reg[0] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_sampling_counter),
         .D(\sampling_counter[0]_i_1_n_0 ),
         .Q(sampling_counter[0]),
@@ -5544,7 +5698,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \sampling_counter_reg[1] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_sampling_counter),
         .D(\sampling_counter[1]_i_1_n_0 ),
         .Q(sampling_counter[1]),
@@ -5552,7 +5706,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \sampling_counter_reg[2] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_sampling_counter),
         .D(\sampling_counter[2]_i_1_n_0 ),
         .Q(sampling_counter[2]),
@@ -5560,7 +5714,7 @@ module tx_uart
   FDRE #(
     .INIT(1'b0)) 
     \sampling_counter_reg[3] 
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(next_sampling_counter),
         .D(\sampling_counter[3]_i_2_n_0 ),
         .Q(sampling_counter[3]),
@@ -5575,7 +5729,7 @@ module tx_uart
   FDSE #(
     .INIT(1'b1)) 
     tx_data_reg
-       (.C(i_clk_IBUF_BUFG),
+       (.C(clk_out1),
         .CE(1'b1),
         .D(next_tx),
         .Q(o_tx_OBUF),

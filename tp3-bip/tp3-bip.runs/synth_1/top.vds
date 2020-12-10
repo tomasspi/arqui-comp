@@ -2,15 +2,14 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Dec  9 18:15:35 2020
-# Process ID: 10744
+# Start of session at: Thu Dec 10 19:24:04 2020
+# Process ID: 15664
 # Current directory: E:/Arqui/tp3-bip/tp3-bip.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/top.vds
 # Journal file: E:/Arqui/tp3-bip/tp3-bip.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source top.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1036.781 ; gain = 0.000
 Command: synth_design -top top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -18,11 +17,74 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9372
+INFO: [Synth 8-7075] Helper process launched with PID 14216
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 1036.781 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1032.535 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clock' [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.v:70]
+INFO: [Synth 8-6157] synthesizing module 'clock_clk_wiz' [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock_clk_wiz.v:68]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32977]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32977]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:39994]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 10.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 20.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT6_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PSEN_INVERTED bound to: 1'b0 
+	Parameter IS_PSINCDEC_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: double 
+	Parameter SS_EN bound to: FALSE - type: string 
+	Parameter SS_MODE bound to: CENTER_HIGH - type: string 
+	Parameter SS_MOD_PERIOD bound to: 10000 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (2#1) [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:39994]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [E:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'clock_clk_wiz' (4#1) [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock_clk_wiz.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'clock' (5#1) [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.v:70]
 INFO: [Synth 8-6157] synthesizing module 'bip_i' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/bip_i.v:3]
 INFO: [Synth 8-6157] synthesizing module 'control' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/control.v:3]
 INFO: [Synth 8-6157] synthesizing module 'op_decoder' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v:3]
@@ -37,25 +99,25 @@ INFO: [Synth 8-6157] synthesizing module 'op_decoder' [E:/Arqui/tp3-bip/tp3-bip.
 	Parameter MEMORIA bound to: 2'b00 
 	Parameter OPERANDO bound to: 2'b01 
 	Parameter RESULTADO bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'op_decoder' (1#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'control' (2#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/control.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'op_decoder' (6#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/op_decoder.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'control' (7#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/control.v:3]
 INFO: [Synth 8-6157] synthesizing module 'datapath' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/datapath.v:3]
 	Parameter MEMORIA bound to: 2'b00 
 	Parameter OPERANDO bound to: 2'b01 
 	Parameter RESULTADO bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'datapath' (3#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/datapath.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'bip_i' (4#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/bip_i.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'datapath' (8#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/datapath.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'bip_i' (9#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/bip_i.v:3]
 INFO: [Synth 8-6157] synthesizing module 'program_memory' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/program_memory.v:8]
 	Parameter RAM_WIDTH bound to: 16 - type: integer 
 	Parameter RAM_DEPTH bound to: 2048 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'program_memory' (5#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/program_memory.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'program_memory' (10#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/program_memory.v:8]
 INFO: [Synth 8-6157] synthesizing module 'data_memory' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/data_memory.v:8]
 	Parameter RAM_WIDTH bound to: 16 - type: integer 
 	Parameter RAM_DEPTH bound to: 1024 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'data_memory' (6#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/data_memory.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'data_memory' (11#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/data_memory.v:8]
 INFO: [Synth 8-6157] synthesizing module 'interfaz_uart' [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/interfaz_uart.v:3]
 	Parameter HLT bound to: 16'b0000000000000000 
-INFO: [Synth 8-6155] done synthesizing module 'interfaz_uart' (7#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/interfaz_uart.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'interfaz_uart' (12#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/interfaz_uart.v:3]
 INFO: [Synth 8-6157] synthesizing module 'tx_uart' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v:3]
 	Parameter DATA_BITS bound to: 16 - type: integer 
 	Parameter N_TICKS bound to: 16 - type: integer 
@@ -63,56 +125,71 @@ INFO: [Synth 8-6157] synthesizing module 'tx_uart' [E:/Arqui/tp2-uart/tp2-uart.s
 	Parameter START bound to: 2'b01 
 	Parameter DATA bound to: 2'b10 
 	Parameter STOP bound to: 2'b11 
-INFO: [Synth 8-6155] done synthesizing module 'tx_uart' (8#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'tx_uart' (13#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v:3]
 INFO: [Synth 8-6157] synthesizing module 'baudrate_generator' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
 	Parameter F_CLOCK bound to: 50000000.000000 - type: double 
 	Parameter BAUDRATE bound to: 9600 - type: integer 
 	Parameter SAMPLING bound to: 16 - type: integer 
 	Parameter CUENTA bound to: 325.520833 - type: double 
 	Parameter N_BITS bound to: 63 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'baudrate_generator' (9#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'top' (10#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/top.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'baudrate_generator' (14#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top' (15#1) [E:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/new/top.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1037.879 ; gain = 1.098
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.535 ; gain = 18.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1037.879 ; gain = 1.098
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.535 ; gain = 18.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1037.879 ; gain = 1.098
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.535 ; gain = 18.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1037.879 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1050.535 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
+Parsing XDC File [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock_board.xdc] for cell 'u_clock/inst'
+Finished Parsing XDC File [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock_board.xdc] for cell 'u_clock/inst'
+Parsing XDC File [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.xdc] for cell 'u_clock/inst'
+Finished Parsing XDC File [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.xdc] for cell 'u_clock/inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [e:/Arqui/tp3-bip/tp3-bip.srcs/sources_1/ip/clock/clock.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
 Parsing XDC File [E:/Arqui/tp3-bip/tp3-bip.srcs/constrs_1/new/contraints.xdc]
 Finished Parsing XDC File [E:/Arqui/tp3-bip/tp3-bip.srcs/constrs_1/new/contraints.xdc]
+Parsing XDC File [E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/dont_touch.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/dont_touch.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1149.203 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1165.895 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.193 . Memory (MB): peak = 1149.203 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1165.895 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for u_clock/inst. (constraint file  E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/dont_touch.xdc, line 10).
+Applied set_property DONT_TOUCH = true for u_clock. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'tx_uart'
 ---------------------------------------------------------------------------------------------------
@@ -125,7 +202,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 't
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'tx_uart'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:32 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -171,7 +248,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -192,7 +269,7 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:50 . Memory (MB): peak = 1149.203 ; gain = 112.422
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -200,7 +277,7 @@ Start Timing Optimization
 INFO: [Synth 8-5584] The signal "top/u_data_memory/DRAM_reg" is implemented as distributed LUT RAM for the following reason(s): The timing constraints suggest that the chosen mapping will yield better timing results.
 INFO: [Synth 8-5584] The signal "top/u_data_memory/DRAM_reg" is implemented as distributed LUT RAM for the following reason(s): The timing constraints suggest that the chosen mapping will yield better timing results.
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:51 . Memory (MB): peak = 1156.863 ; gain = 120.082
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1165.895 ; gain = 133.359
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -215,7 +292,7 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:51 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -233,37 +310,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -276,44 +353,47 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+----------+------+
-|      |Cell      |Count |
-+------+----------+------+
-|1     |BUFG      |     1|
-|2     |CARRY4    |    20|
-|3     |LUT1      |    63|
-|4     |LUT2      |     6|
-|5     |LUT3      |    29|
-|6     |LUT4      |    20|
-|7     |LUT5      |    24|
-|8     |LUT6      |    27|
-|9     |RAM256X1S |    16|
-|10    |FDRE      |   127|
-|11    |FDSE      |     5|
-|12    |IBUF      |     3|
-|13    |OBUF      |     2|
-+------+----------+------+
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFG       |     2|
+|2     |CARRY4     |    20|
+|3     |LUT1       |    63|
+|4     |LUT2       |     7|
+|5     |LUT3       |    28|
+|6     |LUT4       |    20|
+|7     |LUT5       |    24|
+|8     |LUT6       |    27|
+|9     |MMCME2_ADV |     1|
+|10    |RAM256X1S  |    16|
+|11    |FDRE       |   127|
+|12    |FDSE       |     5|
+|13    |IBUF       |     2|
+|14    |OBUF       |     2|
++------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1170.965 ; gain = 138.430
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:53 . Memory (MB): peak = 1167.703 ; gain = 19.598
-Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1167.703 ; gain = 130.922
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:28 . Memory (MB): peak = 1170.965 ; gain = 23.070
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1170.965 ; gain = 138.430
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1175.309 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 36 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1175.836 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 37 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1180.242 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1184.297 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 16 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 16 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-38 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+53 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:57 ; elapsed = 00:01:12 . Memory (MB): peak = 1180.242 ; gain = 143.461
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1184.297 ; gain = 151.762
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'E:/Arqui/tp3-bip/tp3-bip.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Dec  9 18:17:00 2020...
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 10 19:24:48 2020...

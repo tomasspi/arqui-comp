@@ -374,29 +374,22 @@ Luego, la simulación con tiempo del módulo \emph{top} dio el siguiente resulta
 \label{sec:freq}
 
 Para obtener el valor de la máxima frecuencia a la que puede trabajar el
-circuito se utilizó el reporte de tiempo que provee Vivado. Para obtener este reporte se deben hacer los siguientes pasos:
-
-\begin{enumerate}
-\item Dirigirse a la opción `\emph{Edit timing constraints}';
-\item Seleccionar `\emph{Create clock}' y crear uno nuevo;
-\item Agregar como `\emph{source object}' la entrada del \emph{clock} del diseño realizado;
-\item Definir la frecuencia del \emph{clock}.
-\end{enumerate}
+circuito se utilizó el reporte de tiempo que provee Vivado. Para obtener este reporte se utilizo la IP \emph{clocking wizard}, con una entrada de 100 [MHz] y una salida de 50 [Mhz].
 
 Una vez hecho esto, el reporte de tiempo realizado por Vivado muestra 
-que el tiempo de \emph{setup} es de \verb|1.327 [ns]| y el tiempo de \emph{hold} es de \verb|0.232 [ns]|.
+que el tiempo de \emph{setup} es de \verb|5.447 [ns]| y el tiempo de \emph{hold} es de \verb|0.232 [ns]|.
 
 Sumando estos tiempos, se obtiene el tiempo del \emph{clock}:
 \begin{align*}
 	t_{clock} &= t_{setup} + t_{hold} \\
-	t_{clock} &= 1.327 + 0.232 \\
-	t_{clock} &= 1.559\,[ns]
+	t_{clock} &= 5.447 + 0.232 \\
+	t_{clock} &= 5.679\,[ns]
 \end{align*}
 
 Finalmente, el periodo del \emph{clock} es:
 
 \begin{equation}
-f_{clock} = 641\,[MHz]
+f_{clock} = 176\,[MHz]
 \end{equation}
 
 \section{Conclusiones}

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Wed Dec  9 18:18:58 2020
+| Date         : Thu Dec 10 19:26:31 2020
 | Host         : Archimedes running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,13 +23,12 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 20
-+-----------+----------+-----------------------------------------------------------+------------+
-| Rule      | Severity | Description                                               | Violations |
-+-----------+----------+-----------------------------------------------------------+------------+
-| SYNTH-5   | Warning  | Mapped onto distributed RAM because of timing constraints | 16         |
-| TIMING-18 | Warning  | Missing input or output delay                             | 4          |
-+-----------+----------+-----------------------------------------------------------+------------+
+             Violations found: 16
++---------+----------+-----------------------------------------------------------+------------+
+| Rule    | Severity | Description                                               | Violations |
++---------+----------+-----------------------------------------------------------+------------+
+| SYNTH-5 | Warning  | Mapped onto distributed RAM because of timing constraints | 16         |
++---------+----------+-----------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -111,26 +110,6 @@ Related violations: <none>
 SYNTH-5#16 Warning
 Mapped onto distributed RAM because of timing constraints  
 The instance u_data_memory/DRAM_reg_0_255_9_9 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
-Related violations: <none>
-
-TIMING-18#1 Warning
-Missing input or output delay  
-An input delay is missing on i_reset relative to clock(s) clock
-Related violations: <none>
-
-TIMING-18#2 Warning
-Missing input or output delay  
-An input delay is missing on i_valid relative to clock(s) clock
-Related violations: <none>
-
-TIMING-18#3 Warning
-Missing input or output delay  
-An output delay is missing on o_tx relative to clock(s) clock
-Related violations: <none>
-
-TIMING-18#4 Warning
-Missing input or output delay  
-An output delay is missing on o_tx_done relative to clock(s) clock
 Related violations: <none>
 
 

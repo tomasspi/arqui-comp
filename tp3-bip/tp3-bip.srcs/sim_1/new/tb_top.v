@@ -7,7 +7,6 @@ module tb_top();
     reg         reset;
     reg         locked;
     
-//    wire        clk_out, locked;
     wire        tx, tx_done;
     
     initial begin
@@ -26,14 +25,6 @@ module tb_top();
     end
  
     always #10 clk = ~clk;  // Simulacion de clock 100MHz
-    
-//     clock u_clock
-//     (
-//        .clk_in1(clk),
-//        .reset(reset),
-//        .clk_out1(clk_out),
-//        .locked(locked)
-//     );
     
      top u_top
      (
