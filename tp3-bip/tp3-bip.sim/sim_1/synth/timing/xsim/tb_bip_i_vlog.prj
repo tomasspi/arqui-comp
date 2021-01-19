@@ -1,7 +1,0 @@
-# compile verilog/system verilog design source files
-verilog xil_defaultlib  --include "../../../../../tp3-bip.srcs/sources_1/ip/clock" \
-"tb_bip_i_time_synth.v" \
-"../../../../../tp3-bip.srcs/sim_1/new/tb_bip_i.v" \
-
-# Do not sort compile order
-nosort

@@ -1,6 +1,0 @@
-0.7
-2020.1
-May 27 2020
-20:09:33
-E:/Arqui/tp3-bip/tp3-bip.sim/sim_1/synth/timing/xsim/tb_top_time_synth.v,1607379794,verilog,,E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_top.v,,baudrate_generator;bip_i;control;glbl;interfaz_uart;op_decoder;program_memory;top;tx_uart,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
-E:/Arqui/tp3-bip/tp3-bip.srcs/sim_1/new/tb_top.v,1607377608,verilog,,,,tb_top,,,../../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,

@@ -1,8 +1,0 @@
-0.7
-2020.1
-May 27 2020
-20:09:33
-D:/Aixa/Trabajos de la facu/Arquitectura/TP2/tp2-uart-carrizo-pinero/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v,1605813227,verilog,,D:/Aixa/Trabajos de la facu/Arquitectura/TP2/tp2-uart-carrizo-pinero/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v,,baudrate_generator,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
-D:/Aixa/Trabajos de la facu/Arquitectura/TP2/tp2-uart-carrizo-pinero/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v,1607465140,verilog,,D:/Descargas/tp3-bip/tp3-bip/tp3-bip.srcs/sim_1/new/tb_tx.v,,tx_uart,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
-D:/Descargas/tp3-bip/tp3-bip/tp3-bip.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
-D:/Descargas/tp3-bip/tp3-bip/tp3-bip.srcs/sim_1/new/tb_tx.v,1607464567,verilog,,,,tb_tx,,,../../../../tp3-bip.srcs/sources_1/ip/clock,,,,,
