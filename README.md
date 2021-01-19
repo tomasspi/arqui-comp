@@ -26,7 +26,7 @@ posteriormente en el trabajo final;
 
 **Esquema:**
 
-<img src="tp1-alu.png" alt="imgs/esquema-alu" width="500"/>
+<img src="imgs/tp1-alu.png" alt="esquema-alu" width="500"/>
 	
 
 ------------------
@@ -47,7 +47,7 @@ módulo UART;
 
 **Esquema:**
 
-<img src="tp2-uart.png" alt="imgs/esquema-uart" width="500"/>
+<img src="imgs/tp2-uart.png" alt="esquema-uart" width="500"/>
 
 ------------------
 
@@ -76,7 +76,7 @@ módulo UART;
 
 **Esquema:**
 
-<img src="tp3-BIP.png" alt="imgs/esquema-bip" width="500"/>
+<img src="imgs/tp3-bip.png" alt="esquema-bip" width="500"/>
 
 
 ------------------
