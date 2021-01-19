@@ -7,17 +7,17 @@
 
 module data_memory
 #(
-  parameter RAM_WIDTH = 16,                 // Specify RAM data width
+  parameter RAM_WIDTH = 32,                 // Specify RAM data width
   parameter RAM_DEPTH = 1024                // Specify RAM depth (number of entries)
  )
  (
   input  wire                   i_valid,
-  input  wire [10:0]            i_addr,         // Address bus, width determined from RAM_DEPTH
-  input  wire [RAM_WIDTH-1:0]   i_data,         // RAM input data
+  input  wire [RAM_WIDTH-1:0]   i_address,      // Address bus, width determined from RAM_DEPTH
+  input  wire [RAM_WIDTH-1:0]   i_write_data,   // RAM input data
   input  wire                   i_clk,          // Clock
   input  wire 					i_read_enable,  // Read enable
   input  wire                   i_write_enable, // Write enable
-  output wire [RAM_WIDTH-1:0]   o_data          // RAM output data
+  output wire [RAM_WIDTH-1:0]   o_read_data     // RAM output data
  );
 
   wire enable     = 1'b1; // RAM Enable, for additional power savings, disable port when not in use
@@ -39,10 +39,10 @@ module data_memory
   always @(posedge i_clk)
     if (enable && i_valid)
       if (i_write_enable)
-        DRAM[i_addr] <= i_data;
+        DRAM[i_address] <= i_write_data;
       else if(i_read_enable)
-        ram_data <= DRAM[i_addr];
+        ram_data <= DRAM[i_address];
 
- assign o_data = ram_data;
+ assign o_read_data = ram_data;
 
 endmodule

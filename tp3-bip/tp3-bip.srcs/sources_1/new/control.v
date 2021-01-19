@@ -27,7 +27,7 @@ module control
  
  always@(posedge i_clk)begin:update_pc
     if(i_reset)
-        pc <= 11'b0;
+        pc <= 1'b0;
     else if(write_pc && i_valid)
         pc <= pc + 1'b1;
  end
