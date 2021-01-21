@@ -1,0 +1,18 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/program_counter.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/sign_extend.v" \
+"T:/Tom/Facultad/Materias/arqui/practico/tpfinal/top_mips_np.v" \
+"../../../../tp4-mips.srcs/sim_1/new/tb_mips_np.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -18,7 +18,7 @@ module control_unit#
 	input  wire [N_BITS-1:0]	 i_instruccion,
     
 	//EX  - señales de control para ejecución
-	output reg [1:0] o_alu_op,
+	output reg [2:0] o_alu_op,
 	output reg 		 o_alu_src,
 	output reg  	 o_reg_dst,	
 	
@@ -37,10 +37,7 @@ module control_unit#
 );
 	
 	reg [N_BITS_OP-1:0]   opcode;
-	reg [N_BITS_FUNC-1:0] funcion;
-	
-	opcode  = i_instruccion[31:26];
-	funcion = i_instruccion[5:0];
+	reg [N_BITS_FUNC-1:0] funcion;	
 	
 	always@(posedge i_clk)begin:control
 		if(i_reset)
@@ -57,10 +54,13 @@ module control_unit#
 		end
 		else if(i_valid)
 		begin
-			case(opcode):
+		    opcode  = i_instruccion[31:26];
+	        funcion = i_instruccion[5:0];
+		
+			case(opcode)
 			//tipo R
 			6'b000000:
-				case(funcion):
+				case(funcion)
 				//tipo J
 				6'b001001, 6'b001000: //jarl, jr
 				begin
@@ -234,7 +234,7 @@ module control_unit#
 				o_opcode	 = opcode;
 			end
 				
-			default: algo;
+			//default: algo;
 			endcase
 		end
 	end

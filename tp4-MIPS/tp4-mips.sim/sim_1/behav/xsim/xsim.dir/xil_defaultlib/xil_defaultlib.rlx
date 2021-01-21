@@ -1,0 +1,15 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+E:/Arqui/tp4-mips/tp4-mips.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+E:/Arqui/tp4-mips/tp4-mips.srcs/sim_1/new/tb_mips_np.v,1611238334,verilog,,,,tb_mips_np,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v,1611236849,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v,,alu,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v,1611152377,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v,,alu_ctrl,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v,1611235949,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v,,control_unit,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v,1611065140,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v,,data_memory,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v,1611238964,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/program_counter.v,,instruction_memory,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/program_counter.v,1611156760,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v,,program_counter,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v,1611238066,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/sign_extend.v,,registers,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/sign_extend.v,1611155418,verilog,,T:/Tom/Facultad/Materias/arqui/practico/tpfinal/top_mips_np.v,,sign_extend,,,,,,,,
+T:/Tom/Facultad/Materias/arqui/practico/tpfinal/top_mips_np.v,1611236754,verilog,,E:/Arqui/tp4-mips/tp4-mips.srcs/sim_1/new/tb_mips_np.v,,top_mips_np,,,,,,,,

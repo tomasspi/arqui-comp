@@ -8,7 +8,7 @@
 
 module program_counter#
 (
-	parameter N_BITS = 32;
+	parameter N_BITS = 32
 )
 (
     input  wire        		 i_clk,
@@ -21,7 +21,7 @@ module program_counter#
  
  reg [N_BITS-1:0] pc;
  
- assign o_op = pc;
+ assign o_pc = pc;
  
  always@(posedge i_clk)begin:update_pc
     if(i_reset)

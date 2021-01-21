@@ -5,17 +5,17 @@
 //  to the memory, the output remains unchanged.  This is the most power efficient write mode.
 //  If a reset or enable is not necessary, it may be tied off or removed from the code.
 
-module program_memory
+module instruction_memory
 #(
   parameter RAM_WIDTH = 32,                  // Specify RAM data width
   parameter RAM_DEPTH = 2048,                // Specify RAM depth (number of entries)
-  parameter INIT_FILE = "programa.txt"       // Specify name/location of RAM initialization file if using one (leave blank if not)
+  parameter INIT_FILE = "programa.mem"       // Specify name/location of RAM initialization file if using one (leave blank if not)
  )
 (
-  input  wire                           i_valid,
-  input  wire [clogb2(RAM_DEPTH-1)-1:0] i_addr, // Address bus, width determined from RAM_DEPTH
-  input                                 i_clk,  // Clock
-  output wire [RAM_WIDTH-1:0]           o_instruccion  // RAM output data
+  input  wire                 i_valid,
+  input  wire [RAM_WIDTH-1:0] i_addr, // Address bus
+  input                       i_clk,  // Clock
+  output wire [RAM_WIDTH-1:0] o_instruccion  // RAM output data
 );
 
   wire [RAM_WIDTH-1:0] input_data   = 0; // RAM input data
@@ -31,12 +31,12 @@ module program_memory
   generate
     if (INIT_FILE != "") begin: use_init_file
       initial
-        $readmemh(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
+        $readmemb(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
     end else begin: init_bram_to_zero
       integer ram_index;
       initial
         for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          PRAM[ram_index] = {RAM_WIDTH{1'b0}}; 
+          PRAM[ram_index] = 32'b00000010001100100100000000100000; 
     end
   endgenerate
 

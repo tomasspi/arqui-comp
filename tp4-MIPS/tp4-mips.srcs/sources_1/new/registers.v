@@ -19,7 +19,7 @@ module registers#
     output reg  [N_BITS-1:0] 	 o_read_data_2
 );
  
- localparam BITS_CONTADOR $clog2(N_BITS);
+ localparam BITS_CONTADOR = $clog2(N_BITS);
  
  reg [N_BITS-1:0] 	   registros [N_BITS-1:0];
  reg [BITS_CONTADOR:0] i;

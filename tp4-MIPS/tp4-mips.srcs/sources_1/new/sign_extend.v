@@ -4,7 +4,7 @@ module sign_extend#
 	parameter N_BITS_OUT = 32
 )
 (
-	input  reg [N_BITS_IN-1:0]  i_offset,
+	input  wire [N_BITS_IN-1:0] i_offset,
 	output reg [N_BITS_OUT-1:0] o_extended
 );
 	

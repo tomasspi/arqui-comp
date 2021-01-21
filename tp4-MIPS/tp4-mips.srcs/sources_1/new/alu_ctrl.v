@@ -11,15 +11,15 @@ module alu_ctrl#(
 	input wire  [N_BITS_CTRL-2:0] i_alu_op,
 	
 	//output
-	output wire [N_BITS_CTRL-1:0] o_alu_ctrl,
+	output reg  [N_BITS_CTRL-1:0] o_alu_ctrl
 );
 
     always@(*) begin:alu
-        
-		case(i_alu_op):
+		case(i_alu_op)
 		2'b00: o_alu_ctrl = 4'b0010;
 		2'b01: o_alu_ctrl = 4'b0110;
 		2'b10:
+		begin
 			case(i_funcion)
 			6'b100100: o_alu_ctrl = 4'b0000; //and
 			6'b100101: o_alu_ctrl = 4'b0001; //or
@@ -33,8 +33,8 @@ module alu_ctrl#(
 			6'b000011: o_alu_ctrl = 4'b1001; //sra
 			default:   o_alu_ctrl = 4'b1010; //invalid
 			endcase
+		end
 		default: o_alu_ctrl = 4'b1010; //invalid
         endcase
-		
     end
 endmodule
