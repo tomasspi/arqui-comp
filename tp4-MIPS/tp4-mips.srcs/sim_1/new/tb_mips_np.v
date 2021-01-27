@@ -19,18 +19,7 @@ module tb_mips_np();
         
         #20 
         valid = 1'b1;
-        
-        #80
-        
-        fd = $fopen("E:/Arqui/tp4-mips/tp4-mips.srcs/sources_1/new/programa.mem","wb");
-    
-        for(i = 0; i < 5; i=i+1) begin
-            $fdisplay(fd, "Iteration = %0d", i+2);
-            $display("Estoy en el for");
-        end
-
-        $fclose(fd);
-        
+        #120
         $finish;
     end
  

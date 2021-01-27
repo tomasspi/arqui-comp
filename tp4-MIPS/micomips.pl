@@ -83,18 +83,6 @@ chomp(my @lineas = <FILE>);					#array[i] = linea i
 close(FILE) or die "ERROR: $!";				#cerrar archivo
 
 
-#opcode registro registro registro sa funct -R
-#opcode registro registro immediate -I
-#opcode salto (j,jal)
-#opcode registro (15 0s) funct (jr)
-#opcode registro registro(0s) registro sa(0) funct (jalr)
-
- 
-#op-rs-rt-rd-sa-funct -- R
-#op-rs-rt-immediate   -- I
-#op-target			  -- J / JAL
-#op-rs-15,0s-funct    -- JR instruction
-#op-rs-rd-rt-sa-funct -- JALR
 sub decode
 {
 	my @string = @_;
@@ -105,8 +93,6 @@ sub decode
 	
 	if($string[0] =~ m(([(])|([)]))g) #detecta parentesis
 	{
-		print "Es un load/store\n";
-		
 		$string[0] =~ s/\(/,/g;
 		$string[0] =~ s/\)//g;
 		
@@ -121,14 +107,12 @@ sub decode
 		$offset = sprintf("%.16b", $word[2]);
 				
 		print("En binario: ");		
-		
+		#lui tiene la base en 0 
 		$binary = sprintf("%s%s%s%s\n", $code, $base, $rt, 
 						  $offset);
 	}
 	else 
 	{
-		print "Es tipo R, I o J? ";		
-		
 		foreach my $i (@string)
 		{
 			push(@word,split(/,/, $i));
@@ -136,24 +120,90 @@ sub decode
 		
 		if($instructions{uc $word[0]}{opcode} eq $R_type)
 		{
-			print "Tipo R\n";
-			
-			$code  = $instructions{uc $word[0]}{opcode};
-			$rs    = $registers{$word[2]};
-			$rt    = $registers{$word[3]};
-			$rd	   = $registers{$word[1]};
-			$funct = $instructions{uc $word[0]}{funct};
-			
-			$binary = sprintf("%s%s%s%s%s%s\n", 
-							  $code, $rs, $rt, $rd, $sa, 
-							  $funct);
+			if($instructions{uc $word[0]}{funct} eq 
+			   $instructions{SLL}{funct} || 
+			   $instructions{uc $word[0]}{funct} eq 
+			   $instructions{SRA}{funct} ||
+			   $instructions{uc $word[0]}{funct} eq 
+			   $instructions{SRL}{funct})
+			{
+				$code  = $instructions{uc $word[0]}{opcode};
+				$rs    = sprintf("%.5b", $word[3]);
+				$rt    = $registers{$word[2]};
+				$rd	   = $registers{$word[1]};
+				$funct = $instructions{uc $word[0]}{funct};
+				
+				$binary = sprintf("%s%s%s%s%s%s\n", 
+								  $code, $sa, $rt, $rd, $rs, 
+								  $funct);
+			}
+			else
+			{
+				$code  = $instructions{uc $word[0]}{opcode};
+				$rs    = $registers{$word[2]};
+				$rt    = $registers{$word[3]};
+				$rd	   = $registers{$word[1]};
+				$funct = $instructions{uc $word[0]}{funct};
+				
+				$binary = sprintf("%s%s%s%s%s%s\n", 
+								  $code, $rs, $rt, $rd, $sa, 
+								  $funct);
+			}
 		}
-		else
-		{
-			print "Tipo I o J\n";
-			$binary = sprintf("%.32b\n",0);
+		else 
+		{print "J o I\n";
+			#jump
+			if($instructions{uc $word[0]}{opcode} eq 
+			   $instructions{J}{opcode} || 
+			   $instructions{uc $word[0]}{opcode} eq 
+			   $instructions{JAL}{opcode})
+			{print "J-JAL\n";
+				$code   = $instructions{uc $word[0]}{opcode};
+				$offset = sprintf("%.26b", $word[1]);
+				
+				$binary = sprintf("%s%s\n", $code, $offset);
+		    }
+			elsif($instructions{uc $word[0]}{opcode} eq 
+			      $instructions{JALR}{opcode})
+			{print "JALR\n";
+				if($#word == 1)
+				{
+					#000000-rs-00000-31-00000-funct
+					$rd = sprintf("%.5b", 31);
+					$binary = sprintf("%s%s%s%s%s%s\n",
+									  $R_type, $registers{$word[1]},
+									  $sa, $rd, $sa, 
+									  $instructions{uc $word[0]}{opcode});
+				}
+				else
+				{
+					#000000-rs-00000-rd-00000-funct
+					$binary = sprintf("%s%s%s%s%s%s\n",
+									  $R_type, $registers{$word[1]},
+									  $sa, $registers{$word[2]}, $sa, 
+									  $instructions{uc $word[0]}{opcode});
+				}
+			}
+			elsif(uc $word[0] eq "JR")
+			{
+				print "JR\n";
+				$binary = sprintf("%s%s%s%s%s%s\n",
+								  $R_type, $registers{$word[1]},
+								  $sa, $sa, $sa, 
+								  $instructions{uc $word[0]}{opcode});
+			}
+			else
+			{
+				print("ES IMMEDIATE\n");
+				$code      = $instructions{uc $word[0]}{opcode};
+				$rs        = $registers{$word[2]};
+				$rt  	   = $registers{$word[1]};
+				$immediate = sprintf("%.16b", $word[3]);
+				
+				$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
+						  $immediate);
+			}
 		}
-		
 		print("En binario: ");
 	}
 	
