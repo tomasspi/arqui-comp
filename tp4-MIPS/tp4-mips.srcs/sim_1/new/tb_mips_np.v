@@ -17,9 +17,9 @@ module tb_mips_np();
         #20
         reset = 1'b0; 
         
-        #20 
+        #40 
         valid = 1'b1;
-        #120
+        #200
         $finish;
     end
  
