@@ -3,102 +3,72 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_mips_np_behav.wdb" id="1">
+      <db_ref path="tb_pipeline_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_mips_np" />
+            <top_module name="tb_pipeline" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="68000fs"></ZoomStartTime>
-      <ZoomEndTime time="109715fs"></ZoomEndTime>
-      <Cursor1Time time="90000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="260001fs"></ZoomEndTime>
+      <Cursor1Time time="170000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="182"></NameColumnWidth>
-      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+      <NameColumnWidth column_width="167"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="19" />
-   <wvobject fp_name="/tb_mips_np/clk" type="logic">
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/valid" type="logic">
+   <wvobject fp_name="/tb_pipeline/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/valid" type="logic">
       <obj_property name="ElementShortName">valid</obj_property>
       <obj_property name="ObjectShortName">valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_pc/pc" type="array">
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fetch/pc" type="array">
       <obj_property name="ElementShortName">pc[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/instruccion" type="array">
+   <wvobject fp_name="/tb_pipeline/u_pipe/pc_4" type="array">
+      <obj_property name="ElementShortName">pc_4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_4[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fetch/instruccion" type="array">
       <obj_property name="ElementShortName">instruccion[31:0]</obj_property>
       <obj_property name="ObjectShortName">instruccion[31:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_alu/i_dato_A" type="array">
-      <obj_property name="ElementShortName">i_dato_A[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_dato_A[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_alu/i_dato_B" type="array">
-      <obj_property name="ElementShortName">i_dato_B[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_dato_B[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_alu/o_alu_result" type="array">
-      <obj_property name="ElementShortName">o_alu_result[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_alu_result[31:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/i_read_reg_1" type="array">
-      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/o_read_data_1" type="array">
-      <obj_property name="ElementShortName">o_read_data_1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_read_data_1[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/i_read_reg_2" type="array">
-      <obj_property name="ElementShortName">i_read_reg_2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_read_reg_2[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/o_read_data_2" type="array">
-      <obj_property name="ElementShortName">o_read_data_2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_read_data_2[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/i_write_data" type="array">
-      <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_write_data[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/i_write_reg" type="array">
-      <obj_property name="ElementShortName">i_write_reg[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_write_reg[4:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_ctrl/o_reg_dst" type="logic">
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_ctrl1/o_reg_dst" type="logic">
       <obj_property name="ElementShortName">o_reg_dst</obj_property>
       <obj_property name="ObjectShortName">o_reg_dst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/i_reg_write" type="logic">
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_ctrl1/opcode" type="array">
+      <obj_property name="ElementShortName">opcode[5:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[5:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_register1/i_reg_write" type="logic">
       <obj_property name="ElementShortName">i_reg_write</obj_property>
       <obj_property name="ObjectShortName">i_reg_write</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/u_register/registros[10]" type="array">
-      <obj_property name="ElementShortName">[10][31:0]</obj_property>
-      <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_ctrl1/funcion" type="array">
+      <obj_property name="ElementShortName">funcion[5:0]</obj_property>
+      <obj_property name="ObjectShortName">funcion[5:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/reg1" type="array">
-      <obj_property name="ElementShortName">reg1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">reg1[4:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_register1/i_write_reg" type="array">
+      <obj_property name="ElementShortName">i_write_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">i_write_reg[4:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/reg2" type="array">
-      <obj_property name="ElementShortName">reg2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">reg2[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mips_np/u_top/reg3" type="array">
-      <obj_property name="ElementShortName">reg3[4:0]</obj_property>
-      <obj_property name="ObjectShortName">reg3[4:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_register1/i_write_data" type="array">
+      <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_write_data[31:0]</obj_property>
    </wvobject>
 </wave_config>
