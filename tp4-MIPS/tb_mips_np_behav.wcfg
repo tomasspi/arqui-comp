@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="260001fs"></ZoomEndTime>
-      <Cursor1Time time="65267fs"></Cursor1Time>
+      <ZoomEndTime time="336725fs"></ZoomEndTime>
+      <Cursor1Time time="260000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="163"></NameColumnWidth>
+      <NameColumnWidth column_width="131"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="19" />
+   <WVObjectSize size="13" />
    <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,10 +36,6 @@
       <obj_property name="ElementShortName">pc[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/pc_4" type="array">
-      <obj_property name="ElementShortName">pc_4[31:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_4[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_fetch/instruccion" type="array">
       <obj_property name="ElementShortName">instruccion[31:0]</obj_property>
       <obj_property name="ObjectShortName">instruccion[31:0]</obj_property>
@@ -48,52 +44,32 @@
       <obj_property name="ElementShortName">i_instruccion[31:0]</obj_property>
       <obj_property name="ObjectShortName">i_instruccion[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/i_pc_4" type="array">
-      <obj_property name="ElementShortName">i_pc_4[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_pc_4[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_1" type="array">
-      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_read_data_1" type="array">
-      <obj_property name="ElementShortName">o_read_data_1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_read_data_1[31:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/aluResult" type="array">
+      <obj_property name="ElementShortName">aluResult[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aluResult[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_2" type="array">
       <obj_property name="ElementShortName">i_read_reg_2[4:0]</obj_property>
       <obj_property name="ObjectShortName">i_read_reg_2[4:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_read_data_2" type="array">
-      <obj_property name="ElementShortName">o_read_data_2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_read_data_2[31:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_reg_dst" type="logic">
+      <obj_property name="ElementShortName">o_reg_dst</obj_property>
+      <obj_property name="ObjectShortName">o_reg_dst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_extended" type="array">
-      <obj_property name="ElementShortName">o_extended[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_extended[31:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_reg_write" type="logic">
+      <obj_property name="ElementShortName">o_reg_write</obj_property>
+      <obj_property name="ObjectShortName">o_reg_write</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_rs" type="array">
-      <obj_property name="ElementShortName">o_rs[4:0]</obj_property>
-      <obj_property name="ObjectShortName">o_rs[4:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_mem_to_reg" type="logic">
+      <obj_property name="ElementShortName">o_mem_to_reg</obj_property>
+      <obj_property name="ObjectShortName">o_mem_to_reg</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_rd" type="array">
-      <obj_property name="ElementShortName">o_rd[4:0]</obj_property>
-      <obj_property name="ObjectShortName">o_rd[4:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/i_write_data" type="array">
+      <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_write_data[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_rt" type="array">
-      <obj_property name="ElementShortName">o_rt[4:0]</obj_property>
-      <obj_property name="ObjectShortName">o_rt[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_alu1/i_dato_A" type="array">
-      <obj_property name="ElementShortName">i_dato_A[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_dato_A[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_alu1/i_dato_B" type="array">
-      <obj_property name="ElementShortName">i_dato_B[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_dato_B[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_alu1/o_alu_result" type="array">
-      <obj_property name="ElementShortName">o_alu_result[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_alu_result[31:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
    </wvobject>
 </wave_config>

@@ -7,6 +7,7 @@ module top_pipeline
 
     reg  [31:0] pc_salto;
     wire [31:0] pc_4;
+    wire [31:0] pc_4_d;
     wire [31:0] instruccion;
     wire [4:0]  rs; //(rs)
     wire [4:0]  rt; //(rt)
@@ -17,10 +18,14 @@ module top_pipeline
     wire [31:0] extended;
     reg	 [4:0]  write_reg;	
     reg	 [31:0] write_data;
+    wire [31:0] pc_branch;
     wire [31:0] read_data_1;
     wire [31:0] read_data_2;
+    wire [31:0] read_data_2_e;
     reg  [31:0] datoB;
+    wire [4:0]  rt_rd;
     wire [31:0] aluResult;
+    wire [31:0] alu_result;
     wire        zero;
     wire [31:0] data_memory;
     
@@ -44,27 +49,27 @@ module top_pipeline
     
     assign pc_src = branch && zero;
     
-    //MUX 2 decide el valor de i_write_reg (si es rt o rd)
-    always@(*) begin
-        if(i_valid)
-        begin
-            if(regdst)
-                write_reg <= rd;
-            else
-                write_reg <= rt;
-        end
-    end
+//    //MUX 2 decide el valor de i_write_reg (si es rt o rd)
+//    always@(*) begin
+//        if(i_valid)
+//        begin
+//            if(regdst)
+//                write_reg <= rd;
+//            else
+//                write_reg <= rt;
+//        end
+//    end
     
-    //MUX 3 decide el valor de entrada a la ALU
-    always@(*) begin
-        if(i_valid)
-        begin
-            if(alusrc)
-                datoB <= extended;
-            else
-                datoB <= read_data_2; 
-        end
-    end
+//    //MUX 3 decide el valor de entrada a la ALU
+//    always@(*) begin
+//        if(i_valid)
+//        begin
+//            if(alusrc)
+//                datoB <= extended;
+//            else
+//                datoB <= read_data_2; 
+//        end
+//    end
     
     //MUX 4 decide el valor a escribir en el registro
     always@(*) begin
@@ -83,7 +88,7 @@ module top_pipeline
         if(i_valid)
         begin
            if(branch)
-                pc_salto <= pc_4 + (extended << 2);
+                pc_salto <= pc_branch;
            else //jump
                 pc_salto <= {pc_4[31:26], (instr_index << 2)};
         end 
@@ -103,25 +108,52 @@ module top_pipeline
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
+        .i_write_reg(write_reg), .i_reg_write(regwr_wb),
         .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
         .o_reg_write(regwr),
-        .o_pc_4(pc_4), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
+        .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
         .o_extended(extended), 
         .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode)   
     );
     
-    alu u_alu1
+    //EXECUTE
+    execute u_exe
     (
-        .i_dato_A(read_data_1), .i_dato_B(datoB), .i_alu_ctrl(aluctrl),
-        .o_alu_result(aluResult), .o_alu_zero(zero)
+        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
+        .i_alu_op(aluop), .i_alu_src(alusrc), .i_reg_dst(regdst), .i_branch(branch), 
+        .i_jump(jump), .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), 
+        .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
+        .i_read_data_2(read_data_2), .i_extended(extended), .i_rd(rd), .i_rt(rt), 
+        .o_branch(branch), .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), 
+        .o_mem_to_reg(memtoreg), .o_reg_write(regwr), .o_pc_branch(pc_branch), 
+        .o_alu_result(aluResult), 
+        .o_read_data_2(read_data_2_e), .o_rt_rd(rt_rd), .o_zero(zero)
     );
     
-    alu_ctrl u_alu_ctrl1
-    (
-        .i_funcion(opcode), .i_alu_op(aluop),
-        .o_alu_ctrl(aluctrl)
-    );
+    //MEMORY
+//    memory u_mem
+//    (
+//        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
+//        .i_branch(branch), .i_jump(jump), .i_mem_read(memrd), 
+//        .i_mem_write(memwr), .i_mem_to_reg(memtoreg), .i_reg_write(regwr), 
+//        .i_opcode(opcode), .i_pc_branch(pc_branch), .i_zero(zero), 
+//        .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
+//        .o_mem_to_reg(memtoreg), .o_reg_write(regwr), .o_read_data(data_memory), 
+//        .o_alu_result(alu_result), .o_rt_rd(rt_rd)
+//    );
+    
+//    alu u_alu1
+//    (
+//        .i_dato_A(read_data_1), .i_dato_B(datoB), .i_alu_ctrl(aluctrl),
+//        .o_alu_result(aluResult), .o_alu_zero(zero)
+//    );
+    
+//    alu_ctrl u_alu_ctrl1
+//    (
+//        .i_funcion(opcode), .i_alu_op(aluop),
+//        .o_alu_ctrl(aluctrl)
+//    );
     
 //    registers u_register1
 //    (

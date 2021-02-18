@@ -1,10 +1,15 @@
-module ex_mem#
+module execute#
 (
     parameter N_BITS = 32,
     parameter N_BITS_REG = 5
 )
 (
     input wire       i_clk, i_reset, i_valid,
+    
+    //EX  - señales de control para ejecucion
+	input wire [2:0] i_alu_op,
+	input wire 	     i_alu_src,
+	input wire  	 i_reg_dst,	    
     
     //MEM - señales de control para acceso a memoria
 	input wire 	 	 i_branch,
@@ -16,13 +21,12 @@ module ex_mem#
     input wire 	  	 i_mem_to_reg,
 	input wire 		 i_reg_write,
 	
-	//otros
-	input wire [N_BITS-1:0]     i_pc_branch,
-	input wire [N_BITS-1:0]     i_alu_result,
+	input wire [N_BITS-1:0]     i_pc_4,
+	input wire [N_BITS-1:0]     i_read_data_1,
 	input wire [N_BITS-1:0]     i_read_data_2,
-	input wire [N_BITS_REG-1:0] i_rt,
+	input wire [N_BITS-1:0]     i_extended,
 	input wire [N_BITS_REG-1:0] i_rd,
-	input wire                  i_zero,
+	input wire [N_BITS_REG-1:0] i_rt,
 	
 	//MEM - señales de control para acceso a memoria
 	output reg 	 	 o_branch,
@@ -38,40 +42,76 @@ module ex_mem#
 	output reg [N_BITS-1:0]     o_pc_branch,
 	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS-1:0]     o_read_data_2,
-	output reg [N_BITS_REG-1:0] o_rt,
-	output reg [N_BITS_REG-1:0] o_rd,
+	output reg [N_BITS_REG:0]   o_opcode,
+	output reg [N_BITS_REG-1:0] o_rt_rd,
 	output reg                  o_zero
 );
 
-
-	reg 	 	         branch;
-	reg 		         jump;
-	reg 	 	         mem_read;
-	reg 	 	         mem_write;
-    reg 	  	         mem_to_reg;
-	reg 		         reg_write;
+	reg [N_BITS-1:0]     dato_b;
 	reg [N_BITS-1:0]     pc_branch;
-	reg [N_BITS-1:0]     alu_result;
 	reg [N_BITS-1:0]     read_data_2;
-	reg [N_BITS_REG-1:0] rt;
-	reg [N_BITS_REG-1:0] rd;
-	reg                  zero;
+	wire [N_BITS-1:0]     alu_result;
+	reg [N_BITS_REG:0]   opcode;
+	reg [N_BITS_REG-1:0] rt_rd;
+	
+	wire [3:0] aluctrl;
+	reg branch;
+	reg jump;
+	reg mem_read;
+	reg mem_write;
+	reg mem_to_reg;
+	reg reg_write;
+	wire zero;
+		
+	//MUX 3 decide el valor de entrada a la ALU
+    always@(*) begin
+        if(i_valid)
+        begin
+            if(i_alu_src)
+                dato_b <= i_extended;
+            else
+                dato_b <= i_read_data_2; 
+        end
+    end
+	
+	//MUX 2 decide el valor de i_write_reg (si es rt o rd)
+    always@(*) begin
+        if(i_valid)
+        begin
+            if(i_reg_dst)
+                o_rt_rd <= i_rd;
+            else
+                o_rt_rd <= i_rt;
+        end
+    end
 	
 	always@(posedge i_clk)begin:lectura
 	   if(i_reset)
 	   begin
-	       	o_branch      <= 1'b0;
-	       	o_jump        <= 1'b0;
-	       	o_mem_read    <= 1'b0;
-	       	o_mem_write   <= 1'b0;
-	       	o_mem_to_reg  <= 1'b0;
-	       	o_reg_write   <= 1'b0;
-	       	o_pc_branch   <= {N_BITS{1'b0}};
-	       	o_alu_result  <= {N_BITS{1'b0}};
-	       	o_read_data_2 <= {N_BITS{1'b0}};
-	       	o_rt          <= {N_BITS_REG{1'b0}};
-	       	o_rd          <= {N_BITS_REG{1'b0}};
-	       	o_zero        <= {N_BITS_REG{1'b0}};
+	       o_branch      <= 1'b0;
+	       o_jump        <= 1'b0;
+	       o_mem_read    <= 1'b0;
+	       o_mem_write   <= 1'b0;
+	       o_mem_to_reg  <= 1'b0;
+	       o_reg_write   <= 1'b0;
+	       o_pc_branch   <= {N_BITS{1'b0}};
+	       o_alu_result  <= {N_BITS{1'b0}};
+	       o_read_data_2 <= {N_BITS{1'b0}};
+	       o_rt_rd       <= {N_BITS_REG{1'b0}};
+	       o_zero        <= {N_BITS_REG{1'b0}};
+	       
+	       branch        <= 1'b0;
+	       jump          <= 1'b0;
+	       mem_read      <= 1'b0;
+	       mem_write     <= 1'b0;
+	       mem_to_reg    <= 1'b0;
+	       reg_write     <= 1'b0;
+	       
+	       dato_b        <= {N_BITS{1'b0}};
+           pc_branch     <= {N_BITS{1'b0}};
+           read_data_2   <= {N_BITS{1'b0}};
+           opcode        <= {N_BITS_REG+1{1'b0}};
+           rt_rd         <= {N_BITS_REG{1'b0}};
 	   end
 	   else if(i_valid)
 	   begin
@@ -81,33 +121,42 @@ module ex_mem#
 	       mem_write   <= i_mem_write;
 	       mem_to_reg  <= i_mem_to_reg;
 	       reg_write   <= i_reg_write;
-	       pc_branch   <= i_pc_branch;
-	       alu_result  <= i_alu_result;
 	       read_data_2 <= i_read_data_2;
-	       rt          <= i_rt;
-	       rd          <= i_rd;
-	       zero        <= i_zero;
+	       pc_branch   <= i_pc_4 + (i_extended << 2);
+	       opcode      <= i_extended[5:0];
+	   end
+	end	
+	
+	always@(negedge i_clk)begin:esc
+	   if(i_valid)
+	   begin
+	       	o_branch      <= branch;
+            o_jump        <= jump;
+            o_mem_read    <= mem_read;
+            o_mem_write   <= mem_write;
+            o_mem_to_reg  <= mem_to_reg;
+            o_reg_write   <= reg_write;
+            o_pc_branch   <= pc_branch;
+            o_alu_result  <= alu_result;
+            o_read_data_2 <= read_data_2;
+            o_opcode      <= opcode;
+            o_rt_rd       <= rt_rd;
+            o_zero        <= zero;
 	   end
 	end
 	
-	always@(negedge i_clk)begin:exritura
-	   if(i_valid)
-	   begin
-	       o_branch      <= branch;
-	       o_jump        <= jump;
-	       o_mem_read    <= mem_read;
-	       o_mem_write   <= mem_write;
-	       o_mem_to_reg  <= mem_to_reg;
-	       o_reg_write   <= reg_write;
-	       o_pc_branch   <= pc_branch;
-	       o_alu_result  <= alu_result;
-	       o_read_data_2 <= read_data_2;
-	       o_rt          <= rt;
-	       o_rd          <= rd;
-	       o_zero        <= zero;
-	   end
-	end
-
+	alu u_alu1
+    (
+        .i_dato_A(i_read_data_1), .i_dato_B(dato_b), .i_alu_ctrl(aluctrl),
+        .o_alu_result(alu_result), .o_alu_zero(zero)
+    );
+    
+    alu_ctrl u_alu_ctrl1
+    (
+        .i_funcion(i_extended[5:0]), .i_alu_op(i_alu_op),
+        .o_alu_ctrl(aluctrl)
+    );
+	
 endmodule
 
 
