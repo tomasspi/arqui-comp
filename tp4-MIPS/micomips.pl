@@ -154,7 +154,7 @@ sub decode
 		{print "J o I\n";
 			#jump
 			if($instructions{uc $word[0]}{opcode} eq 
-			   $instructions{J}{opcode} || 
+			   $instructions{J}{opcode} ||
 			   $instructions{uc $word[0]}{opcode} eq 
 			   $instructions{JAL}{opcode})
 			{print "J-JAL\n";
@@ -192,6 +192,17 @@ sub decode
 								  $sa, $sa, $sa, 
 								  $instructions{uc $word[0]}{opcode});
 			}
+			elsif(uc $word[0] eq "LUI")
+			{
+				print("LUI DETECTED\n");
+				$code = $instructions{uc $word[0]}{opcode};
+				$rs   = $sa;
+				$rt   = $registers{$word[1]};
+				$immediate = sprintf("%.16b", $word[2]);
+				
+				$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
+						  $immediate);
+			}
 			else
 			{
 				print("ES IMMEDIATE\n");
@@ -219,6 +230,8 @@ open(OUT, '>', $output) or die "ERROR: $!";
 
 foreach my $linea (@lineas) #recorre el array
 {
+	$linea =~ s/#.*//g;     #elimina los comentarios
+	$linea =~ s/\s+$//;		#elimina los espacios al final de la linea
 	$linea =~ s/\s+/,/g;    #reemplaza espacios con ','
 	$linea =~ s/\$//g;		#elimina el simbolo '$'	
 	
