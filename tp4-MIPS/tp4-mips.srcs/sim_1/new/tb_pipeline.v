@@ -19,7 +19,7 @@ module tb_pipeline();
         
         #40 
         valid = 1'b1;
-        #200
+        #300
         $finish;
     end
  

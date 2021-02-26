@@ -14,6 +14,8 @@ module decode#
 	input wire [N_BITS_REG-1:0] i_write_reg,
 	input wire                  i_reg_write,
     
+    input wire i_halt,
+    
     //OUTPUTS
 	//EX  - señales de control para ejecucion
 	output reg [2:0] o_alu_op,
@@ -30,7 +32,8 @@ module decode#
     output reg 	  o_mem_to_reg,
 	output reg 	  o_reg_write,
 	
-	//otros
+	output reg  o_halt,
+	
 	output wire [N_BITS-1:0] o_pc_4,
 	output wire [N_BITS-1:0] o_read_data_1,
 	output wire [N_BITS-1:0] o_read_data_2,
@@ -54,18 +57,19 @@ module decode#
 	wire [N_BITS-1:0] read_data_1;
 	wire [N_BITS-1:0] read_data_2;
 	
-	reg [N_BITS_REG-1:0] write_reg;
+//	reg [N_BITS_REG-1:0] write_reg;
 	
 	//latch reg
 	reg [N_BITS-1:0]      instruccion;
 	reg [N_BITS-1:0]      pc_4;
-	reg [N_BITS-1:0]      write_data;
+//	reg [N_BITS-1:0]      write_data;
     reg [N_BITS_REG-1:0]  rs;
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
     reg [N_BITS_REG:0]    opcode;
     reg [N_BITS-17:0]     offset;
     reg [N_BITS_REG-13:0] instr_index;
+    reg halt;
     
     always@(posedge i_clk)begin:leer_entradas
         if(i_reset)
@@ -79,9 +83,12 @@ module decode#
             o_mem_write   <= 1'b0;
             o_mem_to_reg  <= 1'b0;
             o_reg_write   <= 1'b0;
+            o_halt        <= 1'b0;
+            
+            halt          <= 1'b0;
             instruccion   <= 32'b0;
             pc_4          <= 32'b0;
-            write_data    <= 32'b0;
+//            write_data    <= 32'b0;
             rs            <= 5'b0;
             rt            <= 5'b0;
             rd            <= 5'b0;
@@ -93,6 +100,7 @@ module decode#
         begin
             instruccion <= i_instruccion;
             pc_4        <= i_pc_4;
+            halt        <= i_halt;
         end
     end
     
@@ -115,11 +123,7 @@ module decode#
             o_mem_write  <= mem_write;
             o_mem_to_reg <= mem_to_reg;
             o_reg_write  <= reg_write;
-            
-            if(reg_dst)
-                write_reg <= rd;
-            else
-                write_reg <= rt;
+            o_halt       <= halt;
         end
     end  
     
@@ -140,7 +144,7 @@ module decode#
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_read_reg_1(o_rs), .i_read_reg_2(o_rt), 
-        .i_write_reg(write_reg), .i_write_data(i_write_data), .i_reg_write(reg_write),
+        .i_write_reg(i_write_reg), .i_write_data(i_write_data), .i_reg_write(i_reg_write),
         .o_read_data_1(read_data_1), .o_read_data_2(read_data_2)
     );
     

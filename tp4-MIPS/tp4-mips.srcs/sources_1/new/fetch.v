@@ -7,10 +7,12 @@ module fetch#(
 	//inputs
 	input wire                   i_clk, i_reset, i_valid,
 	input wire [N_BITS-1:0]      i_pc_salto,
+	input wire                   i_halt,
 	input wire                   i_pc_src, //señal de control
 	
 	//output
 	output reg [N_BITS-1:0]     o_pc_4,
+	output reg                  o_halt,
 	output reg [N_BITS-1:0]     o_instruccion
 );
 
@@ -24,8 +26,10 @@ module fetch#(
         begin
             if(i_pc_src)
                 pc <= i_pc_salto;
-            else
+            else if(~i_halt)
                 pc <= pc + 4;
+            else
+                pc <= pc;
         end 
     end
     
@@ -41,6 +45,7 @@ module fetch#(
         begin
             o_pc_4        <= pc + 4;
             o_instruccion <= instruccion;
+            o_halt        <= i_halt;
         end
     end
 
