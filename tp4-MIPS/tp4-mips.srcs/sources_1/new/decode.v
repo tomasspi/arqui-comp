@@ -38,6 +38,7 @@ module decode#
 	output wire [N_BITS-1:0] o_read_data_1,
 	output wire [N_BITS-1:0] o_read_data_2,
 	output wire [N_BITS-1:0] o_extended,
+	output wire [N_BITS-7:0] o_instr_index,
 	
 	output wire [N_BITS_REG-1:0] o_rs,
 	output wire [N_BITS_REG-1:0] o_rd,
@@ -57,16 +58,14 @@ module decode#
 	wire [N_BITS-1:0] read_data_1;
 	wire [N_BITS-1:0] read_data_2;
 	
-//	reg [N_BITS_REG-1:0] write_reg;
-	
 	//latch reg
 	reg [N_BITS-1:0]      instruccion;
 	reg [N_BITS-1:0]      pc_4;
-//	reg [N_BITS-1:0]      write_data;
+	reg [N_BITS-1:0]      write_data;
     reg [N_BITS_REG-1:0]  rs;
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
-    reg [N_BITS_REG:0]    opcode;
+//    reg [N_BITS_REG:0]    opcode;
     reg [N_BITS-17:0]     offset;
     reg [N_BITS_REG-13:0] instr_index;
     reg halt;
@@ -86,19 +85,18 @@ module decode#
             o_halt        <= 1'b0;
             
             halt          <= 1'b0;
+            write_data    <= 32'b0;
             instruccion   <= 32'b0;
             pc_4          <= 32'b0;
-//            write_data    <= 32'b0;
             rs            <= 5'b0;
             rt            <= 5'b0;
             rd            <= 5'b0;
-            opcode        <= 6'b0;
             offset        <= 16'b0;
             instr_index   <= 20'b0;
         end
         else if(i_valid)
         begin
-            instruccion <= i_instruccion;
+            instruccion <= i_instruccion;      
             pc_4        <= i_pc_4;
             halt        <= i_halt;
         end
@@ -111,8 +109,8 @@ module decode#
             rt          <= instruccion[20:16];
             rd          <= instruccion[15:11];
             offset      <= instruccion[15:0];
-            opcode      <= instruccion[31:26];
             instr_index <= instruccion[25:0];
+            write_data  <= i_write_data;  
             
             o_alu_op     <= alu_op;
             o_alu_src    <= alu_src;
@@ -133,7 +131,7 @@ module decode#
     assign o_rt          = rt;
     assign o_rd          = rd;
     assign o_instr_index = instr_index;
-    assign o_opcode      = opcode;
+//    assign o_opcode      = opcode;
     
     assign o_extended = {{(N_BITS-16){offset[15]}},offset};
     
@@ -144,7 +142,7 @@ module decode#
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_read_reg_1(o_rs), .i_read_reg_2(o_rt), 
-        .i_write_reg(i_write_reg), .i_write_data(i_write_data), .i_reg_write(i_reg_write),
+        .i_write_reg(i_write_reg), .i_write_data(write_data), .i_reg_write(i_reg_write),
         .o_read_data_1(read_data_1), .o_read_data_2(read_data_2)
     );
     

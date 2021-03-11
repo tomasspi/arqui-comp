@@ -10,13 +10,13 @@ module branch_logic
 
 always@(*)begin:decide
     case(i_opcode)    
-    6'b000100://beq
+    6'b100011://beq
     begin
         if(i_branch && i_zero)
             o_pc_src = 1'b1;
     end
     
-    6'b000101://bne
+    6'b100010://bne
     begin
         if(i_branch && ~i_zero)
             o_pc_src = 1'b1;
@@ -26,5 +26,4 @@ always@(*)begin:decide
         o_pc_src = 1'b0;
     endcase
 end
-
 endmodule

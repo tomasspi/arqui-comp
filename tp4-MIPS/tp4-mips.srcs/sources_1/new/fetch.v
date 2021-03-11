@@ -27,7 +27,7 @@ module fetch#(
             if(i_pc_src)
                 pc <= i_pc_salto;
             else if(~i_halt)
-                pc <= pc + 4;
+                pc <= pc + 1;
             else
                 pc <= pc;
         end 
@@ -43,7 +43,7 @@ module fetch#(
     always@(negedge i_clk)begin:escritura
         if(i_valid)
         begin
-            o_pc_4        <= pc + 4;
+            o_pc_4        <= pc + 1;
             o_instruccion <= instruccion;
             o_halt        <= i_halt;
         end

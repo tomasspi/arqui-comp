@@ -8,7 +8,7 @@ module memory#
     
     //MEM - señales de control para acceso a memoria
 	input wire 	 	 i_branch,
-	input wire 		 i_jump,
+//	input wire 		 i_jump,
 	input wire 	 	 i_mem_read,
 	input wire 	 	 i_mem_write,
 	
@@ -56,7 +56,6 @@ module memory#
 			halt         <= 1'b0;
 			mem_to_reg	 <= 1'b0;
 			reg_write	 <= 1'b0;
-//			read_data    <= 32'b0;
 			alu_result   <= 32'b0;
 			rt_rd        <= 5'b0;
         end
@@ -93,5 +92,4 @@ module memory#
         .i_write_enable(i_mem_write),
         .o_read_data(read_data)
     );
-
 endmodule

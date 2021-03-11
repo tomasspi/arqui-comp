@@ -23,15 +23,22 @@ module execute#
 	input wire       i_halt,
 	
 	input wire [N_BITS-1:0]     i_pc_4,
+	input wire [N_BITS-1:0]     i_alu_result,
+	input wire [N_BITS-1:0]     i_data_memory,
 	input wire [N_BITS-1:0]     i_read_data_1,
 	input wire [N_BITS-1:0]     i_read_data_2,
 	input wire [N_BITS-1:0]     i_extended,
+	input wire [N_BITS_REG:0]   i_opcode,
 	input wire [N_BITS_REG-1:0] i_rd,
 	input wire [N_BITS_REG-1:0] i_rt,
 	
+	//señales de control de entradas a la ALU (dato A o dato B)
+	input wire [1:0] i_mux_A,
+	input wire [1:0] i_mux_B,
+	
 	//MEM - señales de control para acceso a memoria
 	output reg 	 	 o_branch,
-	output reg 		 o_jump,
+//	output reg 		 o_jump,
 	output reg 	 	 o_mem_read,
 	output reg 	 	 o_mem_write,
 	
@@ -49,16 +56,17 @@ module execute#
 	output reg                  o_zero
 );
 
+    reg [N_BITS-1:0]     dato_a;
 	reg [N_BITS-1:0]     dato_b;
+	reg [N_BITS-1:0]     dato_b_fowarding;
 	reg [N_BITS-1:0]     pc_branch;
 	reg [N_BITS-1:0]     read_data_2;
 	wire [N_BITS-1:0]    alu_result;
 	reg [N_BITS_REG:0]   opcode;
 	reg [N_BITS_REG-1:0] rt_rd;
 	
-	wire [3:0] aluctrl;
+	wire [4:0] aluctrl;
 	reg branch;
-	reg jump;
 	reg mem_read;
 	reg mem_write;
 	reg mem_to_reg;
@@ -66,14 +74,45 @@ module execute#
 	reg halt;
 	wire zero;
 		
-	//MUX 3 decide el valor de entrada a la ALU
+		
+	//MUX dato A
+	always@(*) begin
+	   if(i_valid)
+	   begin
+	       case(i_mux_A)
+	       2'b00:
+	           dato_a <= i_read_data_1;
+	       2'b01:
+	           dato_a <= i_alu_result;
+	       2'b10:
+	           dato_a <= i_data_memory;
+	       endcase
+	   end
+	end
+	
+	//MUX dato B fowarding
+	always@(*) begin
+	   if(i_valid)
+	   begin
+	       case(i_mux_B)
+	       2'b00:
+	           dato_b_fowarding <= i_read_data_2;
+	       2'b01:
+	           dato_b_fowarding <= i_alu_result;
+	       2'b10:
+	           dato_b_fowarding <= i_data_memory;
+	       endcase
+	   end
+	end
+		
+	//MUX 3 decide el valor de entrada del dato B a la ALU
     always@(*) begin
         if(i_valid)
         begin
             if(i_alu_src)
                 dato_b <= i_extended;
             else
-                dato_b <= i_read_data_2; 
+                dato_b <= dato_b_fowarding; 
         end
     end
 	
@@ -92,7 +131,6 @@ module execute#
 	   if(i_reset)
 	   begin
 	       o_branch      <= 1'b0;
-	       o_jump        <= 1'b0;
 	       o_mem_read    <= 1'b0;
 	       o_mem_write   <= 1'b0;
 	       o_mem_to_reg  <= 1'b0;
@@ -107,30 +145,31 @@ module execute#
 	       
 	       halt          <= 1'b0;
 	       branch        <= 1'b0;
-	       jump          <= 1'b0;
 	       mem_read      <= 1'b0;
 	       mem_write     <= 1'b0;
 	       mem_to_reg    <= 1'b0;
 	       reg_write     <= 1'b0;
 	       
-	       dato_b        <= {N_BITS{1'b0}};
+	       dato_a        <= {N_BITS{1'b0}};
+	       dato_b        <= {N_BITS{1'b0}}; 
            pc_branch     <= {N_BITS{1'b0}};
            read_data_2   <= {N_BITS{1'b0}};
            opcode        <= {N_BITS_REG+1{1'b0}};
            rt_rd         <= {N_BITS_REG{1'b0}};
+           
+           dato_b_fowarding <= {N_BITS{1'b0}};
 	   end
 	   else if(i_valid)
 	   begin
 	       halt        <= i_halt;
 	       branch      <= i_branch;
-	       jump        <= i_jump;
 	       mem_read    <= i_mem_read;
 	       mem_write   <= i_mem_write;
 	       mem_to_reg  <= i_mem_to_reg;
 	       reg_write   <= i_reg_write;
 	       read_data_2 <= i_read_data_2;
-	       pc_branch   <= i_pc_4 + (i_extended << 2);
-	       opcode      <= i_extended[5:0];
+	       pc_branch   <= i_pc_4 + i_extended; //-----¡¡¡¡¡¡¡PC BRANCH ACA!!!!!!!-------
+	       opcode      <= i_opcode;
 	   end
 	end	
 	
@@ -139,7 +178,7 @@ module execute#
 	   begin
 	       o_halt        <= halt;
 	       o_branch      <= branch;
-           o_jump        <= jump;
+//           o_jump        <= jump;
            o_mem_read    <= mem_read;
            o_mem_write   <= mem_write;
            o_mem_to_reg  <= mem_to_reg;
@@ -155,16 +194,15 @@ module execute#
 	
 	alu u_alu1
     (
-        .i_dato_A(i_read_data_1), .i_dato_B(dato_b), .i_alu_ctrl(aluctrl),
+        .i_dato_A(dato_a), .i_dato_B(dato_b), .i_alu_ctrl(aluctrl),
         .o_alu_result(alu_result), .o_alu_zero(zero)
     );
     
     alu_ctrl u_alu_ctrl1
     (
-        .i_funcion(i_extended[5:0]), .i_alu_op(i_alu_op),
+        .i_funcion(opcode), .i_alu_op(i_alu_op),
         .o_alu_ctrl(aluctrl)
     );
-	
 endmodule
 
 
