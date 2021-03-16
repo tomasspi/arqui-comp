@@ -103,7 +103,7 @@ module top_pipeline
         .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), 
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
         .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
-        .i_alu_result(alu_result), .i_data_memory(write_data), 
+        .i_alu_result(aluResult), .i_data_memory(write_data), 
         .i_rd(rd), .i_rt(rt), .i_mux_A(muxA), .i_mux_B(muxB),
         .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), 
         .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
@@ -144,8 +144,8 @@ module top_pipeline
     //Fowarding Unit
         fowarding_unit u_fw
     (
-        .i_rs_idex(rs), .i_rt_idex(rt), .i_rd_exmem(rd), 
-        .i_rd_memwb(write_reg), .i_reg_write_exmem(regwr_m), .i_reg_write_memwb(regwr_w), 
+        .i_rs_idex(rs), .i_rt_idex(rt), .i_rd_exmem(rt_rd), 
+        .i_rd_memwb(write_reg), .i_reg_write_exmem(regwr_e), .i_reg_write_memwb(regwr_m), 
         .o_mux_A(muxA), .o_mux_B(muxB)
     );
 endmodule

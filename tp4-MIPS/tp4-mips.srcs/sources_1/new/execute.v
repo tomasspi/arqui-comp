@@ -49,7 +49,7 @@ module execute#
 	
 	//otros
 	output reg [N_BITS-1:0]     o_pc_branch,
-	output reg [N_BITS-1:0]     o_alu_result,
+	output reg [N_BITS-1:0]    o_alu_result,
 	output reg [N_BITS-1:0]     o_read_data_2,
 	output reg [N_BITS_REG:0]   o_opcode,
 	output reg [N_BITS_REG-1:0] o_rt_rd,
@@ -83,9 +83,9 @@ module execute#
 	       2'b00:
 	           dato_a <= i_read_data_1;
 	       2'b01:
-	           dato_a <= i_alu_result;
-	       2'b10:
 	           dato_a <= i_data_memory;
+	       2'b10:
+	           dato_a <= i_alu_result;
 	       endcase
 	   end
 	end
@@ -98,9 +98,9 @@ module execute#
 	       2'b00:
 	           dato_b_fowarding <= i_read_data_2;
 	       2'b01:
-	           dato_b_fowarding <= i_alu_result;
-	       2'b10:
 	           dato_b_fowarding <= i_data_memory;
+	       2'b10:
+	           dato_b_fowarding <= i_alu_result;
 	       endcase
 	   end
 	end
@@ -191,6 +191,8 @@ module execute#
            o_zero        <= zero;
 	   end
 	end
+	
+//	assign o_alu_result = alu_result;
 	
 	alu u_alu1
     (
