@@ -8,6 +8,8 @@ module fetch#(
 	input wire                   i_clk, i_reset, i_valid,
 	input wire [N_BITS-1:0]      i_pc_salto,
 	input wire                   i_halt,
+	input wire                   i_stall,
+	input wire                   i_flush,
 	input wire                   i_pc_src, //señal de control
 	
 	//output
@@ -20,28 +22,24 @@ module fetch#(
     
     wire [N_BITS-1:0] instruccion;
     
-    //MUX 1: decide el valor del PC
-    always@(posedge i_clk) begin        
-        if(i_valid)
+    always@(posedge i_clk)begin:lectura
+        if(i_reset)
         begin
-            if(i_pc_src)
+            pc <= {N_BITS{1'b0}};
+        end
+        else if(i_valid)// decide el valor del PC
+        begin
+            if(i_pc_src)//flush
                 pc <= i_pc_salto;
-            else if(~i_halt)
+            else if(~i_halt && ~i_stall)
                 pc <= pc + 1;
             else
                 pc <= pc;
         end 
     end
     
-    always@(posedge i_clk)begin:lectura
-        if(i_reset)
-        begin
-            pc <= {N_BITS{1'b0}};
-        end
-    end
-    
     always@(negedge i_clk)begin:escritura
-        if(i_valid)
+        if(i_valid && ~i_stall)
         begin
             o_pc_4        <= pc + 1;
             o_instruccion <= instruccion;

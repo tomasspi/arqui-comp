@@ -6,7 +6,7 @@ module decode#
 )
 (
 	//INPUTS
-	input wire              i_clk, i_reset, i_valid,
+	input wire                  i_clk, i_reset, i_valid,
 	
     input wire [N_BITS-1:0]     i_instruccion,  	
 	input wire [N_BITS-1:0]     i_pc_4,
@@ -16,6 +16,9 @@ module decode#
     
     input wire i_halt,
     
+    input wire [N_BITS_REG-1:0] i_rt_idex,
+    input wire                  i_mem_read_idex,
+	    
     //OUTPUTS
 	//EX  - señales de control para ejecucion
 	output reg [2:0] o_alu_op,
@@ -25,6 +28,7 @@ module decode#
 	//MEM - señales de control para acceso a memoria
 	output reg 	  o_branch,
 	output reg 	  o_jump,
+	output reg    o_flush,
 	output reg 	  o_mem_read,
 	output reg 	  o_mem_write,
 	
@@ -33,7 +37,8 @@ module decode#
 	output reg 	  o_reg_write,
 	
 	output reg  o_halt,
-	
+    output wire o_stall,
+    
 	output wire [N_BITS-1:0] o_pc_4,
 	output wire [N_BITS-1:0] o_read_data_1,
 	output wire [N_BITS-1:0] o_read_data_2,
@@ -51,6 +56,7 @@ module decode#
 	wire              reg_dst;	
 	wire	          branch;
 	wire	          jump;
+	wire              flush;
 	wire	          mem_read;
 	wire	          mem_write;
     wire              mem_to_reg;
@@ -65,10 +71,11 @@ module decode#
     reg [N_BITS_REG-1:0]  rs;
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
-//    reg [N_BITS_REG:0]    opcode;
     reg [N_BITS-17:0]     offset;
     reg [N_BITS_REG-13:0] instr_index;
     reg halt;
+    reg stall;
+  
     
     always@(posedge i_clk)begin:leer_entradas
         if(i_reset)
@@ -112,16 +119,34 @@ module decode#
             instr_index <= instruccion[25:0];
             write_data  <= i_write_data;  
             
-            o_alu_op     <= alu_op;
-            o_alu_src    <= alu_src;
-            o_reg_dst    <= reg_dst;
-            o_branch     <= branch;
-            o_jump       <= jump;
-            o_mem_read   <= mem_read;
-            o_mem_write  <= mem_write;
-            o_mem_to_reg <= mem_to_reg;
-            o_reg_write  <= reg_write;
-            o_halt       <= halt;
+            if(o_stall)
+            begin
+                o_alu_op      <= 3'b0;
+                o_alu_src     <= 1'b0;
+                o_reg_dst     <= 1'b0;
+                o_branch      <= 1'b0;
+                o_jump        <= 1'b0;
+                o_flush       <= 1'b0;
+                o_mem_read    <= 1'b0;
+                o_mem_write   <= 1'b0;
+                o_mem_to_reg  <= 1'b0;
+                o_reg_write   <= 1'b0;
+                o_halt        <= 1'b0;
+            end
+            else
+            begin
+                o_alu_op     <= alu_op;
+                o_alu_src    <= alu_src;
+                o_reg_dst    <= reg_dst;
+                o_branch     <= branch;
+                o_jump       <= jump;
+                o_flush      <= flush;
+                o_mem_read   <= mem_read;
+                o_mem_write  <= mem_write;
+                o_mem_to_reg <= mem_to_reg;
+                o_reg_write  <= reg_write;
+                o_halt       <= halt;
+             end
         end
     end  
     
@@ -131,7 +156,6 @@ module decode#
     assign o_rt          = rt;
     assign o_rd          = rd;
     assign o_instr_index = instr_index;
-//    assign o_opcode      = opcode;
     
     assign o_extended = {{(N_BITS-16){offset[15]}},offset};
     
@@ -141,7 +165,7 @@ module decode#
     registers u_register
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
-        .i_read_reg_1(o_rs), .i_read_reg_2(o_rt), 
+        .i_read_reg_1(rs), .i_read_reg_2(rt), 
         .i_write_reg(i_write_reg), .i_write_data(write_data), .i_reg_write(i_reg_write),
         .o_read_data_1(read_data_1), .o_read_data_2(read_data_2)
     );
@@ -153,7 +177,14 @@ module decode#
         .o_alu_op(alu_op), .o_alu_src(alu_src), .o_reg_dst(reg_dst),
         .o_branch(branch), .o_mem_read(mem_read), .o_mem_write(mem_write),
         .o_mem_to_reg(mem_to_reg), .o_reg_write(reg_write),
-        .o_jump(jump),
+        .o_jump(jump), .o_flush(flush),
         .o_opcode(o_opcode)
+    );
+    
+    hazard_detection_unit u_hdu
+    (
+        .i_mem_read_idex(i_mem_read_idex), .i_rt_idex(i_rt_idex), .i_rt_ifid(rt), 
+        .i_rs_ifid(rs), 
+        .o_stall(o_stall)
     );
 endmodule

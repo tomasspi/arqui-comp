@@ -20,8 +20,8 @@ module fowarding_unit#
     reg [3:0] mem_hazard_B;
     
     always@(*)begin:fowarding
-        o_mux_A = 2'b0; //REG
         o_mux_B = 2'b0; //REG
+        o_mux_A = 2'b0; //REG
         
         ex_hazard_A = {i_reg_write_exmem,(i_rd_exmem !=  0),(i_rd_exmem == i_rs_idex)};
         ex_hazard_B = {i_reg_write_exmem,(i_rd_exmem !=  0),(i_rd_exmem == i_rt_idex)};
@@ -39,12 +39,11 @@ module fowarding_unit#
             o_mux_A = 2'b10; //ALU
         if(mem_hazard_A == 4'b1111)
             o_mux_A = 2'b01; //MEM
-            
+                        
         //MUX B                                  
         if(ex_hazard_B == 3'b111)
             o_mux_B = 2'b10; //ALU
         if(mem_hazard_B == 4'b1111)
-            o_mux_B = 2'b01; //MEM
+            o_mux_B = 2'b01; //MEM            
     end
-
 endmodule
