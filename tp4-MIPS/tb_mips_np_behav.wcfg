@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="95944fs"></ZoomStartTime>
-      <ZoomEndTime time="274902fs"></ZoomEndTime>
-      <Cursor1Time time="200000fs"></Cursor1Time>
+      <ZoomStartTime time="51000fs"></ZoomStartTime>
+      <ZoomEndTime time="195501fs"></ZoomEndTime>
+      <Cursor1Time time="148940fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="110"></NameColumnWidth>
-      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+      <NameColumnWidth column_width="196"></NameColumnWidth>
+      <ValueColumnWidth column_width="75"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,19 +36,43 @@
       <obj_property name="ElementShortName">pc[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc[31:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/i_instruccion" type="array">
+      <obj_property name="ElementShortName">i_instruccion[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_instruccion[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/pc_salto" type="array">
+      <obj_property name="ElementShortName">pc_salto[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_salto[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/flush" type="logic">
+      <obj_property name="ElementShortName">flush</obj_property>
+      <obj_property name="ObjectShortName">flush</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_jump" type="logic">
+      <obj_property name="ElementShortName">o_jump</obj_property>
+      <obj_property name="ObjectShortName">o_jump</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/o_mux_A" type="array">
+      <obj_property name="ElementShortName">o_mux_A[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_mux_A[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/i_rs_idex" type="array">
+      <obj_property name="ElementShortName">i_rs_idex[4:0]</obj_property>
+      <obj_property name="ObjectShortName">i_rs_idex[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/i_rd_exmem" type="array">
+      <obj_property name="ElementShortName">i_rd_exmem[4:0]</obj_property>
+      <obj_property name="ObjectShortName">i_rd_exmem[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/instruccion" type="array">
       <obj_property name="ElementShortName">instruccion[31:0]</obj_property>
       <obj_property name="ObjectShortName">instruccion[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_1" type="array">
-      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_read_data_1" type="array">
-      <obj_property name="ElementShortName">o_read_data_1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_read_data_1[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_exe/u_alu1/i_dato_A" type="array">
       <obj_property name="ElementShortName">i_dato_A[31:0]</obj_property>
@@ -64,24 +88,30 @@
       <obj_property name="ElementShortName">o_alu_result[31:0]</obj_property>
       <obj_property name="ObjectShortName">o_alu_result[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_clk_cntr/count" type="array">
       <obj_property name="ElementShortName">count[31:0]</obj_property>
       <obj_property name="ObjectShortName">count[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_1" type="array">
-      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_write_reg" type="array">
       <obj_property name="ElementShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="ObjectShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_wb/o_rd_rt" type="array">
+      <obj_property name="ElementShortName">o_rd_rt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">o_rd_rt[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_write_data" type="array">
       <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>
       <obj_property name="ObjectShortName">i_write_data[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_wb/o_write_data" type="array">
+      <obj_property name="ElementShortName">o_write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_write_data[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_hdu/o_stall" type="logic">
       <obj_property name="ElementShortName">o_stall</obj_property>

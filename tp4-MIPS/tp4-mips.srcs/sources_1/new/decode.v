@@ -15,6 +15,7 @@ module decode#
 	input wire                  i_reg_write,
     
     input wire i_halt,
+    input wire i_flush,
     
     input wire [N_BITS_REG-1:0] i_rt_idex,
     input wire                  i_mem_read_idex,
@@ -119,7 +120,7 @@ module decode#
             instr_index <= instruccion[25:0];
             write_data  <= i_write_data;  
             
-            if(o_stall)
+            if(o_stall || i_flush)
             begin
                 o_alu_op      <= 3'b0;
                 o_alu_src     <= 1'b0;

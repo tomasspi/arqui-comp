@@ -12,13 +12,16 @@ module tb_pipeline();
     
     initial begin        
         clk   = 1'b0;
-        reset = 1'b1;
+        reset = 1'b0;
 
         #20
-        reset = 1'b0; 
+        valid = 1'b1; 
         
-        #40 
-        valid = 1'b1;
+        #30
+        reset = 1'b1;
+        #20
+        reset = 1'b0;
+        
         #300
         $finish;
     end
