@@ -19,7 +19,6 @@ module instruction_memory
 );
 
   wire [RAM_WIDTH-1:0] input_data   = 0; // RAM input data
-  wire                 write_enable = 0; // Write enable
   wire                 enable       = 1; // RAM Enable, for additional power savings, disable port when not in use
   wire                 reset        = 0; // Output reset (does not affect memory contents)
   wire                 reg_enable   = 1; // Output register enable
@@ -36,15 +35,12 @@ module instruction_memory
       integer ram_index;
       initial
         for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          PRAM[ram_index] = 32'b00000010001100100100000000100000; 
+          PRAM[ram_index] = {RAM_WIDTH{1'b0}}; 
     end
   endgenerate
 
-  always @(posedge i_clk)
-    if (enable)
-      if (write_enable)
-        PRAM[i_addr] <= input_data;
-      else
+  always @(*)
+    if (enable && i_valid)
         ram_data <= PRAM[i_addr];
 
   // The following is a 1 clock cycle read latency at the cost of a longer clock-to-out timing

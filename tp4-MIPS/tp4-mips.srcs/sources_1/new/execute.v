@@ -49,7 +49,7 @@ module execute#
 	
 	//otros
 	output reg [N_BITS-1:0]     o_pc_branch,
-	output reg [N_BITS-1:0]    o_alu_result,
+	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS-1:0]     o_read_data_2,
 	output reg [N_BITS_REG:0]   o_opcode,
 	output reg [N_BITS_REG-1:0] o_rt_rd,
@@ -168,7 +168,7 @@ module execute#
 	       mem_to_reg  <= i_mem_to_reg;
 	       reg_write   <= i_reg_write;
 	       read_data_2 <= i_read_data_2;
-	       pc_branch   <= i_pc_4 + i_extended; //-----¡¡¡¡¡¡¡PC BRANCH ACA!!!!!!!-------
+	       pc_branch   <= (i_pc_4 - 1) + i_extended; //-----¡¡¡¡¡¡¡PC BRANCH ACA!!!!!!!-------
 	       opcode      <= i_opcode;
 	   end
 	end	

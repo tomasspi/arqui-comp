@@ -69,6 +69,7 @@ module decode#
 	reg [N_BITS-1:0]      instruccion;
 	reg [N_BITS-1:0]      pc_4;
 	reg [N_BITS-1:0]      write_data;
+	reg [N_BITS-1:0]      extended;
     reg [N_BITS_REG-1:0]  rs;
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
@@ -119,6 +120,7 @@ module decode#
             offset      <= instruccion[15:0];
             instr_index <= instruccion[25:0];
             write_data  <= i_write_data;  
+            extended    <= {{(N_BITS-16){offset[15]}},offset};
             
             if(o_stall || i_flush)
             begin
@@ -157,8 +159,7 @@ module decode#
     assign o_rt          = rt;
     assign o_rd          = rd;
     assign o_instr_index = instr_index;
-    
-    assign o_extended = {{(N_BITS-16){offset[15]}},offset};
+    assign o_extended    = extended;
     
     assign o_read_data_1 = read_data_1;
     assign o_read_data_2 = read_data_2;
