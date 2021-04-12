@@ -75,9 +75,12 @@ module top_pipeline
         end
     end 
     
+<<<<<<< HEAD
     wire le_pc_src; 
     assign le_pc_src = flush_j || flush_b;
 
+=======
+>>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
     
     //FETCH
     fetch u_fetch
@@ -93,7 +96,11 @@ module top_pipeline
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_f),
         .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
         .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
+<<<<<<< HEAD
         .i_rt_idex(rt), .i_flush(flush_j),
+=======
+        .i_rt_idex(rt),
+>>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
         .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
         .o_reg_write(regwr), .o_halt(halt_d), 

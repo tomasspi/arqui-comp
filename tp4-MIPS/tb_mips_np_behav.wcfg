@@ -11,15 +11,24 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
+<<<<<<< HEAD
       <ZoomStartTime time="94847fs"></ZoomStartTime>
       <ZoomEndTime time="143681fs"></ZoomEndTime>
       <Cursor1Time time="370000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="185"></NameColumnWidth>
+=======
+      <ZoomStartTime time="95944fs"></ZoomStartTime>
+      <ZoomEndTime time="274902fs"></ZoomEndTime>
+      <Cursor1Time time="200000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="110"></NameColumnWidth>
+>>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="15" />
    <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,6 +45,7 @@
       <obj_property name="ElementShortName">pc[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc[31:0]</obj_property>
    </wvobject>
+<<<<<<< HEAD
    <wvobject fp_name="/tb_pipeline/u_pipe/u_exe/i_pc_4" type="array">
       <obj_property name="ElementShortName">i_pc_4[31:0]</obj_property>
       <obj_property name="ObjectShortName">i_pc_4[31:0]</obj_property>
@@ -79,6 +89,21 @@
    <wvobject fp_name="/tb_pipeline/u_pipe/u_mem/o_pc_src" type="logic">
       <obj_property name="ElementShortName">o_pc_src</obj_property>
       <obj_property name="ObjectShortName">o_pc_src</obj_property>
+=======
+   <wvobject fp_name="/tb_pipeline/u_pipe/instruccion" type="array">
+      <obj_property name="ElementShortName">instruccion[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instruccion[31:0]</obj_property>
+>>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_1" type="array">
+      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_read_data_1" type="array">
+      <obj_property name="ElementShortName">o_read_data_1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_read_data_1[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_exe/u_alu1/i_dato_A" type="array">
       <obj_property name="ElementShortName">i_dato_A[31:0]</obj_property>
@@ -94,8 +119,6 @@
       <obj_property name="ElementShortName">o_alu_result[31:0]</obj_property>
       <obj_property name="ObjectShortName">o_alu_result[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_clk_cntr/count" type="array">
       <obj_property name="ElementShortName">count[31:0]</obj_property>
@@ -103,14 +126,25 @@
       <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_read_reg_1" type="array">
+      <obj_property name="ElementShortName">i_read_reg_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">i_read_reg_1[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_write_reg" type="array">
       <obj_property name="ElementShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="ObjectShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
+<<<<<<< HEAD
    <wvobject fp_name="/tb_pipeline/u_pipe/u_wb/o_rd_rt" type="array">
       <obj_property name="ElementShortName">o_rd_rt[4:0]</obj_property>
       <obj_property name="ObjectShortName">o_rd_rt[4:0]</obj_property>
+=======
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_write_data" type="array">
+      <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_write_data[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+>>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_hdu/o_stall" type="logic">
       <obj_property name="ElementShortName">o_stall</obj_property>
