@@ -32,19 +32,16 @@ module data_memory
     reg [RAM_WIDTH-1:0] ram_index;
     initial begin
         for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          DRAM[ram_index] = 3;//32'b0;//{ram_index};
+          DRAM[ram_index] = {ram_index};
     end
  endgenerate
-	
- always @(posedge i_clk)begin:lectura
-    if (i_valid && i_read_enable)
-    ram_data <= DRAM[i_address];
- end  
- 
- always@(negedge i_clk)begin:escrtura
-    if (i_valid && i_write_enable)
-       DRAM[i_address] <= i_write_data;
- end
+	//!!!!!!!!!!!---------------WARNING------------!!!!!!!!!!!!!!!!
+  always @(negedge i_clk) 
+    if (enable && i_valid)
+      if (i_write_enable)
+        DRAM[i_address] <= i_write_data;
+      else if(i_read_enable)
+        ram_data <= DRAM[i_address];
 
  assign o_read_data = ram_data;
 

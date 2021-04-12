@@ -28,7 +28,6 @@ module memory#
 	output reg                  o_reg_write,
 	output reg                  o_halt,
 	output reg                  o_pc_src,
-	output reg                  o_flush,
 	output reg [N_BITS-1:0]     o_read_data,
 	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS_REG-1:0] o_rt_rd
@@ -37,7 +36,6 @@ module memory#
     wire pc_src;
 	
 	reg                   halt;
-	wire                  flush;
 	reg                   mem_to_reg;
 	reg                   reg_write;
 	wire [N_BITS-1:0]     read_data;
@@ -79,13 +77,12 @@ module memory#
        o_rt_rd      <= rt_rd;
 	   o_read_data  <= read_data;
 	   o_pc_src     <= pc_src;
-	   o_flush      <= flush;
 	end
 	
     branch_logic u_branch_logic
     (
         .i_branch(i_branch), .i_zero(i_zero), .i_opcode(i_opcode), 
-        .o_pc_src(pc_src), .o_flush(flush)  
+        .o_pc_src(pc_src)  
     );
 
     data_memory u_data_mem1

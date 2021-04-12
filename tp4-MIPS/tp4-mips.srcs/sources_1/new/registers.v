@@ -3,7 +3,7 @@
 module registers#
 (
 	parameter	N_BITS		= 32,
-	parameter	N_BITS_REG	= 5
+	parameter	N_BITS_REG	= 6
 )
 (
     input  wire       			 i_clk,
@@ -28,17 +28,15 @@ module registers#
  initial begin
 	for(i = 0; i < 32; i = i + 1)
 		registros[i] = {N_BITS{1'b0}}; // o deja i, despues vemos
-		registros[5] = 1;
-		registros[6] = 2;
  end
 
- always@(posedge i_clk)begin:lectura 
+ always@(posedge i_clk)begin:lectura
     if(i_reset)
 	begin
 		o_read_data_1 <= {N_BITS{1'b0}};
 		o_read_data_2 <= {N_BITS{1'b0}};
 	end
-    if(i_valid)
+    else if(i_valid)
 	begin
 		o_read_data_1 <= registros[i_read_reg_1];
 		o_read_data_2 <= registros[i_read_reg_2];
@@ -46,10 +44,8 @@ module registers#
  end
  
  always@(negedge i_clk)begin:escritura
-	if(i_reg_write && i_valid && i_write_reg != 5'b0)
-	begin
+	if(i_reg_write && i_valid)
 		registros[i_write_reg] <= i_write_data; //dato nuevo (calculado o leido)
-    end
  end
  
 endmodule

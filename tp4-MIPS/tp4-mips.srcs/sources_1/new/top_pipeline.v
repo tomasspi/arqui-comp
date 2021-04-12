@@ -40,8 +40,7 @@ module top_pipeline
     wire       memtoreg;
     wire       regwr;
     wire       jump;
-    wire       flush_j;
-    wire       flush_b;
+    wire       flush;
     wire       pc_src;
     
     wire branch_e;
@@ -71,22 +70,15 @@ module top_pipeline
             if(pc_src)
                 pc_salto <= pc_branch;
             else if(jump)
-                pc_salto <= {pc_4[31:26], instr_index}; //J
+                pc_salto <= {pc_4[31:26], instr_index};             
         end
     end 
-    
-<<<<<<< HEAD
-    wire le_pc_src; 
-    assign le_pc_src = flush_j || flush_b;
-
-=======
->>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
     
     //FETCH
     fetch u_fetch
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
-        .i_pc_salto(pc_salto), .i_pc_src(le_pc_src), .i_halt(halt), .i_stall(stall),
+        .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
         .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f)
     );
     
@@ -96,17 +88,13 @@ module top_pipeline
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_f),
         .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
         .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
-<<<<<<< HEAD
-        .i_rt_idex(rt), .i_flush(flush_j),
-=======
-        .i_rt_idex(rt),
->>>>>>> parent of 0ffd3e1 (jump andando, TODO: branches)
+        .i_rt_idex(rt), .i_flush(flush),
         .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
         .o_reg_write(regwr), .o_halt(halt_d), 
         .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
         .o_extended(extended), .o_instr_index(instr_index),
-        .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode), .o_stall(stall), .o_flush(flush_j)
+        .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode), .o_stall(stall), .o_flush(flush)
     );
     
     //EXECUTE
@@ -134,8 +122,7 @@ module top_pipeline
         .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
         .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
         .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
-        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
-        .o_flush(flush_b)
+        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m)
     );
     
     //WRITEBACK
