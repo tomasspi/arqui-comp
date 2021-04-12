@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="49" Path="E:/Arqui/tp4-mips/tp4-mips.xpr">
+<Project Version="7" Minor="49" Path="T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="d8a0464a322d465fbfd74b2bd1887631"/>
@@ -39,7 +39,11 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
+<<<<<<< HEAD
     <Option Name="WTXSimLaunchSim" Val="532"/>
+=======
+    <Option Name="WTXSimLaunchSim" Val="518"/>
+>>>>>>> rollback
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -68,14 +72,14 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -96,14 +100,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -145,7 +149,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -159,7 +163,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -180,7 +184,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/sign_extend.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/sign_extend.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -188,7 +192,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/program_counter.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/program_counter.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -196,7 +200,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="T:/Tom/Facultad/Materias/arqui/practico/tpfinal/top_mips_np.v">
+      <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/top_mips_np.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -204,7 +208,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v">
+      <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -212,7 +216,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v">
+      <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -220,7 +224,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v">
+      <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -228,7 +232,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v">
+      <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
