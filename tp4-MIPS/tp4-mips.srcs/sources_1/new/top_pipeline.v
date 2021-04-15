@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module top_pipeline
 (
     input wire i_clk, i_reset, i_valid
@@ -8,17 +6,23 @@ module top_pipeline
     reg  [31:0] pc_salto;
     wire [31:0] pc_4;
     wire [31:0] pc_4_d;
+    wire [31:0] pc_4_e;
+    wire [31:0] pc_4_m;
+    
     wire [31:0] instruccion;
-    wire [4:0]  rs; //(rs)
-    wire [4:0]  rt; //(rt)
-    wire [4:0]  rd; //(rd)
+    wire [4:0]  rs; 
+    wire [4:0]  rt; 
+    wire [4:0]  rd; 
     wire [25:0] instr_index;
     wire [5:0]  opcode;
     wire [5:0]  opcode_e;
     wire [31:0] extended;
     wire [4:0]  write_reg;	
     wire [31:0] write_data;
+    wire [4:0]  write_reg_wb;	
+    wire [31:0] write_data_wb;
     wire [31:0] pc_branch;
+    wire [31:0] pc_jump;
     wire [31:0] read_data_1;
     wire [31:0] read_data_2;
     wire [31:0] read_data_2_e;
@@ -39,12 +43,13 @@ module top_pipeline
     wire       memwr;
     wire       memtoreg;
     wire       regwr;
-    wire       jump;
+    wire [1:0] jump;
+    wire [1:0] jump_e;
+    wire [1:0] jump_m;
     wire       flush;
     wire       pc_src;
     
     wire branch_e;
-//    wire jump_e;
     wire memrd_e;
     wire memwr_e;
     wire memtoreg_e;
@@ -69,8 +74,8 @@ module top_pipeline
         begin
             if(pc_src)
                 pc_salto <= pc_branch;
-            else if(jump)
-                pc_salto <= {pc_4[31:26], instr_index};             
+            else 
+                pc_salto <= pc_jump;           
         end
     end 
     
@@ -93,7 +98,7 @@ module top_pipeline
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
         .o_reg_write(regwr), .o_halt(halt_d), 
         .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
-        .o_extended(extended), .o_instr_index(instr_index),
+        .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
         .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode), .o_stall(stall), .o_flush(flush)
     );
     
@@ -105,11 +110,11 @@ module top_pipeline
         .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), .i_jump(jump),
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
         .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
-        .i_alu_result(aluResult), .i_data_memory(write_data), 
+        .i_alu_result(aluResult), .i_data_memory(write_data_wb), 
         .i_rd(rd), .i_rt(rt), .i_mux_A(muxA), .i_mux_B(muxB),
-        .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), 
+        .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
         .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
-        .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e),
+        .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e), .o_pc_4(pc_4_e),
         .o_read_data_2(read_data_2_e), .o_rt_rd(rt_rd), .o_zero(zero)
     );
     
@@ -117,19 +122,20 @@ module top_pipeline
     memory u_mem
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_e),
-        .i_branch(branch_e), .i_mem_read(memrd_e), 
+        .i_branch(branch_e), .i_mem_read(memrd_e), .i_jump(jump_e), .i_pc_4(pc_4_e),
         .i_mem_write(memwr_e), .i_mem_to_reg(memtoreg_e), .i_reg_write(regwr_e), 
         .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
         .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
         .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
-        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m)
+        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
+        .o_jump(jump_m), .o_pc_4(pc_4_m)
     );
     
     //WRITEBACK
     writeback u_wb
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_m),
-        .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), 
+        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_m), .i_jump(jump_m),
+        .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), .i_pc_4(pc_4_m),
         .i_alu_result(alu_result), .i_rd_rt(rt_rd_m), .o_stop(stop),
         .o_mem_to_reg(memtoreg_w), .o_reg_write(regwr_w), .o_write_data(write_data),
         .o_rd_rt(write_reg)

@@ -13,7 +13,7 @@ module execute#
     
     //MEM - señales de control para acceso a memoria
 	input wire 	 	 i_branch,
-	input wire 		 i_jump,
+	input wire [1:0] i_jump,
 	input wire 	 	 i_mem_read,
 	input wire 	 	 i_mem_write,
 	
@@ -38,7 +38,7 @@ module execute#
 	
 	//MEM - señales de control para acceso a memoria
 	output reg 	 	 o_branch,
-//	output reg 		 o_jump,
+	output reg [1:0] o_jump,
 	output reg 	 	 o_mem_read,
 	output reg 	 	 o_mem_write,
 	
@@ -48,8 +48,9 @@ module execute#
 	output reg       o_halt,
 	
 	//otros
+	output reg [N_BITS-1:0]     o_pc_4,
 	output reg [N_BITS-1:0]     o_pc_branch,
-	output reg [N_BITS-1:0]    o_alu_result,
+	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS-1:0]     o_read_data_2,
 	output reg [N_BITS_REG:0]   o_opcode,
 	output reg [N_BITS_REG-1:0] o_rt_rd,
@@ -60,22 +61,26 @@ module execute#
 	reg [N_BITS-1:0]     dato_b;
 	reg [N_BITS-1:0]     dato_b_fowarding;
 	reg [N_BITS-1:0]     pc_branch;
-	reg [N_BITS-1:0]     read_data_2;
-	wire [N_BITS-1:0]    alu_result;
+	reg [N_BITS-1:0]     pc_4;
+	reg [N_BITS-1:0]     read_data_2;	
 	reg [N_BITS_REG:0]   opcode;
 	reg [N_BITS_REG-1:0] rt_rd;
 	
-	wire [4:0] aluctrl;
-	reg branch;
-	reg mem_read;
-	reg mem_write;
-	reg mem_to_reg;
-	reg reg_write;
-	reg halt;
+	wire [4:0]        aluctrl;
+	wire [N_BITS-1:0] alu_result;
+	
+	reg [1:0] jump;
+	reg       branch;
+	reg       mem_read;
+	reg       mem_write;
+	reg       mem_to_reg;
+	reg       reg_write;
+	reg       halt;
+	
 	wire zero;
 		
 		
-	//MUX dato A
+	//MUX dato A forwarding
 	always@(*) begin
 	   if(i_valid)
 	   begin
@@ -90,7 +95,7 @@ module execute#
 	   end
 	end
 	
-	//MUX dato B fowarding
+	//MUX dato B forwarding
 	always@(*) begin
 	   if(i_valid)
 	   begin
@@ -137,6 +142,7 @@ module execute#
 	       o_reg_write   <= 1'b0;
 	       o_halt        <= 1'b0;
 	       
+	       o_pc_4        <= {N_BITS{1'b0}};
 	       o_pc_branch   <= {N_BITS{1'b0}};
 	       o_alu_result  <= {N_BITS{1'b0}};
 	       o_read_data_2 <= {N_BITS{1'b0}};
@@ -149,7 +155,9 @@ module execute#
 	       mem_write     <= 1'b0;
 	       mem_to_reg    <= 1'b0;
 	       reg_write     <= 1'b0;
+	       jump          <= 2'b0;
 	       
+	       pc_4          <= {N_BITS{1'b0}};
 	       dato_a        <= {N_BITS{1'b0}};
 	       dato_b        <= {N_BITS{1'b0}}; 
            pc_branch     <= {N_BITS{1'b0}};
@@ -168,6 +176,8 @@ module execute#
 	       mem_to_reg  <= i_mem_to_reg;
 	       reg_write   <= i_reg_write;
 	       read_data_2 <= i_read_data_2;
+	       jump        <= i_jump;
+	       pc_4        <= i_pc_4;
 	       pc_branch   <= i_pc_4 + i_extended; //-----¡¡¡¡¡¡¡PC BRANCH ACA!!!!!!!-------
 	       opcode      <= i_opcode;
 	   end
@@ -176,9 +186,10 @@ module execute#
 	always@(negedge i_clk)begin:esc
 	   if(i_valid)
 	   begin
+	       o_pc_4        <= pc_4;
 	       o_halt        <= halt;
 	       o_branch      <= branch;
-//           o_jump        <= jump;
+           o_jump        <= jump;
            o_mem_read    <= mem_read;
            o_mem_write   <= mem_write;
            o_mem_to_reg  <= mem_to_reg;
@@ -191,9 +202,7 @@ module execute#
            o_zero        <= zero;
 	   end
 	end
-	
-//	assign o_alu_result = alu_result;
-	
+		
 	alu u_alu1
     (
         .i_dato_A(dato_a), .i_dato_B(dato_b), .i_alu_ctrl(aluctrl),

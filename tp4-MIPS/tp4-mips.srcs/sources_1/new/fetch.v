@@ -9,7 +9,6 @@ module fetch#(
 	input wire [N_BITS-1:0]      i_pc_salto,
 	input wire                   i_halt,
 	input wire                   i_stall,
-	input wire                   i_flush,
 	input wire                   i_pc_src, //señal de control
 	
 	//output

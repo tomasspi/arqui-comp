@@ -8,7 +8,7 @@ module memory#
     
     //MEM - señales de control para acceso a memoria
 	input wire 	 	 i_branch,
-//	input wire 		 i_jump,
+	input wire [1:0] i_jump,
 	input wire 	 	 i_mem_read,
 	input wire 	 	 i_mem_write,
 	
@@ -17,13 +17,17 @@ module memory#
 	input wire 		 i_reg_write,
 	input wire       i_halt,
 	
+	input wire [N_BITS-1:0]     i_pc_4,
 	input wire [N_BITS_REG:0]   i_opcode, 
 	input wire [N_BITS-1:0]     i_pc_branch,
 	input wire                  i_zero,
 	input wire [N_BITS-1:0]     i_alu_result,
 	input wire [N_BITS-1:0]     i_read_data_2,
 	input wire [N_BITS_REG-1:0] i_rt_rd,
+
+	output reg [N_BITS-1:0]     o_pc_4,
 	
+	output reg [1:0]            o_jump,
 	output reg                  o_mem_to_reg,
 	output reg                  o_reg_write,
 	output reg                  o_halt,
@@ -33,13 +37,15 @@ module memory#
 	output reg [N_BITS_REG-1:0] o_rt_rd
 );
 
-    wire pc_src;
+    wire              pc_src;
+    wire [N_BITS-1:0] read_data;
 	
 	reg                   halt;
 	reg                   mem_to_reg;
 	reg                   reg_write;
-	wire [N_BITS-1:0]     read_data;
+	reg [1:0]             jump;
 	reg [N_BITS-1:0]      alu_result;
+	reg [N_BITS-1:0]      pc_4;
 	reg [N_BITS_REG-1:0]  rt_rd;
     
 	
@@ -48,31 +54,39 @@ module memory#
         begin
             o_mem_to_reg <= 1'b0;
             o_reg_write  <= 1'b0;
-            o_alu_result <= 32'b0;
-            o_rt_rd      <= 5'b0;
 			o_pc_src     <= 1'b0;
 			o_halt       <= 1'b0;
-			
+			o_jump       <= 2'b0;
+			o_alu_result <= {N_BITS{1'b0}};
+			o_pc_4       <= {N_BITS{1'b0}};
+            o_rt_rd      <= {N_BITS_REG{1'b0}};
+            
 			halt         <= 1'b0;
 			mem_to_reg	 <= 1'b0;
 			reg_write	 <= 1'b0;
-			alu_result   <= 32'b0;
-			rt_rd        <= 5'b0;
+			jump         <= 2'b0;
+			alu_result   <= {N_BITS{1'b0}};
+			pc_4         <= {N_BITS{1'b0}};
+			rt_rd        <= {N_BITS_REG{1'b0}};
         end
         else if(i_valid)
         begin
             halt       <= i_halt;
+            jump       <= i_jump;
             mem_to_reg <= i_mem_to_reg;
             reg_write  <= i_reg_write;
             alu_result <= i_alu_result;
+            pc_4       <= i_pc_4;
             rt_rd      <= i_rt_rd;
         end
     end
     
 	always@(negedge i_clk)begin:escritura
 	   o_halt       <= halt;
+	   o_jump       <= jump;
 	   o_mem_to_reg <= mem_to_reg;
        o_reg_write  <= reg_write;
+       o_pc_4       <= pc_4;
        o_alu_result <= alu_result;
        o_rt_rd      <= rt_rd;
 	   o_read_data  <= read_data;

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="51000fs"></ZoomStartTime>
-      <ZoomEndTime time="195501fs"></ZoomEndTime>
-      <Cursor1Time time="148940fs"></Cursor1Time>
+      <ZoomStartTime time="90072fs"></ZoomStartTime>
+      <ZoomEndTime time="282188fs"></ZoomEndTime>
+      <Cursor1Time time="170366fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="196"></NameColumnWidth>
-      <ValueColumnWidth column_width="75"></ValueColumnWidth>
+      <NameColumnWidth column_width="193"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="22" />
    <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,6 +31,10 @@
    <wvobject fp_name="/tb_pipeline/valid" type="logic">
       <obj_property name="ElementShortName">valid</obj_property>
       <obj_property name="ObjectShortName">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_jump_logic/i_instr_index" type="array">
+      <obj_property name="ElementShortName">i_instr_index[19:0]</obj_property>
+      <obj_property name="ObjectShortName">i_instr_index[19:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_fetch/pc" type="array">
       <obj_property name="ElementShortName">pc[31:0]</obj_property>
@@ -52,13 +56,9 @@
       <obj_property name="ElementShortName">flush</obj_property>
       <obj_property name="ObjectShortName">flush</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_jump" type="logic">
-      <obj_property name="ElementShortName">o_jump</obj_property>
-      <obj_property name="ObjectShortName">o_jump</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/o_mux_A" type="array">
-      <obj_property name="ElementShortName">o_mux_A[1:0]</obj_property>
-      <obj_property name="ObjectShortName">o_mux_A[1:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_jump" type="array">
+      <obj_property name="ElementShortName">o_jump[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_jump[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/i_rs_idex" type="array">
       <obj_property name="ElementShortName">i_rs_idex[4:0]</obj_property>
@@ -73,6 +73,14 @@
    <wvobject fp_name="/tb_pipeline/u_pipe/instruccion" type="array">
       <obj_property name="ElementShortName">instruccion[31:0]</obj_property>
       <obj_property name="ObjectShortName">instruccion[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/o_mux_A" type="array">
+      <obj_property name="ElementShortName">o_mux_A[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_mux_A[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_fw/o_mux_B" type="array">
+      <obj_property name="ElementShortName">o_mux_B[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_mux_B[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_exe/u_alu1/i_dato_A" type="array">
       <obj_property name="ElementShortName">i_dato_A[31:0]</obj_property>
@@ -99,10 +107,6 @@
       <obj_property name="ElementShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="ObjectShortName">i_write_reg[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_wb/o_rd_rt" type="array">
-      <obj_property name="ElementShortName">o_rd_rt[4:0]</obj_property>
-      <obj_property name="ObjectShortName">o_rd_rt[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_register/i_write_data" type="array">
       <obj_property name="ElementShortName">i_write_data[31:0]</obj_property>

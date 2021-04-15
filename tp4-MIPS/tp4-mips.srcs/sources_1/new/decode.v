@@ -27,11 +27,11 @@ module decode#
 	output reg  	 o_reg_dst,	
 	
 	//MEM - señales de control para acceso a memoria
-	output reg 	  o_branch,
-	output reg 	  o_jump,
-	output reg    o_flush,
-	output reg 	  o_mem_read,
-	output reg 	  o_mem_write,
+	output reg 	     o_branch,
+	output reg [1:0] o_jump,
+	output reg       o_flush,
+	output reg 	     o_mem_read,
+	output reg 	     o_mem_write,
 	
 	//WB  - señales de control para write-back
     output reg 	  o_mem_to_reg,
@@ -49,14 +49,15 @@ module decode#
 	output wire [N_BITS_REG-1:0] o_rs,
 	output wire [N_BITS_REG-1:0] o_rd,
 	output wire [N_BITS_REG-1:0] o_rt,
-	output wire [N_BITS_REG:0]   o_opcode
+	output wire [N_BITS_REG:0]   o_opcode,
+	output wire [N_BITS-1:0]     o_pc_jump
 );
      
     wire [2:0]        alu_op;
 	wire              alu_src;
 	wire              reg_dst;	
 	wire	          branch;
-	wire	          jump;
+	wire [1:0]        jump;
 	wire              flush;
 	wire	          mem_read;
 	wire	          mem_write;
@@ -64,7 +65,9 @@ module decode#
 	wire	          reg_write;	
 	wire [N_BITS-1:0] read_data_1;
 	wire [N_BITS-1:0] read_data_2;
-	
+	wire [N_BITS-1:0] pc_jump;
+	wire [N_BITS_REG-1:0] write_reg;
+	wire              regwr;
 	//latch reg
 	reg [N_BITS-1:0]      instruccion;
 	reg [N_BITS-1:0]      pc_4;
@@ -73,7 +76,7 @@ module decode#
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
     reg [N_BITS-17:0]     offset;
-    reg [N_BITS_REG-13:0] instr_index;
+    reg [N_BITS-13:0] instr_index;
     reg halt;
     reg stall;
   
@@ -85,7 +88,7 @@ module decode#
             o_alu_src     <= 1'b0;
             o_reg_dst     <= 1'b0;
             o_branch      <= 1'b0;
-            o_jump        <= 1'b0;
+            o_jump        <= 2'b0;
             o_mem_read    <= 1'b0;
             o_mem_write   <= 1'b0;
             o_mem_to_reg  <= 1'b0;
@@ -126,7 +129,7 @@ module decode#
                 o_alu_src     <= 1'b0;
                 o_reg_dst     <= 1'b0;
                 o_branch      <= 1'b0;
-                o_jump        <= 1'b0;
+                o_jump        <= 2'b0;
                 o_flush       <= 1'b0;
                 o_mem_read    <= 1'b0;
                 o_mem_write   <= 1'b0;
@@ -162,7 +165,8 @@ module decode#
     
     assign o_read_data_1 = read_data_1;
     assign o_read_data_2 = read_data_2;
-
+    assign o_pc_jump     = pc_jump;
+    
     registers u_register
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
@@ -187,5 +191,17 @@ module decode#
         .i_mem_read_idex(i_mem_read_idex), .i_rt_idex(i_rt_idex), .i_rt_ifid(rt), 
         .i_rs_ifid(rs), 
         .o_stall(o_stall)
+    );
+    
+    //Jump logic
+    jump_logic u_jump_logic
+    (
+//        .i_clk(i_clk), .i_valid(i_valid),
+        .i_jump(jump), //.i_rd(rd), .i_write_reg(i_write_reg), .i_reg_write(i_reg_write), 
+        .i_instr_index(instr_index), //.i_write_data(i_write_data), 
+        .i_read_data(read_data_1), 
+        .i_pc_4(i_pc_4), 
+//        .o_write_reg(write_reg), .o_reg_write(regwr), .o_write_data(write_data), 
+        .o_pc_jump(pc_jump) 
     );
 endmodule
