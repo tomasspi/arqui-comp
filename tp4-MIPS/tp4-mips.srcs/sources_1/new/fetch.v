@@ -28,7 +28,7 @@ module fetch#(
         end
         else if(i_valid)// decide el valor del PC
         begin
-            if(i_pc_src)//flush
+            if(i_pc_src)
                 pc <= i_pc_salto;
             else if(~i_halt && ~i_stall)
                 pc <= pc + 1;

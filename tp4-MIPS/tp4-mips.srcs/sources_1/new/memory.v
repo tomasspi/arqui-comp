@@ -28,10 +28,11 @@ module memory#
 	output reg [N_BITS-1:0]     o_pc_4,
 	
 	output reg [1:0]            o_jump,
+	output wire                 o_flush,
 	output reg                  o_mem_to_reg,
 	output reg                  o_reg_write,
 	output reg                  o_halt,
-	output reg                  o_pc_src,
+	output wire                  o_pc_src,
 	output reg [N_BITS-1:0]     o_read_data,
 	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS_REG-1:0] o_rt_rd
@@ -47,14 +48,13 @@ module memory#
 	reg [N_BITS-1:0]      alu_result;
 	reg [N_BITS-1:0]      pc_4;
 	reg [N_BITS_REG-1:0]  rt_rd;
-    
 	
     always@(posedge i_clk)begin:lectura
         if(i_reset)
         begin
             o_mem_to_reg <= 1'b0;
             o_reg_write  <= 1'b0;
-			o_pc_src     <= 1'b0;
+//			o_pc_src     <= 1'b0;
 			o_halt       <= 1'b0;
 			o_jump       <= 2'b0;
 			o_alu_result <= {N_BITS{1'b0}};
@@ -82,21 +82,24 @@ module memory#
     end
     
 	always@(negedge i_clk)begin:escritura
-	   o_halt       <= halt;
-	   o_jump       <= jump;
-	   o_mem_to_reg <= mem_to_reg;
-       o_reg_write  <= reg_write;
-       o_pc_4       <= pc_4;
-       o_alu_result <= alu_result;
-       o_rt_rd      <= rt_rd;
-	   o_read_data  <= read_data;
-	   o_pc_src     <= pc_src;
+	   if(i_valid)
+	   begin
+           o_halt       <= halt;
+           o_jump       <= jump;
+           o_mem_to_reg <= mem_to_reg;
+           o_reg_write  <= reg_write;
+           o_pc_4       <= pc_4;
+           o_alu_result <= alu_result;
+           o_rt_rd      <= rt_rd;
+           o_read_data  <= read_data;
+//           o_pc_src     <= pc_src;
+	   end
 	end
 	
     branch_logic u_branch_logic
     (
         .i_branch(i_branch), .i_zero(i_zero), .i_opcode(i_opcode), 
-        .o_pc_src(pc_src)  
+        .o_pc_src(o_pc_src), .o_flush(o_flush)  
     );
 
     data_memory u_data_mem1

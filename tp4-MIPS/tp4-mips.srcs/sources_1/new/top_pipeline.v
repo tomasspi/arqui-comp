@@ -47,6 +47,8 @@ module top_pipeline
     wire [1:0] jump_e;
     wire [1:0] jump_m;
     wire       flush;
+    wire       flush_d;
+    wire       flush_m;
     wire       pc_src;
     
     wire branch_e;
@@ -86,7 +88,7 @@ module top_pipeline
         .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
         .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f)
     );
-    
+    assign flush = flush_d || flush_m;
     //DECODE
     decode u_decode
     (
@@ -99,7 +101,7 @@ module top_pipeline
         .o_reg_write(regwr), .o_halt(halt_d), 
         .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
         .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
-        .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode), .o_stall(stall), .o_flush(flush)
+        .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_opcode(opcode), .o_stall(stall), .o_flush(flush_d)
     );
     
     //EXECUTE
@@ -111,7 +113,7 @@ module top_pipeline
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
         .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
         .i_alu_result(aluResult), .i_data_memory(write_data_wb), 
-        .i_rd(rd), .i_rt(rt), .i_mux_A(muxA), .i_mux_B(muxB),
+        .i_rd(rd), .i_rt(rt), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
         .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
         .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
         .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e), .o_pc_4(pc_4_e),
@@ -128,7 +130,7 @@ module top_pipeline
         .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
         .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
         .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
-        .o_jump(jump_m), .o_pc_4(pc_4_m)
+        .o_jump(jump_m), .o_pc_4(pc_4_m), .o_flush(flush_m)
     );
     
     //WRITEBACK

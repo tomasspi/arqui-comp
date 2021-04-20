@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="90072fs"></ZoomStartTime>
-      <ZoomEndTime time="282188fs"></ZoomEndTime>
-      <Cursor1Time time="170366fs"></Cursor1Time>
+      <ZoomStartTime time="6848fs"></ZoomStartTime>
+      <ZoomEndTime time="79100fs"></ZoomEndTime>
+      <Cursor1Time time="47466fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="193"></NameColumnWidth>
+      <NameColumnWidth column_width="185"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="22" />
+   <WVObjectSize size="25" />
    <wvobject fp_name="/tb_pipeline/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -46,6 +46,10 @@
       <obj_property name="CustomSignalColor">#FFFF00</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/pc_branch" type="array">
+      <obj_property name="ElementShortName">pc_branch[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_branch[31:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/pc_salto" type="array">
       <obj_property name="ElementShortName">pc_salto[31:0]</obj_property>
       <obj_property name="ObjectShortName">pc_salto[31:0]</obj_property>
@@ -55,6 +59,14 @@
    <wvobject fp_name="/tb_pipeline/u_pipe/flush" type="logic">
       <obj_property name="ElementShortName">flush</obj_property>
       <obj_property name="ObjectShortName">flush</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/flush_d" type="logic">
+      <obj_property name="ElementShortName">flush_d</obj_property>
+      <obj_property name="ObjectShortName">flush_d</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/flush_m" type="logic">
+      <obj_property name="ElementShortName">flush_m</obj_property>
+      <obj_property name="ObjectShortName">flush_m</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_jump" type="array">
       <obj_property name="ElementShortName">o_jump[1:0]</obj_property>

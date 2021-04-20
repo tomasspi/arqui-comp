@@ -32,6 +32,8 @@ module execute#
 	input wire [N_BITS_REG-1:0] i_rd,
 	input wire [N_BITS_REG-1:0] i_rt,
 	
+	input wire i_flush,
+	
 	//señales de control de entradas a la ALU (dato A o dato B)
 	input wire [1:0] i_mux_A,
 	input wire [1:0] i_mux_B,
@@ -184,7 +186,7 @@ module execute#
 	end	
 	
 	always@(negedge i_clk)begin:esc
-	   if(i_valid)
+	   if(i_valid && ~i_flush)
 	   begin
 	       o_pc_4        <= pc_4;
 	       o_halt        <= halt;
@@ -200,6 +202,24 @@ module execute#
            o_opcode      <= opcode;
            o_rt_rd       <= rt_rd;
            o_zero        <= zero;
+	   end
+	   else 
+	   begin                      
+           o_jump        <= 2'b0;          
+           o_branch      <= 1'b0;
+	       o_mem_read    <= 1'b0;
+	       o_mem_write   <= 1'b0;
+	       o_mem_to_reg  <= 1'b0;
+	       o_reg_write   <= 1'b0;
+	       o_halt        <= 1'b0;
+	       
+	       o_pc_4        <= {N_BITS{1'b0}};
+//	       o_pc_branch   <= {N_BITS{1'b0}};
+	       o_alu_result  <= {N_BITS{1'b0}};
+	       o_read_data_2 <= {N_BITS{1'b0}};
+	       o_rt_rd       <= {N_BITS_REG{1'b0}};
+	       o_zero        <= {N_BITS_REG{1'b0}};
+	       o_opcode      <= {N_BITS_REG+1{1'b0}}; 
 	   end
 	end
 		

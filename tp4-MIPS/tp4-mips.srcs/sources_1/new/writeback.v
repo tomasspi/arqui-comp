@@ -94,7 +94,6 @@ module writeback#
             mem_to_reg <= i_mem_to_reg;
             reg_write  <= i_reg_write;
             read_data  <= i_read_data;
-//            rd_rt      <= i_rd_rt;
         end
     end
     
