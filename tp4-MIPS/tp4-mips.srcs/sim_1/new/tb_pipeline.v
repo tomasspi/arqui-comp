@@ -22,7 +22,7 @@ module tb_pipeline();
         #20
         reset = 1'b0;
         
-        #300
+        #1500
         $finish;
     end
  

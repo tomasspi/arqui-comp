@@ -9,13 +9,13 @@ module clk_cntr
     output wire         o_halt,
     output wire [31:0]  o_count
 );
-    reg [31:0] count = 0;
+    reg [31:0] count = 32'b1;
     reg        halt = 0;
     
     always@(posedge i_clk)begin:contar
         if(i_reset)
         begin
-            count <= 32'b0;
+            count <= 32'b1;
             halt  <= 1'b0;
         end
         else if(i_valid && ~i_stop)

@@ -49,6 +49,7 @@ module decode#
 	output wire [N_BITS_REG-1:0] o_rs,
 	output wire [N_BITS_REG-1:0] o_rd,
 	output wire [N_BITS_REG-1:0] o_rt,
+	output wire [N_BITS_REG-1:0] o_sa,
 	output wire [N_BITS_REG:0]   o_opcode,
 	output wire [N_BITS-1:0]     o_pc_jump
 );
@@ -75,6 +76,7 @@ module decode#
     reg [N_BITS_REG-1:0]  rs;
     reg [N_BITS_REG-1:0]  rt;
     reg [N_BITS_REG-1:0]  rd;
+    reg [N_BITS_REG-1:0]  sa;
     reg [N_BITS-17:0]     offset;
     reg [N_BITS-13:0] instr_index;
     reg halt;
@@ -102,6 +104,7 @@ module decode#
             rs            <= 5'b0;
             rt            <= 5'b0;
             rd            <= 5'b0;
+            sa            <= 5'b0;
             offset        <= 16'b0;
             instr_index   <= 20'b0;
         end
@@ -119,6 +122,7 @@ module decode#
             rs          <= instruccion[25:21];
             rt          <= instruccion[20:16];
             rd          <= instruccion[15:11];
+            sa          <= instruccion[10:6];
             offset      <= instruccion[15:0];
             instr_index <= instruccion[25:0];
             write_data  <= i_write_data;  
@@ -159,6 +163,7 @@ module decode#
     assign o_rs          = rs;
     assign o_rt          = rt;
     assign o_rd          = rd;
+    assign o_sa          = sa;
     assign o_instr_index = instr_index;
     
     assign o_extended = {{(N_BITS-16){offset[15]}},offset};
@@ -196,12 +201,8 @@ module decode#
     //Jump logic
     jump_logic u_jump_logic
     (
-//        .i_clk(i_clk), .i_valid(i_valid),
-        .i_jump(jump), //.i_rd(rd), .i_write_reg(i_write_reg), .i_reg_write(i_reg_write), 
-        .i_instr_index(instr_index), //.i_write_data(i_write_data), 
-        .i_read_data(read_data_1), 
-        .i_pc_4(i_pc_4), 
-//        .o_write_reg(write_reg), .o_reg_write(regwr), .o_write_data(write_data), 
+        .i_jump(jump), .i_pc_4(i_pc_4), 
+        .i_instr_index(instr_index), .i_read_data(read_data_1),         
         .o_pc_jump(pc_jump) 
     );
 endmodule

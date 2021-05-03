@@ -31,6 +31,7 @@ module execute#
 	input wire [N_BITS_REG:0]   i_opcode,
 	input wire [N_BITS_REG-1:0] i_rd,
 	input wire [N_BITS_REG-1:0] i_rt,
+	input wire [N_BITS_REG-1:0] i_sa,
 	
 	input wire i_flush,
 	
@@ -86,14 +87,20 @@ module execute#
 	always@(*) begin
 	   if(i_valid)
 	   begin
-	       case(i_mux_A)
-	       2'b00:
-	           dato_a <= i_read_data_1;
-	       2'b01:
-	           dato_a <= i_data_memory;
-	       2'b10:
-	           dato_a <= i_alu_result;
-	       endcase
+	       case(aluctrl)
+	       4'b0110,4'b1011,4'b1010:
+	           dato_a <= i_read_data_2;
+	       
+	       default:
+               case(i_mux_A)
+               2'b00:
+                   dato_a <= i_read_data_1;
+               2'b01:
+                   dato_a <= i_data_memory;
+               2'b10:
+                   dato_a <= i_alu_result;
+               endcase
+           endcase
 	   end
 	end
 	
@@ -118,8 +125,15 @@ module execute#
         begin
             if(i_alu_src)
                 dato_b <= i_extended;
-            else
-                dato_b <= dato_b_fowarding; 
+            else 
+            begin
+                case(aluctrl)
+                4'b0110,4'b1011,4'b1010: //sll,sra,srl
+                    dato_b <= i_sa;
+                default:
+                    dato_b <= dato_b_fowarding;
+                endcase
+            end 
         end
     end
 	
@@ -214,7 +228,6 @@ module execute#
 	       o_halt        <= 1'b0;
 	       
 	       o_pc_4        <= {N_BITS{1'b0}};
-//	       o_pc_branch   <= {N_BITS{1'b0}};
 	       o_alu_result  <= {N_BITS{1'b0}};
 	       o_read_data_2 <= {N_BITS{1'b0}};
 	       o_rt_rd       <= {N_BITS_REG{1'b0}};
