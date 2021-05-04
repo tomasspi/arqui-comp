@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="538500fs"></ZoomStartTime>
-      <ZoomEndTime time="823901fs"></ZoomEndTime>
-      <Cursor1Time time="644998fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="379296fs"></ZoomEndTime>
+      <Cursor1Time time="195690fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="161"></NameColumnWidth>
+      <NameColumnWidth column_width="157"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="24" />
@@ -65,6 +65,10 @@
    <wvobject fp_name="/tb_pipeline/u_pipe/branch" type="logic">
       <obj_property name="ElementShortName">branch</obj_property>
       <obj_property name="ObjectShortName">branch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_hdu/o_stall" type="logic">
+      <obj_property name="ElementShortName">o_stall</obj_property>
+      <obj_property name="ObjectShortName">o_stall</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/o_jump" type="array">
       <obj_property name="ElementShortName">o_jump[1:0]</obj_property>
@@ -131,9 +135,5 @@
    <wvobject fp_name="/tb_pipeline/u_pipe/u_wb/o_write_data" type="array">
       <obj_property name="ElementShortName">o_write_data[31:0]</obj_property>
       <obj_property name="ObjectShortName">o_write_data[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_pipe/u_decode/u_hdu/o_stall" type="logic">
-      <obj_property name="ElementShortName">o_stall</obj_property>
-      <obj_property name="ObjectShortName">o_stall</obj_property>
    </wvobject>
 </wave_config>
