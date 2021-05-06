@@ -32,7 +32,7 @@ module memory#
 	output reg                  o_mem_to_reg,
 	output reg                  o_reg_write,
 	output reg                  o_halt,
-	output wire                  o_pc_src,
+	output wire                 o_pc_src,
 	output reg [N_BITS-1:0]     o_read_data,
 	output reg [N_BITS-1:0]     o_alu_result,
 	output reg [N_BITS_REG-1:0] o_rt_rd

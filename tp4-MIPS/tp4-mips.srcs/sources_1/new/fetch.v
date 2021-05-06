@@ -14,7 +14,9 @@ module fetch#(
 	//output
 	output reg [N_BITS-1:0]     o_pc_4,
 	output reg                  o_halt,
-	output reg [N_BITS-1:0]     o_instruccion
+	output reg [N_BITS-1:0]     o_instruccion,
+	output reg [N_BITS_REG-1:0] o_rs,
+	output reg [N_BITS_REG-1:0] o_rt
 );
 
     reg [N_BITS-1:0]     pc;
@@ -43,6 +45,8 @@ module fetch#(
             o_pc_4        <= pc + 1;
             o_instruccion <= instruccion;
             o_halt        <= i_halt;
+            o_rs          <= instruccion[25:21];
+            o_rt          <= instruccion[20:16];
         end
     end
 

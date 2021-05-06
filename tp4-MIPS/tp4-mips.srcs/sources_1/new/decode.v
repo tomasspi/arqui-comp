@@ -49,6 +49,7 @@ module decode#
 	output wire [N_BITS_REG-1:0] o_rs,
 	output wire [N_BITS_REG-1:0] o_rd,
 	output wire [N_BITS_REG-1:0] o_rt,
+//	output reg  [N_BITS_REG-1:0] o_rt_stall,
 	output wire [N_BITS_REG-1:0] o_sa,
 	output wire [N_BITS_REG:0]   o_opcode,
 	output wire [N_BITS-1:0]     o_pc_jump
@@ -110,7 +111,7 @@ module decode#
         end
         else if(i_valid)
         begin
-            instruccion <= i_instruccion;      
+            instruccion <= i_instruccion;
             pc_4        <= i_pc_4;
             halt        <= i_halt;
         end
@@ -154,6 +155,7 @@ module decode#
                 o_mem_to_reg <= mem_to_reg;
                 o_reg_write  <= reg_write;
                 o_halt       <= halt;
+//                o_rt_stall   <= rt;
              end
         end
     end  

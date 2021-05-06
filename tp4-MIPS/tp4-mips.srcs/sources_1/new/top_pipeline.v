@@ -10,8 +10,10 @@ module top_pipeline
     wire [31:0] pc_4_m;
     
     wire [31:0] instruccion;
-    wire [4:0]  rs; 
-    wire [4:0]  rt; 
+    wire [4:0]  rs;
+    wire [4:0]  rs_d;  
+    wire [4:0]  rt;
+    wire [4:0]  rt_d;  
     wire [4:0]  rd; 
     wire [4:0]  sa;
     wire [25:0] instr_index;
@@ -89,7 +91,8 @@ module top_pipeline
     (
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
-        .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f)
+        .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f),
+        .o_rs(rs), .o_rt(rt)
     );
     
     //DECODE
@@ -101,12 +104,12 @@ module top_pipeline
         .i_rt_idex(rt), .i_flush(flush),
         .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
-        .o_reg_write(regwr), .o_halt(halt_d), 
+        .o_reg_write(regwr), .o_halt(halt_d), //.o_rt_stall(rt_stall),
         .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
         .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
-        .o_rs(rs), .o_rd(rd), .o_rt(rt), .o_sa(sa), .o_opcode(opcode), .o_stall(stall), .o_flush(flush_d)
+        .o_rs(rs_d), .o_rd(rd), .o_rt(rt_d), .o_sa(sa), .o_opcode(opcode), .o_stall(stall), .o_flush(flush_d)
     );
-    
+    //rt
     //EXECUTE
     execute u_exe
     (
@@ -116,7 +119,7 @@ module top_pipeline
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
         .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
         .i_alu_result(aluResult), .i_data_memory(write_data), 
-        .i_rd(rd), .i_rt(rt), .i_sa(sa), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
+        .i_rd(rd), .i_rt(rt_d), .i_sa(sa), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
         .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
         .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
         .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e), .o_pc_4(pc_4_e),
@@ -157,7 +160,7 @@ module top_pipeline
     //Fowarding Unit
     fowarding_unit u_fw
     (
-        .i_rs_idex(rs), .i_rt_idex(rt), .i_rd_exmem(rt_rd), 
+        .i_rs_idex(rs_d), .i_rt_idex(rt_d), .i_rd_exmem(rt_rd), 
         .i_rd_memwb(rt_rd_m), .i_reg_write_exmem(regwr_e), .i_reg_write_memwb(regwr_m), 
         .o_mux_A(muxA), .o_mux_B(muxB)
     );
