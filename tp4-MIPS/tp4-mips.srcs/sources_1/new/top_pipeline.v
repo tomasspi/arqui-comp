@@ -2,7 +2,8 @@ module top_pipeline
 (
     input wire i_clk, i_reset, i_valid
 );
-
+    wire clk_out, locked;
+    
     reg  [31:0] pc_salto;
     wire [31:0] pc_4;
     wire [31:0] pc_4_d;
@@ -77,7 +78,7 @@ module top_pipeline
     assign flush = flush_d || flush_m;
     
     always@(*)begin
-        if(i_valid)
+        if(locked)
         begin
             if(pc_src)
                 pc_salto <= pc_branch;
@@ -89,7 +90,7 @@ module top_pipeline
     //FETCH
     fetch u_fetch
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked),
         .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
         .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f),
         .o_rs(rs), .o_rt(rt)
@@ -98,7 +99,7 @@ module top_pipeline
     //DECODE
     decode u_decode
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_f),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_f),
         .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
         .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
         .i_rt_idex(rt), .i_flush(flush),
@@ -113,7 +114,7 @@ module top_pipeline
     //EXECUTE
     execute u_exe
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_d),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_d),
         .i_alu_op(aluop), .i_alu_src(alusrc), .i_reg_dst(regdst), .i_branch(branch), 
         .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), .i_jump(jump),
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
@@ -129,7 +130,7 @@ module top_pipeline
     //MEMORY
     memory u_mem
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_e),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_e),
         .i_branch(branch_e), .i_mem_read(memrd_e), .i_jump(jump_e), .i_pc_4(pc_4_e),
         .i_mem_write(memwr_e), .i_mem_to_reg(memtoreg_e), .i_reg_write(regwr_e), 
         .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
@@ -142,7 +143,7 @@ module top_pipeline
     //WRITEBACK
     writeback u_wb
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_m), .i_jump(jump_m),
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_m), .i_jump(jump_m),
         .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), .i_pc_4(pc_4_m),
         .i_alu_result(alu_result), .i_rd_rt(rt_rd_m), .o_stop(stop),
         .o_mem_to_reg(memtoreg_w), .o_reg_write(regwr_w), .o_write_data(write_data),
@@ -152,7 +153,7 @@ module top_pipeline
     //Contador de ciclos
     clk_cntr u_clk_cntr
     (
-        .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), 
+        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), 
         .i_instruccion(instruccion), .i_stop(stop),
         .o_halt(halt), .o_count(count) 
     );
@@ -163,5 +164,13 @@ module top_pipeline
         .i_rs_idex(rs_d), .i_rt_idex(rt_d), .i_rd_exmem(rt_rd), 
         .i_rd_memwb(rt_rd_m), .i_reg_write_exmem(regwr_e), .i_reg_write_memwb(regwr_m), 
         .o_mux_A(muxA), .o_mux_B(muxB)
+    );
+    
+    clk_wiz_0 u_clock
+    (
+        .clk_in1(i_clk),
+        .reset(i_reset),
+        .clk_out1(clk_out),
+        .locked(locked)
     );
 endmodule
