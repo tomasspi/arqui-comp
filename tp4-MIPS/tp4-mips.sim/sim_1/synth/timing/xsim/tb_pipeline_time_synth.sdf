@@ -1,0 +1,86 @@
+(DELAYFILE 
+(SDFVERSION "3.0" )
+(DESIGN "top_pipeline")
+(DATE "Thu May 20 19:01:16 2021")
+(VENDOR "XILINX")
+(PROGRAM "Vivado")
+(VERSION "2020.1")
+(DIVIDER /)
+(TIMESCALE 1ps)
+(CELL 
+  (CELLTYPE "IBUF")
+  (INSTANCE i_reset_IBUF_inst)
+  (DELAY 
+    (PATHPULSE (50.0))
+    (ABSOLUTE 
+      (IOPATH I O (789.5:922.6:922.6) (789.5:922.6:922.6))
+    )
+  )
+)
+(CELL 
+  (CELLTYPE "BUFG")
+  (INSTANCE u_clock/inst/clkf_buf)
+  (DELAY 
+    (PATHPULSE (50.0))
+    (ABSOLUTE 
+      (IOPATH I O (91.0:96.0:96.0) (91.0:96.0:96.0))
+    )
+  )
+)
+(CELL 
+  (CELLTYPE "IBUF")
+  (INSTANCE u_clock/inst/clkin1_ibufg)
+  (DELAY 
+    (PATHPULSE (50.0))
+    (ABSOLUTE 
+      (IOPATH I O (789.5:922.6:922.6) (789.5:922.6:922.6))
+    )
+  )
+)
+(CELL 
+  (CELLTYPE "BUFG")
+  (INSTANCE u_clock/inst/clkout1_buf)
+  (DELAY 
+    (PATHPULSE (50.0))
+    (ABSOLUTE 
+      (IOPATH I O (91.0:96.0:96.0) (91.0:96.0:96.0))
+    )
+  )
+)
+(CELL 
+  (CELLTYPE "MMCME2_ADV")
+  (INSTANCE u_clock/inst/mmcm_adv_inst)
+  (DELAY 
+    (ABSOLUTE 
+      (IOPATH (posedge RST) LOCKED (3000.0:3000.0:3000.0))
+    )
+  )
+    (TIMINGCHECK
+      (SETUPHOLD (posedge DEN) (posedge DCLK) (2156.0:2290.0:2290.0) (0.0:0.0:0.0))
+      (SETUPHOLD (negedge DEN) (posedge DCLK) (2156.0:2290.0:2290.0) (0.0:0.0:0.0))
+      (SETUPHOLD (posedge DWE) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+      (SETUPHOLD (negedge DWE) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+      (SETUPHOLD (posedge PSEN) (posedge PSCLK) (979.0:1040.0:1040.0) (0.0:0.0:0.0))
+      (SETUPHOLD (negedge PSEN) (posedge PSCLK) (979.0:1040.0:1040.0) (0.0:0.0:0.0))
+      (SETUPHOLD (posedge PSINCDEC) (posedge PSCLK) (979.0:1040.0:1040.0) (0.0:0.0:0.0))
+      (SETUPHOLD (negedge PSINCDEC) (posedge PSCLK) (979.0:1040.0:1040.0) (0.0:0.0:0.0))
+      (SETUPHOLD (posedge DI[15:0]) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+      (SETUPHOLD (negedge DI[15:0]) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+      (SETUPHOLD (posedge DADDR[6:0]) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+      (SETUPHOLD (negedge DADDR[6:0]) (posedge DCLK) (1527.0:1622.0:1622.0) (150.0:150.0:150.0))
+    )
+)
+(CELL 
+    (CELLTYPE "top_pipeline")
+    (INSTANCE )
+    (DELAY
+      (ABSOLUTE
+      (INTERCONNECT i_reset_IBUF_inst/O u_clock/inst/mmcm_adv_inst/RST (759.7:799.7:799.7) (759.7:799.7:799.7))
+      (INTERCONNECT u_clock/inst/clkf_buf/O u_clock/inst/mmcm_adv_inst/CLKFBIN (439.0:584.0:584.0) (439.0:584.0:584.0))
+      (INTERCONNECT u_clock/inst/clkin1_ibufg/O u_clock/inst/mmcm_adv_inst/CLKIN1 (439.0:584.0:584.0) (439.0:584.0:584.0))
+      (INTERCONNECT u_clock/inst/mmcm_adv_inst/CLKFBOUT u_clock/inst/clkf_buf/I (759.7:799.7:799.7) (759.7:799.7:799.7))
+      (INTERCONNECT u_clock/inst/mmcm_adv_inst/CLKOUT0 u_clock/inst/clkout1_buf/I (759.7:799.7:799.7) (759.7:799.7:799.7))
+      )
+    )
+)
+)

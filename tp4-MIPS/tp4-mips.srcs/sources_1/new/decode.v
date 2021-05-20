@@ -81,7 +81,6 @@ module decode#
     reg [N_BITS-17:0]     offset;
     reg [N_BITS-13:0] instr_index;
     reg halt;
-    reg stall;
   
     
     always@(posedge i_clk)begin:leer_entradas
