@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../2uart.srcs/sources_1/new/baudrate_generator.v" \
+"../../../../2uart.srcs/sources_1/new/rx_uart.v" \
+"../../../../2uart.srcs/sources_1/new/top_uart.v" \
+"../../../../2uart.srcs/sources_1/new/tx_uart.v" \
+"../../../../2uart.srcs/sim_1/new/tb_top_uart.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
