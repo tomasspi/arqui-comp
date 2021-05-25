@@ -54,7 +54,6 @@ module memory#
         begin
             o_mem_to_reg <= 1'b0;
             o_reg_write  <= 1'b0;
-//			o_pc_src     <= 1'b0;
 			o_halt       <= 1'b0;
 			o_jump       <= 2'b0;
 			o_alu_result <= {N_BITS{1'b0}};
@@ -92,7 +91,6 @@ module memory#
            o_alu_result <= alu_result;
            o_rt_rd      <= rt_rd;
            o_read_data  <= read_data;
-//           o_pc_src     <= pc_src;
 	   end
 	end
 	

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1621547675">
   <File Type="PA-TCL" Name="top_pipeline.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="top_pipeline_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_pipeline_reports.tcl"/>
   <File Type="RDS-RDS" Name="top_pipeline.vds"/>
   <File Type="RDS-UTIL" Name="top_pipeline_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="top_pipeline_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="top_pipeline.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="top_pipeline_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="top_pipeline_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v">
@@ -210,9 +207,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design">
       <Option Id="FlattenHierarchy">1</Option>
     </Step>
