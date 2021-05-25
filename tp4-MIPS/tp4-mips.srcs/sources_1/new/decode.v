@@ -49,10 +49,12 @@ module decode#
 	output wire [N_BITS_REG-1:0] o_rs,
 	output wire [N_BITS_REG-1:0] o_rd,
 	output wire [N_BITS_REG-1:0] o_rt,
-//	output reg  [N_BITS_REG-1:0] o_rt_stall,
 	output wire [N_BITS_REG-1:0] o_sa,
 	output wire [N_BITS_REG:0]   o_opcode,
-	output wire [N_BITS-1:0]     o_pc_jump
+	output wire [N_BITS-1:0]     o_pc_jump,
+	
+	//para la unidad de debugging
+	output reg  [N_BITS*N_BITS-1:0] o_registros
 );
      
     wire [2:0]        alu_op;
@@ -81,8 +83,7 @@ module decode#
     reg [N_BITS-17:0]     offset;
     reg [N_BITS-13:0] instr_index;
     reg halt;
-  
-    
+      
     always@(posedge i_clk)begin:leer_entradas
         if(i_reset)
         begin
@@ -178,7 +179,8 @@ module decode#
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid),
         .i_read_reg_1(rs), .i_read_reg_2(rt), 
         .i_write_reg(i_write_reg), .i_write_data(write_data), .i_reg_write(i_reg_write),
-        .o_read_data_1(read_data_1), .o_read_data_2(read_data_2)
+        .o_read_data_1(read_data_1), .o_read_data_2(read_data_2),
+        .o_registros(o_registros)
     );
     
     control_unit u_ctrl
