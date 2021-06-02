@@ -15,6 +15,7 @@ module interface#
     input wire i_halt,
     input wire i_tx_done,
     
+    output reg               o_tx_start,
     output wire [N_BITS-1:0] o_data_to_send
 );
 	//declaracion de los estados
@@ -25,52 +26,77 @@ module interface#
 	localparam [2:0] CNTR = 3'b100;
 	
 	reg [N_BITS_REG-1:0] i = 5'b0;
-	reg [1:0]            state_reg, next_state;
+	reg [2:0]            state_reg, next_state;
     reg [N_BITS-1:0]     data;
     
 	//cambios de estado
 	always @(posedge i_clk) begin:check_state
 		if(i_reset)
-            state_reg <= IDLE;
+		begin
+            state_reg  <= IDLE;
+            next_state <= IDLE;
+            data = 32'b0;
+            o_tx_start = 1'b0;
+        end
 		else
 			state_reg <= next_state;			
 	end//check_state
 
     always@(*)begin:next
-        next_state = state_reg;
         
         case(state_reg)
         IDLE: // O se hizo el step.
         begin
             data = 32'b0;
+            o_tx_start = 1'b0;
+            
             if(i_halt)//detectar la instruccion HALT
                 next_state = PC;
         end
         PC:
         begin
-            data = i_pc;
-            if(i_tx_done)
-                next_state = REG;
-        end
-        REG:
-        begin            
-            data = i_registros[(N_BITS*i)+:N_BITS];
+            data = i_pc - 32'b1;
+            o_tx_start = 1'b1;
+            
             if(i_tx_done)
             begin
-                i = i + 1;
-                if(i == N_BITS)
+                next_state = REG;
+                o_tx_start = 1'b0;
+            end
+        end
+        REG: //manda los regs uno por uno sin usar un for
+        begin            
+            data = i_registros[(N_BITS*i)+:N_BITS];
+            o_tx_start = 1'b1;
+            
+            if(i_tx_done)
+            begin
+                o_tx_start = 1'b0;                
+                if(i == N_BITS-1)
+                begin
                     next_state = MEM;
+                    i = 5'b0;
+                end
+                else
+                    i = i + 1;
             end
         end
         MEM:
         begin
             data = i_memoria;
+            o_tx_start = 1'b1;
+            
             if(i_tx_done)
+            begin
                 next_state = CNTR;
+                o_tx_start = 1'b0;
+            end
         end
         CNTR:
         begin
             data = i_ciclos;
+            o_tx_start = 1'b1;
+            
             if(i_tx_done)
                 next_state = IDLE;
         end

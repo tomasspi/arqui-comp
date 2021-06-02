@@ -54,7 +54,7 @@ module decode#
 	output wire [N_BITS-1:0]     o_pc_jump,
 	
 	//para la unidad de debugging
-	output reg  [N_BITS*N_BITS-1:0] o_registros
+	output wire  [N_BITS*N_BITS-1:0] o_registros
 );
      
     wire [2:0]        alu_op;

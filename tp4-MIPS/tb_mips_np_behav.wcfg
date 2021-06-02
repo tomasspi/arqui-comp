@@ -11,17 +11,27 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1312695fs"></ZoomEndTime>
-      <Cursor1Time time="990100fs"></Cursor1Time>
+      <ZoomStartTime time="13699777fs"></ZoomStartTime>
+      <ZoomEndTime time="15152045fs"></ZoomEndTime>
+      <Cursor1Time time="14910000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="125"></NameColumnWidth>
+      <NameColumnWidth column_width="117"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="1" />
-   <wvobject fp_name="/tb_pipeline/u_decode/u_register/o_registros" type="array">
-      <obj_property name="ElementShortName">o_registros[1023:0]</obj_property>
-      <obj_property name="ObjectShortName">o_registros[1023:0]</obj_property>
+   <WVObjectSize size="3" />
+   <wvobject fp_name="/tb_pipeline/i_clk" type="logic">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_interface/o_data_to_send" type="array">
+      <obj_property name="ElementShortName">o_data_to_send[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data_to_send[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_interface/i" type="array">
+      <obj_property name="ElementShortName">i[5:0]</obj_property>
+      <obj_property name="ObjectShortName">i[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

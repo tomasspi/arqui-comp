@@ -26,7 +26,7 @@ module clk_cntr
     
     always@(*)begin:leer_instruccion
         if(i_instruccion == {32{1'b1}})
-            halt <= 1;
+            halt <= 1'b1;
     end
     
     assign o_count = count;

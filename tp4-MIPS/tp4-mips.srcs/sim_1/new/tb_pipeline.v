@@ -10,18 +10,6 @@ module tb_pipeline();
     integer fd;
     integer i;
     
-    initial begin        
-        i_clk   = 1'b0;
-        i_reset = 1'b1;
-        i_valid = 1'b0;
-
-        #20
-        i_reset = 1'b0;
-        
-        
-        #2000
-        $finish;
-    end
  
     always #10 i_clk = ~i_clk;  // Simulacion de clock 100MHz
 
@@ -105,6 +93,14 @@ module tb_pipeline();
     wire [1:0] muxA;
     wire [1:0] muxB;
     
+    //-----!!!!!! INTERFAZ !!!!!!!
+    wire [1023:0] registros;
+    wire [31:0] data_to_send;
+    wire tx_done;
+    reg  r_tx_done;
+    wire  tx_start;
+    //-----!!!!!! INTERFAZ !!!!!!!
+    
     assign flush = flush_d || flush_m;
     
     always@(*)begin
@@ -138,7 +134,8 @@ module tb_pipeline();
         .o_reg_write(regwr), .o_halt(halt_d), //.o_rt_stall(rt_stall),
         .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
         .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
-        .o_rs(rs_d), .o_rd(rd), .o_rt(rt_d), .o_sa(sa), .o_opcode(opcode), .o_stall(stall), .o_flush(flush_d)
+        .o_rs(rs_d), .o_rd(rd), .o_rt(rt_d), .o_sa(sa), .o_opcode(opcode), .o_stall(stall),
+        .o_flush(flush_d), .o_registros(registros)
     );
     //rt
     //EXECUTE
@@ -203,4 +200,38 @@ module tb_pipeline();
         .clk_out1(clk_out),
         .locked(locked)
     );
+    
+    interface u_interface
+    (
+        .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc_4), .i_registros(registros), 
+        .i_memoria(data_memory), .i_ciclos(count), .i_halt(halt), .i_tx_done(tx_done), 
+        .o_tx_start(tx_start), .o_data_to_send(data_to_send) 
+    );
+    
+    assign tx_done = r_tx_done;
+    integer j;
+    
+    initial begin        
+        i_clk   = 1'b0;
+        i_reset = 1'b1;
+        i_valid = 1'b0;
+
+        #20
+        i_reset = 1'b0;
+                
+        wait(halt == 1'b1);
+        
+        #20
+        for(j = 0; j < 35; j = j +1)
+        begin
+            #(20*20)
+            r_tx_done = 1'b1;
+            #20
+            r_tx_done = 1'b0;  
+        end
+        
+        #20
+        $finish;
+    end
+    
 endmodule
