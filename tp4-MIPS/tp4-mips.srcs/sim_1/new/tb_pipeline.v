@@ -1,17 +1,87 @@
 `timescale 1ns / 1ps
 
 module tb_pipeline();   
+    
+    localparam F_CLOCK  = 50E6;
+    localparam BAUDRATE = 9600;
+    localparam SAMPLING = 16;
         
     // INPUTS
-    reg         i_clk;
-    reg         i_reset;
-    reg         i_valid;
+    reg clk_out;
+    reg reset;
+    reg locked;    
+    reg exec_mode, step;
     
-    integer fd;
-    integer i;
+    wire pc;
+    wire registros;
+    wire data_memory;
+    wire ciclos;
+    wire halt;
     
- 
-    always #10 i_clk = ~i_clk;  // Simulacion de clock 100MHz
+    
+    //PARA MODO CONTINUO
+//    initial begin
+//        clk_out = 1'b0;
+//        reset   = 1'b1;
+//        locked  = 1'b1;
+        
+//        #60
+//        reset = 1'b0;
+        
+        
+//        #20
+//        exec_mode = 1'b0;
+//        step = 1'b0;
+        
+//        #600
+//        $finish;
+//    end
+
+    /* 
+        PARA MODO PASO A PASO:
+        pone el modo paso a paso, espera 2 ciclos 
+        y hace un step. Luego, espera 5 ciclos para
+        hacer el segundo step y después de 2 ciclos
+        ejecuta todo el programa 
+    */
+    initial begin
+        clk_out = 1'b0;
+        reset   = 1'b1;
+        locked  = 1'b1;
+        
+        #60
+        reset = 1'b0;
+        
+        
+        #20
+        exec_mode = 1'b1;
+        
+        #40
+        step = 1'b1;
+        #20
+        step = 1'b0;
+        
+        #100
+        step = 1'b1;
+        #20
+        step = 1'b0;
+        
+        #40
+        step = 1'b1;
+        
+        #600
+        $finish;
+    end
+
+    top_pipeline u_top
+    (
+        .i_clk(clk_out), .i_reset(reset), .i_valid(locked),
+        .i_exec_mode(exec_mode), .i_step(step),
+        .o_pc(pc), .o_registros(registros), .o_data_memory(data_memory),
+        .o_ciclos(ciclos), .o_halt(halt)
+    );
+    
+    always #10 clk_out = ~clk_out;  // Simulacion de clock 100MHz
 
 //    top_pipeline u_pipe
 //    (
@@ -20,218 +90,220 @@ module tb_pipeline();
 
 //    wire i_clk, i_reset, i_valid;
 
-    wire clk_out, locked;
+//    wire clk_out, locked;
     
-    reg  [31:0] pc_salto;
-    wire [31:0] pc_4;
-    wire [31:0] pc_4_d;
-    wire [31:0] pc_4_e;
-    wire [31:0] pc_4_m;
+//    reg  [31:0] pc_salto;
+//    wire [31:0] pc_4;
+//    wire [31:0] pc_4_d;
+//    wire [31:0] pc_4_e;
+//    wire [31:0] pc_4_m;
     
-    wire [31:0] instruccion;
-    wire [4:0]  rs;
-    wire [4:0]  rs_d;  
-    wire [4:0]  rt;
-    wire [4:0]  rt_d;  
-    wire [4:0]  rd; 
-    wire [4:0]  sa;
-    wire [25:0] instr_index;
-    wire [5:0]  opcode;
-    wire [5:0]  opcode_e;
-    wire [31:0] extended;
-    wire [4:0]  write_reg;	
-    wire [31:0] write_data;
-    wire [4:0]  write_reg_wb;	
-    wire [31:0] write_data_wb;
-    wire [31:0] pc_branch;
-    wire [31:0] pc_jump;
-    wire [31:0] read_data_1;
-    wire [31:0] read_data_2;
-    wire [31:0] read_data_2_e;
-    reg  [31:0] datoB;
-    wire [4:0]  rt_rd;
-    wire [4:0]  rt_rd_m;
-    wire [31:0] aluResult;
-    wire [31:0] alu_result;
-    wire        zero;
-    wire [31:0] data_memory;
-    wire [31:0] count;
+//    wire [31:0] instruccion;
+//    wire [4:0]  rs;
+//    wire [4:0]  rs_d;  
+//    wire [4:0]  rt;
+//    wire [4:0]  rt_d;  
+//    wire [4:0]  rd; 
+//    wire [4:0]  sa;
+//    wire [25:0] instr_index;
+//    wire [5:0]  opcode;
+//    wire [5:0]  opcode_e;
+//    wire [31:0] extended;
+//    wire [4:0]  write_reg;	
+//    wire [31:0] write_data;
+//    wire [4:0]  write_reg_wb;	
+//    wire [31:0] write_data_wb;
+//    wire [31:0] pc_branch;
+//    wire [31:0] pc_jump;
+//    wire [31:0] read_data_1;
+//    wire [31:0] read_data_2;
+//    wire [31:0] read_data_2_e;
+//    reg  [31:0] datoB;
+//    wire [4:0]  rt_rd;
+//    wire [4:0]  rt_rd_m;
+//    wire [31:0] aluResult;
+//    wire [31:0] alu_result;
+//    wire        zero;
+//    wire [31:0] data_memory;
+//    wire [31:0] count;
     
-    wire [2:0] aluop;
-    wire       alusrc;
-    wire       regdst;
-    wire       branch;
-    wire       memrd;
-    wire       memwr;
-    wire       memtoreg;
-    wire       regwr;
-    wire [1:0] jump;
-    wire [1:0] jump_e;
-    wire [1:0] jump_m;
-    wire       flush;
-    wire       flush_d;
-    wire       flush_m;
-    wire       pc_src;
+//    wire [2:0] aluop;
+//    wire       alusrc;
+//    wire       regdst;
+//    wire       branch;
+//    wire       memrd;
+//    wire       memwr;
+//    wire       memtoreg;
+//    wire       regwr;
+//    wire [1:0] jump;
+//    wire [1:0] jump_e;
+//    wire [1:0] jump_m;
+//    wire       flush;
+//    wire       flush_d;
+//    wire       flush_m;
+//    wire       pc_src;
     
-    wire branch_e;
-    wire memrd_e;
-    wire memwr_e;
-    wire memtoreg_e;
-    wire regwr_e;
-    wire memtoreg_m;
-    wire regwr_m;
-    wire memtoreg_w;
+//    wire branch_e;
+//    wire memrd_e;
+//    wire memwr_e;
+//    wire memtoreg_e;
+//    wire regwr_e;
+//    wire memtoreg_m;
+//    wire regwr_m;
+//    wire memtoreg_w;
     
-    wire halt;
-    wire halt_f;
-    wire halt_d;
-    wire halt_e;
-    wire halt_m;
-    wire stop;
-    wire stall;
+//    wire halt;
+//    wire halt_f;
+//    wire halt_d;
+//    wire halt_e;
+//    wire halt_m;
+//    wire stop;
+//    wire stall;
     
-    wire [1:0] muxA;
-    wire [1:0] muxB;
+//    wire [1:0] muxA;
+//    wire [1:0] muxB;
     
-    //-----!!!!!! INTERFAZ !!!!!!!
-    wire [1023:0] registros;
-    wire [31:0] data_to_send;
-    wire tx_done;
-    reg  r_tx_done;
-    wire  tx_start;
-    //-----!!!!!! INTERFAZ !!!!!!!
+//    //-----!!!!!! INTERFAZ !!!!!!!
+//    wire [1023:0] registros;
+//    wire [31:0] data_to_send;
+//    wire tx_done;
+//    reg  r_tx_done;
+//    wire tx_start;
+//    wire tick;
+//    //-----!!!!!! INTERFAZ !!!!!!!
     
-    assign flush = flush_d || flush_m;
+//    assign flush = flush_d || flush_m;
     
-    always@(*)begin
-        if(locked)
-        begin
-            if(pc_src)
-                pc_salto <= pc_branch;
-            else 
-                pc_salto <= pc_jump;           
-        end
-    end 
+//    always@(*)begin
+//        if(locked)
+//        begin
+//            if(pc_src)
+//                pc_salto <= pc_branch;
+//            else 
+//                pc_salto <= pc_jump;           
+//        end
+//    end 
     
-    //FETCH
-    fetch u_fetch
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked),
-        .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
-        .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f),
-        .o_rs(rs), .o_rt(rt)
-    );
+//    //FETCH
+//    fetch u_fetch
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked),
+//        .i_pc_salto(pc_salto), .i_pc_src(flush), .i_halt(halt), .i_stall(stall),
+//        .o_pc_4(pc_4), .o_instruccion(instruccion), .o_halt(halt_f),
+//        .o_rs(rs), .o_rt(rt)
+//    );
     
-    //DECODE
-    decode u_decode
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_f),
-        .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
-        .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
-        .i_rt_idex(rt), .i_flush(flush),
-        .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
-        .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
-        .o_reg_write(regwr), .o_halt(halt_d), //.o_rt_stall(rt_stall),
-        .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
-        .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
-        .o_rs(rs_d), .o_rd(rd), .o_rt(rt_d), .o_sa(sa), .o_opcode(opcode), .o_stall(stall),
-        .o_flush(flush_d), .o_registros(registros)
-    );
-    //rt
-    //EXECUTE
-    execute u_exe
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_d),
-        .i_alu_op(aluop), .i_alu_src(alusrc), .i_reg_dst(regdst), .i_branch(branch), 
-        .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), .i_jump(jump),
-        .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
-        .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
-        .i_alu_result(aluResult), .i_data_memory(write_data), 
-        .i_rd(rd), .i_rt(rt_d), .i_sa(sa), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
-        .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
-        .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
-        .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e), .o_pc_4(pc_4_e),
-        .o_read_data_2(read_data_2_e), .o_rt_rd(rt_rd), .o_zero(zero)
-    );
+//    //DECODE
+//    decode u_decode
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_f),
+//        .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
+//        .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
+//        .i_rt_idex(rt), .i_flush(flush),
+//        .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
+//        .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
+//        .o_reg_write(regwr), .o_halt(halt_d), //.o_rt_stall(rt_stall),
+//        .o_pc_4(pc_4_d), .o_read_data_1(read_data_1), .o_read_data_2(read_data_2), 
+//        .o_extended(extended), .o_instr_index(instr_index), .o_pc_jump(pc_jump),
+//        .o_rs(rs_d), .o_rd(rd), .o_rt(rt_d), .o_sa(sa), .o_opcode(opcode), .o_stall(stall),
+//        .o_flush(flush_d), .o_registros(registros)
+//    );
+//    //rt
+//    //EXECUTE
+//    execute u_exe
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_d),
+//        .i_alu_op(aluop), .i_alu_src(alusrc), .i_reg_dst(regdst), .i_branch(branch), 
+//        .i_mem_read(memrd), .i_mem_write(memwr), .i_mem_to_reg(memtoreg), .i_jump(jump),
+//        .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
+//        .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
+//        .i_alu_result(aluResult), .i_data_memory(write_data), 
+//        .i_rd(rd), .i_rt(rt_d), .i_sa(sa), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
+//        .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
+//        .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
+//        .o_alu_result(aluResult), .o_halt(halt_e), .o_opcode(opcode_e), .o_pc_4(pc_4_e),
+//        .o_read_data_2(read_data_2_e), .o_rt_rd(rt_rd), .o_zero(zero)
+//    );
     
-    //MEMORY
-    memory u_mem
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_e),
-        .i_branch(branch_e), .i_mem_read(memrd_e), .i_jump(jump_e), .i_pc_4(pc_4_e),
-        .i_mem_write(memwr_e), .i_mem_to_reg(memtoreg_e), .i_reg_write(regwr_e), 
-        .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
-        .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
-        .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
-        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
-        .o_jump(jump_m), .o_pc_4(pc_4_m), .o_flush(flush_m)
-    );
+//    //MEMORY
+//    memory u_mem
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_e),
+//        .i_branch(branch_e), .i_mem_read(memrd_e), .i_jump(jump_e), .i_pc_4(pc_4_e),
+//        .i_mem_write(memwr_e), .i_mem_to_reg(memtoreg_e), .i_reg_write(regwr_e), 
+//        .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
+//        .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
+//        .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
+//        .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
+//        .o_jump(jump_m), .o_pc_4(pc_4_m), .o_flush(flush_m)
+//    );
     
-    //WRITEBACK
-    writeback u_wb
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_m), .i_jump(jump_m),
-        .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), .i_pc_4(pc_4_m),
-        .i_alu_result(alu_result), .i_rd_rt(rt_rd_m), .o_stop(stop),
-        .o_mem_to_reg(memtoreg_w), .o_reg_write(regwr_w), .o_write_data(write_data),
-        .o_rd_rt(write_reg)
-    );
+//    //WRITEBACK
+//    writeback u_wb
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), .i_halt(halt_m), .i_jump(jump_m),
+//        .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), .i_pc_4(pc_4_m),
+//        .i_alu_result(alu_result), .i_rd_rt(rt_rd_m), .o_stop(stop),
+//        .o_mem_to_reg(memtoreg_w), .o_reg_write(regwr_w), .o_write_data(write_data),
+//        .o_rd_rt(write_reg)
+//    );
     
-    //Contador de ciclos
-    clk_cntr u_clk_cntr
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), 
-        .i_instruccion(instruccion), .i_stop(stop),
-        .o_halt(halt), .o_count(count) 
-    );
+//    //Contador de ciclos
+//    clk_cntr u_clk_cntr
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked), 
+//        .i_instruccion(instruccion), .i_stop(stop),
+//        .o_halt(halt), .o_count(count) 
+//    );
     
-    //Fowarding Unit
-    fowarding_unit u_fw
-    (
-        .i_rs_idex(rs_d), .i_rt_idex(rt_d), .i_rd_exmem(rt_rd), 
-        .i_rd_memwb(rt_rd_m), .i_reg_write_exmem(regwr_e), .i_reg_write_memwb(regwr_m), 
-        .o_mux_A(muxA), .o_mux_B(muxB)
-    );
+//    //Fowarding Unit
+//    fowarding_unit u_fw
+//    (
+//        .i_rs_idex(rs_d), .i_rt_idex(rt_d), .i_rd_exmem(rt_rd), 
+//        .i_rd_memwb(rt_rd_m), .i_reg_write_exmem(regwr_e), .i_reg_write_memwb(regwr_m), 
+//        .o_mux_A(muxA), .o_mux_B(muxB)
+//    );
     
-    clk_wiz_0 u_clock
-    (
-        .clk_in1(i_clk),
-        .reset(i_reset),
-        .clk_out1(clk_out),
-        .locked(locked)
-    );
+//    clk_wiz_0 u_clock
+//    (
+//        .clk_in1(i_clk),
+//        .reset(i_reset),
+//        .clk_out1(clk_out),
+//        .locked(locked)
+//    );
     
-    interface u_interface
-    (
-        .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc_4), .i_registros(registros), 
-        .i_memoria(data_memory), .i_ciclos(count), .i_halt(halt), .i_tx_done(tx_done), 
-        .o_tx_start(tx_start), .o_data_to_send(data_to_send) 
-    );
+//    interface u_interface
+//    (
+//        .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc_4), .i_registros(registros), 
+//        .i_memoria(data_memory), .i_ciclos(count), .i_halt(halt), .i_tx_done(tx_done), 
+//        .o_tx_start(tx_start), .o_data_to_send(data_to_send) 
+//    );
     
-    assign tx_done = r_tx_done;
-    integer j;
     
-    initial begin        
-        i_clk   = 1'b0;
-        i_reset = 1'b1;
-        i_valid = 1'b0;
+//    assign tx_done = r_tx_done;
+//    integer j;
+    
+//    initial begin        
+//        i_clk   = 1'b0;
+//        i_reset = 1'b1;
+//        i_valid = 1'b0;
 
-        #20
-        i_reset = 1'b0;
+//        #20
+//        i_reset = 1'b0;
                 
-        wait(halt == 1'b1);
+//        wait(halt == 1'b1);
         
-        #20
-        for(j = 0; j < 35; j = j +1)
-        begin
-            #(20*20)
-            r_tx_done = 1'b1;
-            #20
-            r_tx_done = 1'b0;  
-        end
+//        #20
+//        for(j = 0; j < 35; j = j +1)
+//        begin
+//            #(20*20)
+//            r_tx_done = 1'b1;
+//            #20
+//            r_tx_done = 1'b0;  
+//        end
         
-        #20
-        $finish;
-    end
+//        #20
+//        $finish;
+//    end
     
 endmodule

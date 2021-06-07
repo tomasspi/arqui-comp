@@ -3,6 +3,7 @@
 module clk_cntr
 (
     input  wire         i_clk, i_reset, i_valid,
+    input  wire         i_exec_mode, i_step,
     input  wire [31:0]  i_instruccion,
     input  wire         i_stop,
     
@@ -18,10 +19,13 @@ module clk_cntr
             count <= 32'b1;
             halt  <= 1'b0;
         end
-        else if(i_valid && ~i_stop)
-            count <= count + 1;
-        else
-            count <= count;
+        else if(i_exec_mode == 1'b0 || (i_exec_mode && i_step))
+        begin
+            if(i_valid && ~i_stop)
+                count <= count + 1;
+            else
+                count <= count;
+        end
     end
     
     always@(*)begin:leer_instruccion

@@ -38,7 +38,7 @@ module memory#
 	output reg [N_BITS_REG-1:0] o_rt_rd
 );
 
-    wire              pc_src;
+//    wire              pc_src;
     wire [N_BITS-1:0] read_data;
 	
 	reg                   halt;

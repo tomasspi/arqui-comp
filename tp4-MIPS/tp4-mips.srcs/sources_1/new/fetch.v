@@ -1,4 +1,5 @@
-module fetch#(
+module fetch
+#(
 	//Parameters
 	parameter N_BITS     = 32,
 	parameter N_BITS_REG = 5
@@ -9,8 +10,10 @@ module fetch#(
 	input wire [N_BITS-1:0]      i_pc_salto,
 	input wire                   i_halt,
 	input wire                   i_stall,
-	input wire                   i_pc_src, //señal de control
-	
+	input wire                   i_pc_src,    //señal de control
+	input wire                   i_exec_mode, //si es continuo o paso a paso
+    input wire                   i_step,      //ejecutar un paso
+    
 	//output
 	output reg [N_BITS-1:0]     o_pc_4,
 	output reg                  o_halt,
@@ -30,23 +33,30 @@ module fetch#(
         end
         else if(i_valid)// decide el valor del PC
         begin
-            if(i_pc_src)
-                pc <= i_pc_salto;
-            else if(~i_halt && ~i_stall)
-                pc <= pc + 1;
-            else
-                pc <= pc;
+            if(i_exec_mode == 1'b0 || (i_exec_mode && i_step))
+            begin
+                if(i_pc_src)
+                    pc <= i_pc_salto;
+                else if(~i_halt && ~i_stall)
+                    pc <= pc + 1;
+                else
+                    pc <= pc;
+            end
         end 
+        
     end
     
     always@(negedge i_clk)begin:escritura
         if(i_valid && ~i_stall)
         begin
-            o_pc_4        <= pc + 1;
-            o_instruccion <= instruccion;
-            o_halt        <= i_halt;
-            o_rs          <= instruccion[25:21];
-            o_rt          <= instruccion[20:16];
+            if(i_exec_mode == 1'b0 || (i_exec_mode && i_step))
+            begin
+                o_pc_4        <= pc + 1;
+                o_instruccion <= instruccion;
+                o_halt        <= i_halt;
+                o_rs          <= instruccion[25:21];
+                o_rt          <= instruccion[20:16];
+            end
         end
     end
 

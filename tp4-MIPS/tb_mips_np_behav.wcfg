@@ -11,27 +11,51 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="13699777fs"></ZoomStartTime>
-      <ZoomEndTime time="15152045fs"></ZoomEndTime>
-      <Cursor1Time time="14910000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="900001fs"></ZoomEndTime>
+      <Cursor1Time time="240000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="117"></NameColumnWidth>
+      <NameColumnWidth column_width="89"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
-   <wvobject fp_name="/tb_pipeline/i_clk" type="logic">
-      <obj_property name="ElementShortName">i_clk</obj_property>
-      <obj_property name="ObjectShortName">i_clk</obj_property>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_pipeline/clk_out" type="logic">
+      <obj_property name="ElementShortName">clk_out</obj_property>
+      <obj_property name="ObjectShortName">clk_out</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_interface/o_data_to_send" type="array">
-      <obj_property name="ElementShortName">o_data_to_send[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_data_to_send[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/tb_pipeline/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_pipeline/u_interface/i" type="array">
-      <obj_property name="ElementShortName">i[5:0]</obj_property>
-      <obj_property name="ObjectShortName">i[5:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/exec_mode" type="logic">
+      <obj_property name="ElementShortName">exec_mode</obj_property>
+      <obj_property name="ObjectShortName">exec_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/step" type="logic">
+      <obj_property name="ElementShortName">step</obj_property>
+      <obj_property name="ObjectShortName">step</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/locked" type="logic">
+      <obj_property name="ElementShortName">locked</obj_property>
+      <obj_property name="ObjectShortName">locked</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_clk_cntr/count" type="array">
+      <obj_property name="ElementShortName">count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">count[31:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_clk_cntr/i_stop" type="logic">
+      <obj_property name="ElementShortName">i_stop</obj_property>
+      <obj_property name="ObjectShortName">i_stop</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_fetch/pc" type="array">
+      <obj_property name="ElementShortName">pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_fetch/o_instruccion" type="array">
+      <obj_property name="ElementShortName">o_instruccion[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_instruccion[31:0]</obj_property>
    </wvobject>
 </wave_config>

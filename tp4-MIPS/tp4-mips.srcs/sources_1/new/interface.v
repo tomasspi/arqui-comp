@@ -6,6 +6,9 @@ module interface#
 (
     input wire i_clk, i_reset,
     
+    input wire i_exec_mode, //si es continuo o paso a paso
+    input wire i_step,      //ejecutar un paso
+    
     //Valores para enviar al UART
     input wire [N_BITS-1:0]        i_pc,
     input wire [N_BITS*N_BITS-1:0] i_registros,
@@ -16,7 +19,12 @@ module interface#
     input wire i_tx_done,
     
     output reg               o_tx_start,
-    output wire [N_BITS-1:0] o_data_to_send
+    output reg               o_done,
+    output wire [N_BITS-1:0] o_data_to_send,
+    
+    //flags debugger
+    output reg o_exec_mode, //paso a paso o continuo 
+    output reg o_step       //ejecutar el step
 );
 	//declaracion de los estados
 	localparam [2:0] IDLE = 3'b000;
@@ -28,6 +36,7 @@ module interface#
 	reg [N_BITS_REG-1:0] i = 5'b0;
 	reg [2:0]            state_reg, next_state;
     reg [N_BITS-1:0]     data;
+    reg                  tx_done;
     
 	//cambios de estado
 	always @(posedge i_clk) begin:check_state
@@ -35,8 +44,10 @@ module interface#
 		begin
             state_reg  <= IDLE;
             next_state <= IDLE;
-            data = 32'b0;
-            o_tx_start = 1'b0;
+            data       <= 32'b0;
+            o_tx_start <= 1'b0;
+            tx_done    <= 1'b0;
+            o_done     <= 1'b0;
         end
 		else
 			state_reg <= next_state;			
@@ -47,10 +58,10 @@ module interface#
         case(state_reg)
         IDLE: // O se hizo el step.
         begin
-            data = 32'b0;
+            data       = 32'b0;
             o_tx_start = 1'b0;
             
-            if(i_halt)//detectar la instruccion HALT
+            if(i_halt || (i_exec_mode == 1'b1 && o_step))//detectar la instruccion HALT
                 next_state = PC;
         end
         PC:
@@ -58,7 +69,7 @@ module interface#
             data = i_pc - 32'b1;
             o_tx_start = 1'b1;
             
-            if(i_tx_done)
+            if(tx_done)
             begin
                 next_state = REG;
                 o_tx_start = 1'b0;
@@ -69,7 +80,7 @@ module interface#
             data = i_registros[(N_BITS*i)+:N_BITS];
             o_tx_start = 1'b1;
             
-            if(i_tx_done)
+            if(tx_done)
             begin
                 o_tx_start = 1'b0;                
                 if(i == N_BITS-1)
@@ -86,7 +97,7 @@ module interface#
             data = i_memoria;
             o_tx_start = 1'b1;
             
-            if(i_tx_done)
+            if(tx_done)
             begin
                 next_state = CNTR;
                 o_tx_start = 1'b0;
@@ -97,11 +108,26 @@ module interface#
             data = i_ciclos;
             o_tx_start = 1'b1;
             
-            if(i_tx_done)
+            if(tx_done)
+            begin
                 next_state = IDLE;
+                o_done     = 1'b1;
+            end
         end
         endcase       
     end
     
+    always@(posedge i_clk)begin:tx_done_logic
+        
+        /* aca setea el tx_done */
+        if(i_tx_done == 1'b1)
+            tx_done <= 1'b1;
+        else
+            tx_done <= 1'b0;
+        
+        /* aca setea el step */
+        o_step <= i_step;
+    end
+   
     assign o_data_to_send = data;
 endmodule

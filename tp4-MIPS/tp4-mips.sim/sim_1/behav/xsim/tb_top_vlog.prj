@@ -1,7 +1,10 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../tp4-mips.srcs/sources_1/ip/clk_wiz_0" \
+"../../../../tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
 "../../../../../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v" \
 "../../../../../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v" \
+"E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v" \
 "../../../../tp4-mips.srcs/sources_1/new/branch_logic.v" \
 "../../../../tp4-mips.srcs/sources_1/new/clk_cntr.v" \
 "../../../../../../../Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v" \
@@ -12,12 +15,17 @@ verilog xil_defaultlib  --include "../../../../tp4-mips.srcs/sources_1/ip/clk_wi
 "../../../../tp4-mips.srcs/sources_1/new/fowarding_unit.v" \
 "../../../../tp4-mips.srcs/sources_1/new/hazard_detection_unit.v" \
 "../../../../../../../Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v" \
+"../../../../tp4-mips.srcs/sources_1/new/interface.v" \
 "../../../../tp4-mips.srcs/sources_1/new/jump_logic.v" \
 "../../../../tp4-mips.srcs/sources_1/new/memory.v" \
 "../../../../../../../Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v" \
+"E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v" \
+"../../../../tp4-mips.srcs/sources_1/new/top.v" \
 "../../../../tp4-mips.srcs/sources_1/new/top_pipeline.v" \
+"E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v" \
+"E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v" \
 "../../../../tp4-mips.srcs/sources_1/new/writeback.v" \
-"../../../../tp4-mips.srcs/sim_1/new/tb_pipeline.v" \
+"../../../../tp4-mips.srcs/sim_1/new/tb_top.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

@@ -81,7 +81,7 @@ module decode#
     reg [N_BITS_REG-1:0]  rd;
     reg [N_BITS_REG-1:0]  sa;
     reg [N_BITS-17:0]     offset;
-    reg [N_BITS-13:0] instr_index;
+    reg [N_BITS-13:0]     instr_index;
     reg halt;
       
     always@(posedge i_clk)begin:leer_entradas
@@ -97,6 +97,7 @@ module decode#
             o_mem_to_reg  <= 1'b0;
             o_reg_write   <= 1'b0;
             o_halt        <= 1'b0;
+            o_flush       <= 1'b0;
             
             halt          <= 1'b0;
             write_data    <= 32'b0;
