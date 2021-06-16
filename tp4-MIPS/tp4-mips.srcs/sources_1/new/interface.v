@@ -1,4 +1,5 @@
-module interface#
+module interface_tx
+#
 (
     parameter N_BITS = 32,
     parameter N_BITS_REG = 5
@@ -15,12 +16,15 @@ module interface#
     input wire [N_BITS-1:0]        i_memoria,
     input wire [N_BITS-1:0]        i_ciclos,
     
+//    //receptor: instrucciones y cmds (exec mode y step)
+//    input wire [N_BITS-1:0]        i_rx_data,
+    
     input wire i_halt,
     input wire i_tx_done,
     
     output reg               o_tx_start,
     output reg               o_done,
-    output wire [N_BITS-1:0] o_data_to_send,
+    output wire [N_BITS-1:0] o_data_to_send,    
     
     //flags debugger
     output reg o_exec_mode, //paso a paso o continuo 
@@ -39,7 +43,7 @@ module interface#
     reg                  tx_done;
     
 	//cambios de estado
-	always @(posedge i_clk) begin:check_state
+	always@(posedge i_clk) begin:check_state
 		if(i_reset)
 		begin
             state_reg  <= IDLE;
@@ -117,8 +121,7 @@ module interface#
         endcase       
     end
     
-    always@(posedge i_clk)begin:tx_done_logic
-        
+    always@(posedge i_clk)begin:tx_done_logic        
         /* aca setea el tx_done */
         if(i_tx_done == 1'b1)
             tx_done <= 1'b1;

@@ -24,17 +24,21 @@ module top
     top_pipeline u_mips
     (
         .i_clk(clk_out), .i_reset(i_reset), .i_valid(locked),
-        .i_exec_mode(), .i_step(),
+        .i_exec_mode(exec_mode), .i_step(s),
         .o_pc(pc), .o_registros(registros), .o_data_memory(data_memory),
         .o_ciclos(ciclos), .o_halt(halt)
     );
 
-    interface u_interface
+    interface_tx u_interface_tx
     (
         .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc), .i_registros(registros), 
         .i_memoria(data_memory), .i_ciclos(ciclos), .i_halt(halt), .i_tx_done(tx_done), 
-        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done)
-    );
+        .i_rx_data(rx_data),
+        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done),
+        .o_exec_mode(exec_mode), .o_step(step)
+    );   
+    
+    
     
     top_uart u_uart
     (
@@ -42,7 +46,7 @@ module top
         .i_rx_top(rx), 
         .i_tx_start(tx_start), .i_tx_data_in(data_to_send),
         .o_tx_top(tx), .o_tx_done(tx_done),
-        .o_rx_done(rx_done)
+        .o_rx_done(rx_done), .o_rx_data(rx_data)
     );    
 
     clk_wiz_0 u_clock
