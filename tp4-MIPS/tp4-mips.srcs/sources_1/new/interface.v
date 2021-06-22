@@ -24,11 +24,11 @@ module interface_tx
     
     output reg               o_tx_start,
     output reg               o_done,
-    output wire [N_BITS-1:0] o_data_to_send,    
+    output wire [N_BITS-1:0] o_data_to_send  
     
     //flags debugger
-    output reg o_exec_mode, //paso a paso o continuo 
-    output reg o_step       //ejecutar el step
+//    output reg o_exec_mode, //paso a paso o continuo 
+//    output reg o_step       //ejecutar el step
 );
 	//declaracion de los estados
 	localparam [2:0] IDLE = 3'b000;
@@ -65,12 +65,12 @@ module interface_tx
             data       = 32'b0;
             o_tx_start = 1'b0;
             
-            if(i_halt || (i_exec_mode == 1'b1 && o_step))//detectar la instruccion HALT
+            if(i_halt || (i_exec_mode == 1'b1 && i_step))//detectar la instruccion HALT
                 next_state = PC;
         end
         PC:
         begin
-            data = i_pc - 32'b1;
+            data = i_pc;
             o_tx_start = 1'b1;
             
             if(tx_done)
@@ -129,7 +129,7 @@ module interface_tx
             tx_done <= 1'b0;
         
         /* aca setea el step */
-        o_step <= i_step;
+//        o_step <= i_step;
     end
    
     assign o_data_to_send = data;

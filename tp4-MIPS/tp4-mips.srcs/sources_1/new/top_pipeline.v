@@ -186,7 +186,7 @@ module top_pipeline
         .o_mux_A(muxA), .o_mux_B(muxB)
     );
     
-    assign o_pc = pc_4;
+    assign o_pc = pc_4 - 1'b1;
     assign o_registros = registros;
     assign o_data_memory = data_memory;
     assign o_ciclos = count;
