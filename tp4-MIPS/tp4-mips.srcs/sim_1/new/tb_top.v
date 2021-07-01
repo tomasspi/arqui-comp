@@ -3,13 +3,13 @@
 module tb_top();
 
     // INPUTS
-    reg  clk, reset;
+    reg  clk, reset, valid;
     reg  rx;
     wire tx, rx_done, tx_done;
     
     wire done;
     
-    integer fd, ii;
+    integer fd, ii, status;
     reg  [31:0] data_to_send;
     
     always #10 clk = ~clk;  // Simulacion de clock 100MHz
@@ -23,30 +23,42 @@ module tb_top();
 
     initial begin        
         clk   = 1'b0;
+        valid = 1'b0;
         reset = 1'b1;
-
+        status = 1'b1;
+        data_to_send = 32'b0;
+        
         #100
         reset = 1'b0;
         
-        fd = $fopen("../../../../tp4-mips.srcs/sources_1/new/programa.bin", "r");
+        fd = $fopen("C:/users/user/desktop/programa.bin", "r");
         
+        //ESTA MANDANDO LA MITAD DE CADA ISNTRUCCION Y 
+        //NO ESTA SALIENDO DEL BUCLE
         //recorre el archivo y envia las instrucciones
-        while(!$feof(fd))
+        while(data_to_send != ({32 {1'b1}}))
         begin
             //lee linea y la asigna al dato a enviar
-            $fgets(data_to_send, fd);
+//            $fgets(data_to_send, fd);
             
-            //comienza el envio del dato
-            #104320
-            rx = 1'b0; //bit de inicio
+            status = $fscanf(fd,"%b",data_to_send);
             
-            //comienzo a enviar el dato random de N_BITS bits
-            //de LSB a MSB
-            for(ii = 0; ii < 32; ii = ii + 1)
-                #104320 rx = data_to_send[ii];
-            
-            #104320
-            rx = 1'b1; //bit de stop
+//            if(status)
+//            begin
+                $display("%b", data_to_send);
+                
+                //comienza el envio del dato
+                #(104320*2)
+                rx = 1'b0; //bit de inicio
+                
+                //comienzo a enviar el dato random de N_BITS bits
+                //de LSB a MSB
+                for(ii = 0; ii < 32; ii = ii + 1)
+                    #(104320*2) rx = data_to_send[ii];
+                
+                #(104320*2)
+                rx = 1'b1; //bit de stop
+//            end
         end
         
         //ya envio el programa
@@ -56,16 +68,64 @@ module tb_top();
             TODO: envio del modo de ejecucion 
         */
         
-        wait(done == 1'b1);
-        #20
+        //------ MODO DE EJECUCION ------//
         
+        // -- CONTINUO
+        //comienza el envio del dato
+        #(104320*2)
+        rx = 1'b0; //bit de inicio
+            
+        //comienzo a enviar el dato random de N_BITS bits
+        //de LSB a MSB
+        for(ii = 0; ii < 32; ii = ii + 1)
+            #(104320*2) rx = 1'b0;
+            
+        #(104320*2)
+        rx = 1'b1; //bit de stop
+        
+        //step (si no manda, se clava)
+        #(104320*2)
+        rx = 1'b0; //bit de inicio
+            
+        //comienzo a enviar el dato random de N_BITS bits
+        //de LSB a MSB
+        for(ii = 0; ii < 32; ii = ii + 1)
+            #(104320*2) rx = 1'b0;
+            
+        #(104320*2)
+        rx = 1'b1; //bit de stop
+        // -- CONTINUO F
+        
+//        // -- PASO A PASO 
+//        //comienza el envio del dato
+//        #104320
+//        rx = 1'b0; //bit de inicio
+            
+//        //comienzo a enviar el dato random de N_BITS bits
+//        //de LSB a MSB
+//        #104320 rx = 1'b1; //modo paso a paso
+        
+//        for(ii = 0; ii < 31; ii = ii + 1)
+//            #104320 rx = 1'b0;
+            
+//        #104320
+//        rx = 1'b1; //bit de stop
+        
+//        //-- ESPERAR DONE EN 1 PARA MANDAR OTRO STEP
+        
+//        // PASO A PASO F
+//        //------ MODO DE EJECUCION F ------//
+        
+        valid = 1'b1;
+        wait(done == 1'b1);
+        #20        
         $finish;
     end
 
     top u_top
     (
-        .i_clk(clk), .i_reset(reset),
-        .i_rx(rx), .i_tx(tx), 
+        .i_clk(clk), .i_reset(reset), .i_valid(valid),
+        .i_rx(rx), .o_tx(tx), 
         .o_rx_done(rx_done), .o_tx_done(tx_done),  
         .o_done(done)
     );

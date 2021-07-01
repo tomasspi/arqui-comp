@@ -69,7 +69,7 @@ module interface_rx
             EXEC_MODE:
             begin
                 /*  verificar que no sea el halt del estado anterior */
-                if(i_rx_data != {N_BITS, 1'b1})
+                if(i_rx_data != ({N_BITS {1'b1}}))
                 begin
                     /* se asigna 1 o 0 para el modo de exec */
                     o_exec_mode = i_rx_data;
