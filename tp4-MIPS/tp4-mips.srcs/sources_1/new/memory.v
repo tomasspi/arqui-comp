@@ -17,6 +17,9 @@ module memory#
 	input wire 		 i_reg_write,
 	input wire       i_halt,
 	
+    input wire i_exec_mode,
+    input wire i_step,
+	
 	input wire [N_BITS-1:0]     i_pc_4,
 	input wire [N_BITS_REG:0]   i_opcode, 
 	input wire [N_BITS-1:0]     i_pc_branch,
@@ -68,7 +71,7 @@ module memory#
 			pc_4         <= {N_BITS{1'b0}};
 			rt_rd        <= {N_BITS_REG{1'b0}};
         end
-        else if(i_valid)
+        else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             halt       <= i_halt;
             jump       <= i_jump;
@@ -81,7 +84,7 @@ module memory#
     end
     
 	always@(negedge i_clk)begin:escritura
-	   if(i_valid)
+	   if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
 	   begin
            o_halt       <= halt;
            o_jump       <= jump;

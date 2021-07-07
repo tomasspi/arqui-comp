@@ -16,6 +16,8 @@ module decode#
     
     input wire i_halt,
     input wire i_flush,
+    input wire i_exec_mode,
+    input wire i_step,
     
     input wire [N_BITS_REG-1:0] i_rt_idex,
     input wire                  i_mem_read_idex,
@@ -110,7 +112,7 @@ module decode#
             offset        <= 16'b0;
             instr_index   <= 20'b0;
         end
-        else if(i_valid)
+        else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             instruccion <= i_instruccion;
             pc_4        <= i_pc_4;
@@ -119,7 +121,7 @@ module decode#
     end
     
     always@(negedge i_clk)begin:escribir_salidas
-        if(i_valid)
+        if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             rs          <= instruccion[25:21];
             rt          <= instruccion[20:16];

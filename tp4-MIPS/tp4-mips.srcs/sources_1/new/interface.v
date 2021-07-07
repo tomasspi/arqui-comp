@@ -64,6 +64,7 @@ module interface_tx
         begin
             data       = 32'b0;
             o_tx_start = 1'b0;
+            o_done     = 1'b0;
             
             if(i_halt || (i_exec_mode == 1'b1 && i_step))//detectar la instruccion HALT
                 next_state = PC;

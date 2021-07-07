@@ -9,10 +9,10 @@ module tb_top();
     
     wire done;
     
-    integer fd, ii, status;
+    integer fd, i, ii;
     reg  [31:0] data_to_send;
     
-    always #10 clk = ~clk;  // Simulacion de clock 100MHz
+    always #5 clk = ~clk;  // Simulacion de clock 100MHz
 
     /*
         aca es donde se abre el archivo que se
@@ -25,100 +25,104 @@ module tb_top();
         clk   = 1'b0;
         valid = 1'b0;
         reset = 1'b1;
-        status = 1'b1;
         data_to_send = 32'b0;
         
         #100
         reset = 1'b0;
         
+        //abre el archivo binario
         fd = $fopen("C:/users/user/desktop/programa.bin", "r");
         
-        //ESTA MANDANDO LA MITAD DE CADA ISNTRUCCION Y 
-        //NO ESTA SALIENDO DEL BUCLE
         //recorre el archivo y envia las instrucciones
         while(data_to_send != ({32 {1'b1}}))
         begin
-            //lee linea y la asigna al dato a enviar
-//            $fgets(data_to_send, fd);
+            //lee linea y la asigna al dato a enviar            
+            $fscanf(fd,"%b",data_to_send);
             
-            status = $fscanf(fd,"%b",data_to_send);
-            
-//            if(status)
-//            begin
-                $display("%b", data_to_send);
                 
-                //comienza el envio del dato
-                #(104320*2)
-                rx = 1'b0; //bit de inicio
+            //comienza el envio del dato
+            #104320
+            rx = 1'b0; //bit de inicio
                 
-                //comienzo a enviar el dato random de N_BITS bits
-                //de LSB a MSB
-                for(ii = 0; ii < 32; ii = ii + 1)
-                    #(104320*2) rx = data_to_send[ii];
+            //comienzo a enviar la instruccion de N_BITS bits
+            //de LSB a MSB
+            for(ii = 0; ii < 32; ii = ii + 1)
+                #104320 rx = data_to_send[ii];
                 
-                #(104320*2)
-                rx = 1'b1; //bit de stop
-//            end
+            #104320
+            rx = 1'b1; //bit de stop
         end
         
-        //ya envio el programa
+        //ya envio el programa, cierra el archivo
         $fclose(fd);
-        
-        /*
-            TODO: envio del modo de ejecucion 
-        */
-        
+                
         //------ MODO DE EJECUCION ------//
         
         // -- CONTINUO
-        //comienza el envio del dato
-        #(104320*2)
-        rx = 1'b0; //bit de inicio
-            
-        //comienzo a enviar el dato random de N_BITS bits
-        //de LSB a MSB
-        for(ii = 0; ii < 32; ii = ii + 1)
-            #(104320*2) rx = 1'b0;
-            
-        #(104320*2)
-        rx = 1'b1; //bit de stop
-        
-        //step (si no manda, se clava)
-        #(104320*2)
-        rx = 1'b0; //bit de inicio
-            
-        //comienzo a enviar el dato random de N_BITS bits
-        //de LSB a MSB
-        for(ii = 0; ii < 32; ii = ii + 1)
-            #(104320*2) rx = 1'b0;
-            
-        #(104320*2)
-        rx = 1'b1; //bit de stop
-        // -- CONTINUO F
-        
-//        // -- PASO A PASO 
-//        //comienza el envio del dato
+//        //comienza el envio del modo de exec
 //        #104320
 //        rx = 1'b0; //bit de inicio
             
-//        //comienzo a enviar el dato random de N_BITS bits
+//        //comienzo a enviar el dato de N_BITS bits
 //        //de LSB a MSB
-//        #104320 rx = 1'b1; //modo paso a paso
-        
-//        for(ii = 0; ii < 31; ii = ii + 1)
-//            #104320 rx = 1'b0;
+//        for(ii = 0; ii < 32; ii = ii + 1)
+//            #(104320*2) rx = 1'b0;
             
 //        #104320
 //        rx = 1'b1; //bit de stop
         
-//        //-- ESPERAR DONE EN 1 PARA MANDAR OTRO STEP
+//        //step (si no manda, se clava)
+//        #104320
+//        rx = 1'b0; //bit de inicio
+            
+//        //comienzo a enviar el dato de N_BITS bits
+//        //de LSB a MSB
+//        for(ii = 0; ii < 32; ii = ii + 1)
+//            #104320 rx = 1'b0;
+            
+//        #104320
+//        rx = 1'b1; //bit de stop
+//        // -- CONTINUO F
         
-//        // PASO A PASO F
-//        //------ MODO DE EJECUCION F ------//
+        // -- PASO A PASO 
+        #104320
+        rx = 1'b0; //bit de inicio
+            
+        //comienzo a enviar el dato de N_BITS bits
+        //de LSB a MSB
+        #104320
+        rx = 1'b1; //modo paso a paso
         
+        for(ii = 0; ii < 31; ii = ii + 1)
+            #104320 rx = 1'b0;
+            
+        #104320
+        rx = 1'b1; //bit de stop
+        
+        //espera a que el uart termine de recibir el dato
+        wait(rx_done == 1'b1);
+        //pone la señal de valid del procesador en 1
         valid = 1'b1;
+        //espera el envio de la info
         wait(done == 1'b1);
-        #20        
+        
+        // ENVIO STEP (5 en este caso para terminar el programa
+        for(i = 0; i < 5; i = i + 1)
+        begin
+            #104320
+            rx = 1'b0; //bit de inicio
+                
+            #104320
+            rx = 1'b1; //step propiamente dicho
+            
+            for(ii = 0; ii < 31; ii = ii + 1)
+                #104320 rx = 1'b0;
+                
+            #104320
+            rx = 1'b1; //bit de stop
+            wait(done == 1'b1);
+        end
+        
         $finish;
     end
 

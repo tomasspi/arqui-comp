@@ -19,6 +19,9 @@ module writeback#
 	
 	input wire [N_BITS_REG-1:0] i_rd_rt,
 	
+	input wire i_exec_mode,
+    input wire i_step,
+	
 	//WB  - señales de control para write-back
     output reg o_mem_to_reg,
 	output reg o_reg_write,
@@ -40,7 +43,7 @@ module writeback#
 
     //MUX 4 decide entre el dato leido y el resultado de la alu
     always@(*) begin
-        if(i_valid)
+        if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             if(i_mem_to_reg)
                 write_data <= read_data;
@@ -52,7 +55,7 @@ module writeback#
     //MUX 5 decide el valor a escribir en el registro, ya que
     //JAL y JALR escriben en los registros
     always@(*) begin
-        if(i_valid)
+        if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             case(i_jump)
             2'b01:
@@ -89,7 +92,7 @@ module writeback#
             read_data    <= {N_BITS{1'b0}};
             alu_result   <= {N_BITS{1'b0}};
         end
-        else if(i_valid)
+        else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             mem_to_reg <= i_mem_to_reg;
             reg_write  <= i_reg_write;
@@ -98,7 +101,7 @@ module writeback#
     end
     
     always@(negedge i_clk)begin:escritura
-        if(i_valid)
+        if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             o_mem_to_reg <= mem_to_reg;
             o_reg_write  <= reg_write;

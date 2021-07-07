@@ -120,6 +120,7 @@ module top_pipeline
         .i_instruccion(instruccion), .i_pc_4(pc_4), .i_write_data(write_data),
         .i_write_reg(write_reg), .i_reg_write(regwr_w), .i_mem_read_idex(memrd),
         .i_rt_idex(rt), .i_flush(flush),
+        .i_exec_mode(i_exec_mode), .i_step(i_step),
         .o_alu_op(aluop), .o_alu_src(alusrc), .o_reg_dst(regdst), .o_branch(branch), 
         .o_jump(jump), .o_mem_read(memrd), .o_mem_write(memwr), .o_mem_to_reg(memtoreg),
         .o_reg_write(regwr), .o_halt(halt_d), //.o_rt_stall(rt_stall),
@@ -139,6 +140,7 @@ module top_pipeline
         .i_reg_write(regwr), .i_pc_4(pc_4_d), .i_read_data_1(read_data_1), 
         .i_read_data_2(read_data_2), .i_extended(extended), .i_opcode(opcode),
         .i_alu_result(aluResult), .i_data_memory(write_data), 
+        .i_exec_mode(i_exec_mode), .i_step(i_step),
         .i_rd(rd), .i_rt(rt_d), .i_sa(sa), .i_mux_A(muxA), .i_mux_B(muxB), .i_flush(flush_m),
         .o_branch(branch_e), .o_mem_read(memrd_e), .o_mem_write(memwr_e), .o_jump(jump_e),
         .o_mem_to_reg(memtoreg_e), .o_reg_write(regwr_e), .o_pc_branch(pc_branch), 
@@ -154,6 +156,7 @@ module top_pipeline
         .i_mem_write(memwr_e), .i_mem_to_reg(memtoreg_e), .i_reg_write(regwr_e), 
         .i_opcode(opcode_e), .i_pc_branch(pc_branch), .i_zero(zero), 
         .i_alu_result(aluResult), .i_read_data_2(read_data_2_e), .i_rt_rd(rt_rd), 
+        .i_exec_mode(i_exec_mode), .i_step(i_step),
         .o_mem_to_reg(memtoreg_m), .o_reg_write(regwr_m), .o_read_data(data_memory), 
         .o_alu_result(alu_result), .o_rt_rd(rt_rd_m), .o_pc_src(pc_src), .o_halt(halt_m),
         .o_jump(jump_m), .o_pc_4(pc_4_m), .o_flush(flush_m)
@@ -165,6 +168,7 @@ module top_pipeline
         .i_clk(i_clk), .i_reset(i_reset), .i_valid(i_valid), .i_halt(halt_m), .i_jump(jump_m),
         .i_mem_to_reg(memtoreg_m), .i_reg_write(regwr_m), .i_read_data(data_memory), .i_pc_4(pc_4_m),
         .i_alu_result(alu_result), .i_rd_rt(rt_rd_m), .o_stop(stop),
+        .i_exec_mode(i_exec_mode), .i_step(i_step),
         .o_mem_to_reg(memtoreg_w), .o_reg_write(regwr_w), .o_write_data(write_data),
         .o_rd_rt(write_reg)
     );
