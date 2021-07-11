@@ -1,5 +1,11 @@
 #!/usr/bin/perl
 
+#IMPLEMENTAR LABELS
+# en los bne, beq y jumps hay que buscar el label
+# yo se que el formato es beq/bne reg,reg,label
+# guardo ese label y lo busco en con un : para 
+# conocer en la linea que se encuentra
+
 use strict;
 use warnings;
 
@@ -19,20 +25,22 @@ if(not defined $input
 	die print_help();
 }
 
-my $R_type = '000000';
-my $sa	   = '00000';
+my $R_type 		= '000000';
+my $sa	   		= '00000';
+my $line_cntr   = 0;
+my %labels		= ();
 
 my ($code, $rs, $rt, $rd, $funct, $base, $offset, $immediate);
 
 my %registers = (
-	zero => '00000', at => '00001', v0 => '00010', v1 => '00011',
-	a0	 => '00100', a1 => '00101', a2 => '00110', a3 => '00111', 
-	t0	 => '01000', t1 => '01001', t2 => '01010', t3 => '01011', 
-	t4	 => '01100', t5 => '01101', t6 => '01110', t7 => '01111', 
-	s0	 => '10000', s1 => '10001', s2 => '10010', s3 => '10011', 
-	s4	 => '10100', s5 => '10101', s6 => '10110', s7 => '10111', 
-	t8	 => '11000', t9 => '11001', k0 => '11010', k1 => '11011', 
-	gp	 => '11100', sp => '11101', fp => '11110', ra => '11111' 
+	0    => '00000', 1 => '00001',  2 => '00010',  3 => '00011',
+	4	 => '00100', 5 => '00101',  6 => '00110',  7 => '00111', 
+	8	 => '01000', 9 => '01001',  10 => '01010', 11 => '01011', 
+	12	 => '01100', 13 => '01101', 14 => '01110', 15 => '01111', 
+	16	 => '10000', 17 => '10001', 18 => '10010', 19 => '10011', 
+	20	 => '10100', 21 => '10101', 22 => '10110', 23 => '10111', 
+	24	 => '11000', 25 => '11001', 26 => '11010', 27 => '11011', 
+	28	 => '11100', 29 => '11101', 30 => '11110', 31 => '11111' 
 );
 
 my %instructions = (
@@ -79,7 +87,7 @@ my %instructions = (
 
 
 open(FILE, '<', $input) or die "ERROR: $!"; #abrir archivo
-chomp(my @lineas = <FILE>);					#array[i] = linea i
+chomp(my @lines = <FILE>);					#array[i] = linea i
 close(FILE) or die "ERROR: $!";				#cerrar archivo
 
 
@@ -88,134 +96,150 @@ sub decode
 	my @string = @_;
 	my @word;
 	my $binary = "";
-	
-	print("STRING RECIBIDO: @string\n");
-	
-	if($string[0] =~ m(([(])|([)]))g) #detecta parentesis
+			
+	if($string[0] eq "halt")
 	{
-		$string[0] =~ s/\(/,/g;
-		$string[0] =~ s/\)//g;
-		
-		foreach my $i (@string)
-		{
-			push(@word,split(/,/, $i));
-		}
-		
-		$code   = $instructions{uc $word[0]}{opcode};
-		$rt     = $registers{$word[1]};
-		$base   = $registers{$word[3]};
-		$offset = sprintf("%.16b", $word[2]);
-				
-		print("En binario: ");		
-		#lui tiene la base en 0 
-		$binary = sprintf("%s%s%s%s\n", $code, $base, $rt, 
-						  $offset);
+		$binary = sprintf("%b", hex("ffffffff"));
 	}
-	else 
+	else
 	{
-		foreach my $i (@string)
+		if($string[0] =~ m(([(])|([)]))g) #detecta parentesis
 		{
-			push(@word,split(/,/, $i));
-		}
-		
-		if($instructions{uc $word[0]}{opcode} eq $R_type)
-		{
-			if($instructions{uc $word[0]}{funct} eq 
-			   $instructions{SLL}{funct} || 
-			   $instructions{uc $word[0]}{funct} eq 
-			   $instructions{SRA}{funct} ||
-			   $instructions{uc $word[0]}{funct} eq 
-			   $instructions{SRL}{funct})
+			#elimina los parentesis
+			$string[0] =~ s/\(/,/g;
+			$string[0] =~ s/\)//g;
+			
+			#divide la instruccion
+			foreach my $i (@string)
 			{
-				$code  = $instructions{uc $word[0]}{opcode};
-				$rs    = sprintf("%.5b", $word[3]);
-				$rt    = $registers{$word[2]};
-				$rd	   = $registers{$word[1]};
-				$funct = $instructions{uc $word[0]}{funct};
-				
-				$binary = sprintf("%s%s%s%s%s%s\n", 
-								  $code, $sa, $rt, $rd, $rs, 
-								  $funct);
+				push(@word,split(/,/, $i));
 			}
-			else
+			
+			#check por si tuvo un label
+			if($word[0] eq "")
 			{
-				$code  = $instructions{uc $word[0]}{opcode};
-				$rs    = $registers{$word[2]};
-				$rt    = $registers{$word[3]};
-				$rd	   = $registers{$word[1]};
-				$funct = $instructions{uc $word[0]}{funct};
-				
-				$binary = sprintf("%s%s%s%s%s%s\n", 
-								  $code, $rs, $rt, $rd, $sa, 
-								  $funct);
+				shift(@word);
 			}
+			
+			$code   = $instructions{uc $word[0]}{opcode};
+			$rt     = $registers{$word[1]};
+			$base   = $registers{$word[3]};
+			$offset = sprintf("%.16b", $word[2]);
+					
+			print("En binario: ");		
+			
+			$binary = sprintf("%s%s%s%s\n", $code, $base, $rt, 
+							  $offset);
 		}
 		else 
-		{print "J o I\n";
-			#jump
-			if($instructions{uc $word[0]}{opcode} eq 
-			   $instructions{J}{opcode} ||
-			   $instructions{uc $word[0]}{opcode} eq 
-			   $instructions{JAL}{opcode})
-			{print "J-JAL\n";
-				$code   = $instructions{uc $word[0]}{opcode};
-				$offset = sprintf("%.26b", $word[1]);
-				
-				$binary = sprintf("%s%s\n", $code, $offset);
-		    }
-			elsif($instructions{uc $word[0]}{opcode} eq 
-			      $instructions{JALR}{opcode})
-			{print "JALR\n";
-				if($#word == 1)
+		{
+			foreach my $i (@string)
+			{
+				push(@word,split(/,/, $i));
+			}
+			
+			#check por si tuvo un label
+			if($word[0] eq "")
+			{
+				shift(@word);
+			}
+			
+			if($instructions{uc $word[0]}{opcode} eq $R_type)
+			{
+				if($instructions{uc $word[0]}{funct} eq 
+				   $instructions{SLL}{funct} || 
+				   $instructions{uc $word[0]}{funct} eq 
+				   $instructions{SRA}{funct} ||
+				   $instructions{uc $word[0]}{funct} eq 
+				   $instructions{SRL}{funct})
 				{
-					#000000-rs-00000-31-00000-funct
-					$rd = sprintf("%.5b", 31);
-					$binary = sprintf("%s%s%s%s%s%s\n",
-									  $R_type, $registers{$word[1]},
-									  $sa, $rd, $sa, 
-									  $instructions{uc $word[0]}{opcode});
+					$code  = $instructions{uc $word[0]}{opcode};
+					$rs    = sprintf("%.5b", $word[3]);
+					$rt    = $registers{$word[2]};
+					$rd	   = $registers{$word[1]};
+					$funct = $instructions{uc $word[0]}{funct};
+					
+					$binary = sprintf("%s%s%s%s%s%s\n", 
+									  $code, $sa, $rt, $rd, $rs, 
+									  $funct);
 				}
 				else
 				{
-					#000000-rs-00000-rd-00000-funct
-					$binary = sprintf("%s%s%s%s%s%s\n",
-									  $R_type, $registers{$word[1]},
-									  $sa, $registers{$word[2]}, $sa, 
-									  $instructions{uc $word[0]}{opcode});
+					$code  = $instructions{uc $word[0]}{opcode};
+					$rs    = $registers{$word[2]};
+					$rt    = $registers{$word[3]};
+					$rd	   = $registers{$word[1]};
+					$funct = $instructions{uc $word[0]}{funct};
+					
+					$binary = sprintf("%s%s%s%s%s%s\n", 
+									  $code, $rs, $rt, $rd, $sa, 
+									  $funct);
 				}
 			}
-			elsif(uc $word[0] eq "JR")
+			else 
 			{
-				print "JR\n";
-				$binary = sprintf("%s%s%s%s%s%s\n",
-								  $R_type, $registers{$word[1]},
-								  $sa, $sa, $sa, 
-								  $instructions{uc $word[0]}{opcode});
+				#jump
+				if($instructions{uc $word[0]}{opcode} eq 
+				   $instructions{J}{opcode} ||
+				   $instructions{uc $word[0]}{opcode} eq 
+				   $instructions{JAL}{opcode})
+				{
+					$code   = $instructions{uc $word[0]}{opcode};
+					$offset = sprintf("%.26b", $labels{$word[1]});
+					
+					$binary = sprintf("%s%s\n", $code, $offset);
+				}
+				elsif($instructions{uc $word[0]}{opcode} eq 
+					  $instructions{JALR}{opcode})
+				{
+					if($#word == 1)
+					{
+						#000000-rs-00000-31-00000-funct
+						$rd = sprintf("%.5b", 31);
+						$binary = sprintf("%s%s%s%s%s%s\n",
+										  $R_type, $registers{$word[1]},
+										  $sa, $rd, $sa, 
+										  $instructions{uc $word[0]}{opcode});
+					}
+					else
+					{
+						#000000-rs-00000-rd-00000-funct
+						$binary = sprintf("%s%s%s%s%s%s\n",
+										  $R_type, $registers{$word[1]},
+										  $sa, $registers{$word[2]}, $sa, 
+										  $instructions{uc $word[0]}{opcode});
+					}
+				}
+				elsif(uc $word[0] eq "JR")
+				{
+					$binary = sprintf("%s%s%s%s%s%s\n",
+									  $R_type, $registers{$word[1]},
+									  $sa, $sa, $sa, 
+									  $instructions{uc $word[0]}{opcode});
+				}
+				elsif(uc $word[0] eq "LUI")
+				{
+					$code = $instructions{uc $word[0]}{opcode};
+					$rs   = $sa;
+					$rt   = $registers{$word[1]};
+					$immediate = sprintf("%.16b", $word[2]);
+					
+					$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
+							  $immediate);
+				}
+				else
+				{
+					$code      = $instructions{uc $word[0]}{opcode};
+					$rs        = $registers{$word[2]};
+					$rt  	   = $registers{$word[1]};
+					$immediate = sprintf("%.16b", $word[3]);
+					
+					$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
+							  $immediate);
+				}
 			}
-			elsif(uc $word[0] eq "LUI")
-			{
-				print("LUI DETECTED\n");
-				$code = $instructions{uc $word[0]}{opcode};
-				$rs   = $sa;
-				$rt   = $registers{$word[1]};
-				$immediate = sprintf("%.16b", $word[2]);
-				
-				$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
-						  $immediate);
-			}
-			else
-			{
-				print("ES IMMEDIATE\n");
-				$code      = $instructions{uc $word[0]}{opcode};
-				$rs        = $registers{$word[2]};
-				$rt  	   = $registers{$word[1]};
-				$immediate = sprintf("%.16b", $word[3]);
-				
-				$binary = sprintf("%s%s%s%s\n", $code, $rs, $rt, 
-						  $immediate);
-			}
+			print("En binario: ");
 		}
-		print("En binario: ");
 	}
 	
 	print($binary);
@@ -225,18 +249,63 @@ sub decode
 	print("===============================\n");
 }
 
+sub find_labels
+{
+	my @line = @_;
+	my @word;	
+	
+	#divido la instruccion
+	foreach my $i (@line)
+	{
+		push(@word,split(/,/, $i));
+	}
+		
+	#detecta instrucciones de salto
+	#y guarda el label con el numero 
+	#de linea en el que se encuentra
+	if((uc $word[0]) =~ /J|JAL/)
+	{
+		$labels{$word[1]} = 0;
+	}
+	elsif((uc $word[0]) =~ /BEQ|BNE/)
+	{
+		$labels{$word[3]} = 0;
+	}
+}
+
 #crea el archivo destino
 open(OUT, '>', $output) or die "ERROR: $!";
 
-foreach my $linea (@lineas) #recorre el array
-{
-	$linea =~ s/#.*//g;     #elimina los comentarios
-	$linea =~ s/\s+$//;		#elimina los espacios al final de la linea
-	$linea =~ s/\s+/,/g;    #reemplaza espacios con ','
-	$linea =~ s/\$//g;		#elimina el simbolo '$'	
+foreach my $line (@lines) #recorre el array
+{	
+	$line = lc $line;		#convierte a lowercase
+	$line =~ s/#.*//g;		#elimina los comentarios
+	$line =~ s/^\s+|\s+$//;	#elimina los espacios de la linea
+	$line =~ s/\s+/,/g;		#reemplaza espacios con ','
+	$line =~ s/\$//g;		#elimina el simbolo '$'	
 	
-	decode($linea);
+	find_labels($line, $line_cntr);
+	
+	if($line =~ /:/)
+	{
+		#obtengo el label
+		my $label = substr($line, 0, index($line, ":"));
+		#elimina el campo 'label:'
+		$line =~ s/^.*://g; 
+		#actualizo la posicion del label
+		$labels{$label} = $line_cntr;
+	}
+	
+	$line_cntr++;
 }
 
+foreach my $line (@lines)
+{
+	decode($line);
+}
+#my @values = values %labels;
+
+#print @values;
+#print @lines;
 close(OUT) or die "ERROR: $!";
 print("Archivo '$output' creado existosamente.\n");
