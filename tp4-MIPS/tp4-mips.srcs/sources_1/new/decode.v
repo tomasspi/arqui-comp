@@ -158,7 +158,6 @@ module decode#
                 o_mem_to_reg <= mem_to_reg;
                 o_reg_write  <= reg_write;
                 o_halt       <= halt;
-//                o_rt_stall   <= rt;
              end
         end
     end  

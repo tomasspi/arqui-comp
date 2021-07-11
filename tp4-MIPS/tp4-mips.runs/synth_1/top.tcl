@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top_pipeline.tcl"
+  variable script "T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -93,6 +92,7 @@ read_mem T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/programa
 read_verilog -library xil_defaultlib {
   T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v
   T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v
+  E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/branch_logic.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/clk_cntr.v
   T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v
@@ -103,11 +103,17 @@ read_verilog -library xil_defaultlib {
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fowarding_unit.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/hazard_detection_unit.v
   T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v
+  T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v
+  T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/jump_logic.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/memory.v
   T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v
-  T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v
+  E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v
   T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v
+  E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v
+  E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v
+  T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v
+  T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top.v
 }
 read_ip -quiet T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
@@ -127,17 +133,17 @@ set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top top_pipeline -part xc7a35tcpg236-1 -flatten_hierarchy none
+synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy none
 OPTRACE "synth_design" END { }
 
 
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef top_pipeline.dcp
+write_checkpoint -force -noxdef top.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file top_pipeline_utilization_synth.rpt -pb top_pipeline_utilization_synth.pb"
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

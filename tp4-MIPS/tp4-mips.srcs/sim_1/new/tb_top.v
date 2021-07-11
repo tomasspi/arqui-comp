@@ -59,69 +59,71 @@ module tb_top();
         //------ MODO DE EJECUCION ------//
         
         // -- CONTINUO
-//        //comienza el envio del modo de exec
-//        #104320
-//        rx = 1'b0; //bit de inicio
-            
-//        //comienzo a enviar el dato de N_BITS bits
-//        //de LSB a MSB
-//        for(ii = 0; ii < 32; ii = ii + 1)
-//            #(104320*2) rx = 1'b0;
-            
-//        #104320
-//        rx = 1'b1; //bit de stop
-        
-//        //step (si no manda, se clava)
-//        #104320
-//        rx = 1'b0; //bit de inicio
-            
-//        //comienzo a enviar el dato de N_BITS bits
-//        //de LSB a MSB
-//        for(ii = 0; ii < 32; ii = ii + 1)
-//            #104320 rx = 1'b0;
-            
-//        #104320
-//        rx = 1'b1; //bit de stop
-//        // -- CONTINUO F
-        
-        // -- PASO A PASO 
+        //comienza el envio del modo de exec
         #104320
         rx = 1'b0; //bit de inicio
             
         //comienzo a enviar el dato de N_BITS bits
         //de LSB a MSB
-        #104320
-        rx = 1'b1; //modo paso a paso
-        
-        for(ii = 0; ii < 31; ii = ii + 1)
-            #104320 rx = 1'b0;
+        for(ii = 0; ii < 32; ii = ii + 1)
+            #(104320*2) rx = 1'b0;
             
         #104320
         rx = 1'b1; //bit de stop
         
-        //espera a que el uart termine de recibir el dato
-        wait(rx_done == 1'b1);
-        //pone la señal de valid del procesador en 1
-        valid = 1'b1;
-        //espera el envio de la info
-        wait(done == 1'b1);
-        
-        // ENVIO STEP (5 en este caso para terminar el programa
-        for(i = 0; i < 5; i = i + 1)
-        begin
-            #104320
-            rx = 1'b0; //bit de inicio
-                
-            #104320
-            rx = 1'b1; //step propiamente dicho
+        //step (si no manda, se clava)
+        #104320
+        rx = 1'b0; //bit de inicio
             
-            for(ii = 0; ii < 31; ii = ii + 1)
-                #104320 rx = 1'b0;
+        //comienzo a enviar el dato de N_BITS bits
+        //de LSB a MSB
+        for(ii = 0; ii < 32; ii = ii + 1)
+            #104320 rx = 1'b0;
+            
+        #104320
+        rx = 1'b1; //bit de stop
+        wait(done == 1'b1);
+        // -- CONTINUO F
+        
+        // -- PASO A PASO 
+//        #104320
+//        rx = 1'b0; //bit de inicio
+            
+//        //comienzo a enviar el dato de N_BITS bits
+//        //de LSB a MSB
+//        #104320
+//        rx = 1'b1; //modo paso a paso
+        
+//        for(ii = 0; ii < 31; ii = ii + 1)
+//            #104320 rx = 1'b0;
+            
+//        #104320
+//        rx = 1'b1; //bit de stop
+        
+//        //espera a que el uart termine de recibir el dato
+//        wait(rx_done == 1'b1);
+//        //pone la señal de valid del procesador en 1
+//        valid = 1'b1;
+//        //espera el envio de la info
+//        wait(done == 1'b1);
+        
+//        // ENVIO STEP (5 en este caso para terminar el programa
+//        for(i = 0; i < 5; i = i + 1)
+//        begin
+//            #104320
+//            rx = 1'b0; //bit de inicio
                 
-            #104320
-            rx = 1'b1; //bit de stop
-            wait(done == 1'b1);
-        end
+//            #104320
+//            rx = 1'b1; //step propiamente dicho
+            
+//            for(ii = 0; ii < 31; ii = ii + 1)
+//                #104320 rx = 1'b0;
+                
+//            #104320
+//            rx = 1'b1; //bit de stop
+//            wait(done == 1'b1);
+//        end
+//        //-- PASO A PASO F
         
         $finish;
     end
