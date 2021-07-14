@@ -11,6 +11,8 @@ module tb_top();
     
     integer fd, i, ii;
     reg  [31:0] data_to_send;
+    wire [31:0] rx_data;
+    wire [1:0] estado;
     
     always #5 clk = ~clk;  // Simulacion de clock 100MHz
 
@@ -66,7 +68,7 @@ module tb_top();
         //comienzo a enviar el dato de N_BITS bits
         //de LSB a MSB
         for(ii = 0; ii < 32; ii = ii + 1)
-            #(104320*2) rx = 1'b0;
+            #104320 rx = 1'b0;
             
         #104320
         rx = 1'b1; //bit de stop
@@ -82,6 +84,8 @@ module tb_top();
             
         #104320
         rx = 1'b1; //bit de stop
+        //pone la señal de valid del procesador en 1
+        valid = 1'b1;
         wait(done == 1'b1);
         // -- CONTINUO F
         
@@ -133,7 +137,7 @@ module tb_top();
         .i_clk(clk), .i_reset(reset), .i_valid(valid),
         .i_rx(rx), .o_tx(tx), 
         .o_rx_done(rx_done), .o_tx_done(tx_done),  
-        .o_done(done)
+        .o_done(done), .rx_data(rx_data), .estado(estado)
     );
 
 endmodule

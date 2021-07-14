@@ -133,7 +133,7 @@ set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy none
+synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy full
 OPTRACE "synth_design" END { }
 
 

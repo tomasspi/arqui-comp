@@ -11,15 +11,16 @@ module top
        que enviar
     */
     output wire o_done,
-    output wire o_tx
+    output wire o_tx, 
+    output wire [31:0] rx_data,
+    output wire [1:0] estado
 );
 
     //INTERFAZ
     wire [31:0] data_to_send;
     wire done;
-    
     //UART
-    wire [31:0] rx_data;
+//    wire [31:0] rx_data;
     wire        tx_start;
 //    wire        rx, tx, rx_done, tx_done;
     
@@ -50,7 +51,7 @@ module top
     (
         .i_clk(clk_out), .i_reset(i_reset), 
         .i_rx_data(rx_data), .i_rx_done(o_rx_done), 
-        .o_exec_mode(exec_mode), .o_step(step)
+        .o_exec_mode(exec_mode), .o_step(step), .estado(estado)
     );
     
     top_uart u_uart

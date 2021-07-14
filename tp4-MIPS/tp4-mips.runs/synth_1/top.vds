@@ -2,24 +2,24 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Jul  7 23:25:45 2021
-# Process ID: 14248
+# Start of session at: Tue Jul 13 21:10:45 2021
+# Process ID: 7100
 # Current directory: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top.vds
 # Journal file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source top.tcl -notrace
-Command: synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy none
+Command: synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy full
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 11672
+INFO: [Synth 8-7075] Helper process launched with PID 8416
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1018.836 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1034.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'top_pipeline' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:1]
@@ -31,8 +31,13 @@ INFO: [Synth 8-6157] synthesizing module 'fetch' [T:/Repositorios/arqui2020/tp4-
 INFO: [Synth 8-6157] synthesizing module 'instruction_memory' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:8]
 	Parameter RAM_WIDTH bound to: 32 - type: integer 
 	Parameter RAM_DEPTH bound to: 2048 - type: integer 
-	Parameter INIT_FILE bound to: programa.mem - type: string 
-INFO: [Synth 8-3876] $readmem data file 'programa.mem' is read successfully [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:33]
+	Parameter INIT_FILE bound to: C:/users/user/desktop/programa.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'C:/users/user/desktop/programa.mem' is read successfully [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:36]
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: Unable to determine number of words or word size in RAM. 
+	2: No valid read/write found for RAM. 
+RAM dissolved into registers
 INFO: [Synth 8-6155] done synthesizing module 'instruction_memory' (1#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:8]
 INFO: [Synth 8-6155] done synthesizing module 'fetch' (2#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fetch.v:1]
 INFO: [Synth 8-6157] synthesizing module 'decode' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:1]
@@ -107,8 +112,7 @@ INFO: [Synth 8-6157] synthesizing module 'interface_rx' [T:/Repositorios/arqui20
 	Parameter INSTRUCTIONS bound to: 2'b01 
 	Parameter EXEC_MODE bound to: 2'b10 
 	Parameter STEP bound to: 2'b11 
-WARNING: [Synth 8-639] system function call 'fopen' not supported [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:53]
-INFO: [Synth 8-155] case statement is not full and has no default [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:43]
+WARNING: [Synth 8-639] system function call 'fopen' not supported [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:56]
 INFO: [Synth 8-6155] done synthesizing module 'interface_rx' (19#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:1]
 INFO: [Synth 8-6157] synthesizing module 'top_uart' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v:3]
 	Parameter N_BITS bound to: 32 - type: integer 
@@ -139,22 +143,22 @@ INFO: [Synth 8-6157] synthesizing module 'baudrate_generator' [E:/Arqui/tp2-uart
 	Parameter N_BITS bound to: 63 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'baudrate_generator' (22#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
 INFO: [Synth 8-6155] done synthesizing module 'top_uart' (23#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v:3]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-14248-Archimedes/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (24#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-14248-Archimedes/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-7100-Archimedes/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (24#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-7100-Archimedes/realtime/clk_wiz_0_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'top' (25#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top.v:1]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1064.176 ; gain = 45.340
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1081.945 ; gain = 47.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1064.176 ; gain = 45.340
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1081.945 ; gain = 47.777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1064.176 ; gain = 45.340
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1081.945 ; gain = 47.777
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.094 . Memory (MB): peak = 1064.176 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.237 . Memory (MB): peak = 1081.945 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -165,20 +169,20 @@ WARNING: [Vivado 12-584] No ports matched ''. [t:/Repositorios/arqui2020/tp4-MIP
 Finished Parsing XDC File [t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'u_clock'
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1189.164 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1235.824 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.163 . Memory (MB): peak = 1189.164 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.060 . Memory (MB): peak = 1235.824 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -187,7 +191,7 @@ Applied set_property IO_BUFFER_TYPE = NONE for i_clk. (constraint file  t:/Repos
 Applied set_property CLOCK_BUFFER_TYPE = NONE for i_clk. (constraint file  t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 6).
 Applied set_property DONT_TOUCH = true for u_clock. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'rx_uart'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'tx_uart'
@@ -222,9 +226,9 @@ WARNING: [Synth 8-327] inferring latch for variable 'o_done_reg' [T:/Repositorio
 WARNING: [Synth 8-327] inferring latch for variable 'data_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:65]
 WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:70]
 WARNING: [Synth 8-327] inferring latch for variable 'i_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:85]
-WARNING: [Synth 8-327] inferring latch for variable 'o_exec_mode_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:75]
-WARNING: [Synth 8-327] inferring latch for variable 'o_step_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:87]
-WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:64]
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:46]
+WARNING: [Synth 8-327] inferring latch for variable 'o_exec_mode_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:78]
+WARNING: [Synth 8-327] inferring latch for variable 'o_step_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:90]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -245,7 +249,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'data_out_reg' [E:/Arqui/tp2
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'tx_uart'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -270,10 +274,10 @@ Detailed RTL Component Info :
 +---RAMs : 
 	              32K Bit	(1024 X 32 bit)          RAMs := 1     
 +---Muxes : 
-	   3 Input   32 Bit        Muxes := 2     
 	   2 Input   32 Bit        Muxes := 13    
 	  15 Input   32 Bit        Muxes := 1     
 	   4 Input   32 Bit        Muxes := 3     
+	   3 Input   32 Bit        Muxes := 1     
 	   2 Input    6 Bit        Muxes := 2     
 	  14 Input    6 Bit        Muxes := 1     
 	   4 Input    6 Bit        Muxes := 2     
@@ -312,154 +316,154 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_alu_op_reg[2]/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:136]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:136]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:136]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_alu_op_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_alu_op_reg[2]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_alu_op_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_alu_op_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_alu_src_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:93]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_alu_op_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:92]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_alu_src_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:93]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:93]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:93]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_reg_dst_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:94]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_reg_dst_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:94]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:94]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:94]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_branch_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:95]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_branch_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:95]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:95]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:95]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_jump_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_jump_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_jump_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_jump_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:96]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_flush_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:102]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_flush_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:102]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:102]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:102]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_mem_read_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:97]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_mem_read_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:97]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:97]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:97]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_mem_write_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:98]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_mem_write_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:98]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:98]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:98]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_mem_to_reg_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_mem_to_reg_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:99]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:99]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:99]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_reg_write_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_reg_write_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:100]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:100]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:100]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/o_halt_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:101]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/o_halt_reg__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:101]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:101]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:101]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[15]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[15]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[14]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[14]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[13]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[13]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[12]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[12]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[11]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[11]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[10]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[10]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[9]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[9]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[8]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[8]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[7]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[7]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[6]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[6]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[5]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[5]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[4]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[4]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[3]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[3]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[2]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[2]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/offset_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/offset_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:112]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[19]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[19]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[18]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[18]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[17]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[17]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[16]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[16]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[15]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[15]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[14]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[14]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[13]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[13]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[12]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[12]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[11]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[11]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[10]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[10]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[9]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[9]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[8]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[8]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[7]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[7]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[6]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[6]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[5]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[5]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[4]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[4]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[3]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[3]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[2]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[2]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[1]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mips/u_decode/instr_index_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'u_mipsi_4/u_decode/instr_index_reg[0]__0/Q' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
 INFO: [Common 17-14] Message 'Synth 8-6859' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:113]
@@ -515,28 +519,34 @@ CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one
 CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:105]
 INFO: [Common 17-14] Message 'Synth 8-6858' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:35 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:35 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Final Netlist Cleanup
@@ -545,19 +555,26 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        2|Failed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -575,38 +592,41 @@ Report Cell Usage:
 |      |Cell    |Count |
 +------+--------+------+
 |1     |clk_wiz |     1|
-|2     |CARRY4  |    16|
-|3     |LUT1    |    63|
-|4     |LUT2    |     3|
-|5     |LUT3    |     4|
-|6     |LUT4    |    28|
-|7     |LUT5    |    13|
-|8     |LUT6    |    12|
-|9     |FDRE    |    83|
-|10    |FDSE    |     5|
-|11    |IBUF    |     2|
-|12    |OBUF    |     4|
+|2     |BUFG    |     1|
+|3     |CARRY4  |    16|
+|4     |LUT1    |    63|
+|5     |LUT2    |     6|
+|6     |LUT3    |     7|
+|7     |LUT4    |    29|
+|8     |LUT5    |    20|
+|9     |LUT6    |    12|
+|10    |FDRE    |   120|
+|11    |FDSE    |     5|
+|12    |LD      |    34|
+|13    |IBUF    |     2|
+|14    |OBUF    |    38|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1235.824 ; gain = 201.656
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1482 critical warnings and 35 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:36 . Memory (MB): peak = 1189.164 ; gain = 45.340
-Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 1189.164 ; gain = 170.328
+Synthesis finished with 0 errors, 1486 critical warnings and 35 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:43 . Memory (MB): peak = 1235.824 ; gain = 47.777
+Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1235.824 ; gain = 201.656
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1193.414 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 16 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1235.824 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 50 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1193.414 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1235.824 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 34 instances were transformed.
+  LD => LDCE: 34 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-76 Infos, 38 Warnings, 200 Critical Warnings and 0 Errors encountered.
+75 Infos, 38 Warnings, 200 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:49 . Memory (MB): peak = 1193.414 ; gain = 174.578
+synth_design: Time (s): cpu = 00:00:54 ; elapsed = 00:00:58 . Memory (MB): peak = 1235.824 ; gain = 201.656
 INFO: [Common 17-1381] The checkpoint 'T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Jul  7 23:26:47 2021...
+INFO: [Common 17-206] Exiting Vivado at Tue Jul 13 21:11:51 2021...

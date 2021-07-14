@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="2914361483fs"></ZoomStartTime>
-      <ZoomEndTime time="14595839511fs"></ZoomEndTime>
-      <Cursor1Time time="10584180699fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="16940000001fs"></ZoomEndTime>
+      <Cursor1Time time="7694548027fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="142"></NameColumnWidth>
+      <NameColumnWidth column_width="126"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/tb_top/u_top/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -32,6 +32,10 @@
       <obj_property name="ElementShortName">i_reset</obj_property>
       <obj_property name="ObjectShortName">i_reset</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_top/u_top/i_valid" type="logic">
+      <obj_property name="ElementShortName">i_valid</obj_property>
+      <obj_property name="ObjectShortName">i_valid</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_top/u_top/o_done" type="logic">
       <obj_property name="ElementShortName">o_done</obj_property>
       <obj_property name="ObjectShortName">o_done</obj_property>
@@ -39,7 +43,7 @@
    <wvobject fp_name="/tb_top/data_to_send" type="array">
       <obj_property name="ElementShortName">data_to_send[31:0]</obj_property>
       <obj_property name="ObjectShortName">data_to_send[31:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
       <obj_property name="CustomSignalColor">#00FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
@@ -61,12 +65,13 @@
       <obj_property name="CustomSignalColor">#FFFF00</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/u_uart/i_tx_data_in" type="array">
-      <obj_property name="ElementShortName">i_tx_data_in[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_tx_data_in[31:0]</obj_property>
+   <wvobject fp_name="/tb_top/u_top/rx_data" type="array">
+      <obj_property name="ElementShortName">rx_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/u_uart/u_rx_uart/o_rx_done" type="logic">
-      <obj_property name="ElementShortName">o_rx_done</obj_property>
-      <obj_property name="ObjectShortName">o_rx_done</obj_property>
+   <wvobject fp_name="/tb_top/estado" type="array">
+      <obj_property name="ElementShortName">estado[1:0]</obj_property>
+      <obj_property name="ObjectShortName">estado[1:0]</obj_property>
    </wvobject>
 </wave_config>

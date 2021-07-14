@@ -10,6 +10,7 @@ module interface_rx
     input wire [N_BITS-1:0] i_rx_data,
     input wire              i_rx_done,
     
+    output wire [1:0] estado,
     output reg o_exec_mode, //si es continuo o paso a paso
     output reg o_step       //ejecutar un paso
 );
@@ -41,7 +42,9 @@ module interface_rx
 
     always@(*)begin:next
         case(state_reg)
-            
+            IDLE:
+                next_state = INSTRUCTIONS;
+                
             INSTRUCTIONS:
             begin
                 //https://www.javatpoint.com/verilog-file-operations
@@ -50,7 +53,8 @@ module interface_rx
                 en la carpeta de recursos (sources) */
                 if(~is_open)
                 begin
-                    fd = $fopen("../../../../tp4-mips.srcs/sources_1/new/programa.mem", "w");
+                    //$writememb(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
+                    fd = $fopen("C:/users/user/desktop/programa.mem", "w");
                     is_open = 1'b1;
                 end
                 
@@ -101,4 +105,5 @@ module interface_rx
             o_step <= 1'b0;
     end
 
+    assign estado = state_reg;
 endmodule
