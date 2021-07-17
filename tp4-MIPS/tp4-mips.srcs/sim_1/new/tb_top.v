@@ -13,6 +13,8 @@ module tb_top();
     reg  [31:0] data_to_send;
     wire [31:0] rx_data;
     wire [1:0] estado;
+    wire [2:0] estadoT;
+    
     
     always #5 clk = ~clk;  // Simulacion de clock 100MHz
 
@@ -137,7 +139,7 @@ module tb_top();
         .i_clk(clk), .i_reset(reset), .i_valid(valid),
         .i_rx(rx), .o_tx(tx), 
         .o_rx_done(rx_done), .o_tx_done(tx_done),  
-        .o_done(done), .rx_data(rx_data), .estado(estado)
+        .o_done(done), .rx_data(rx_data), .estado(estado), .estadoT(estadoT)
     );
 
 endmodule

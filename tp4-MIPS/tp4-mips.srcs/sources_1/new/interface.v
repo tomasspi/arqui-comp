@@ -16,15 +16,13 @@ module interface_tx
     input wire [N_BITS-1:0]        i_memoria,
     input wire [N_BITS-1:0]        i_ciclos,
     
-//    //receptor: instrucciones y cmds (exec mode y step)
-//    input wire [N_BITS-1:0]        i_rx_data,
-    
     input wire i_halt,
     input wire i_tx_done,
     
     output reg               o_tx_start,
     output reg               o_done,
-    output wire [N_BITS-1:0] o_data_to_send  
+    output wire [N_BITS-1:0] o_data_to_send,
+    output wire [2:0] estadoT 
     
     //flags debugger
 //    output reg o_exec_mode, //paso a paso o continuo 
@@ -47,7 +45,6 @@ module interface_tx
 		if(i_reset)
 		begin
             state_reg  <= IDLE;
-            next_state <= IDLE;
             data       <= 32'b0;
             o_tx_start <= 1'b0;
             tx_done    <= 1'b0;
@@ -58,6 +55,7 @@ module interface_tx
 	end//check_state
 
     always@(*)begin:next
+        next_state = state_reg;
         
         case(state_reg)
         IDLE: // O se hizo el step.
@@ -128,10 +126,8 @@ module interface_tx
             tx_done <= 1'b1;
         else
             tx_done <= 1'b0;
-        
-        /* aca setea el step */
-//        o_step <= i_step;
     end
    
+    assign estadoT = state_reg;
     assign o_data_to_send = data;
 endmodule

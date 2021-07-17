@@ -2,8 +2,8 @@
 # Webtalk v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Thu May 20 18:34:49 2021
-# Process ID: 11268
+# Start of session at: Fri Jul 16 21:06:28 2021
+# Process ID: 17316
 # Current directory: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.sim/sim_1/synth/timing/xsim
 # Command line: wbtcv.exe -mode batch -source T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.sim/sim_1/synth/timing/xsim/xsim.dir/tb_pipeline_time_synth/webtalk/xsim_webtalk.tcl -notrace
 # Log file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.sim/sim_1/synth/timing/xsim/webtalk.log

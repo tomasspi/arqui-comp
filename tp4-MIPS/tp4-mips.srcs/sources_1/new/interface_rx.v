@@ -20,17 +20,16 @@ module interface_rx
     localparam [1:0] EXEC_MODE = 2'b10;
     localparam [1:0] STEP = 2'b11;
 
-    reg [1:0] state_reg, next_state;
-    reg       rx_done;
-    reg       is_open;
-    
-    integer fd;    
+    reg [1:0]  state_reg, next_state;
+    reg        rx_done;
+    reg        is_open;
+    reg [31:0] instrucciones [2047:0];
+    reg [31:0] i = 0;   
     
     always@(posedge i_clk)begin:check_state
         if(i_reset)
         begin
-            state_reg   <= INSTRUCTIONS;
-            next_state  <= INSTRUCTIONS;   
+            state_reg   <= IDLE;
             rx_done     <= rx_done;         
             is_open     <= 1'b0;
             o_step      <= 1'b0;
@@ -41,33 +40,26 @@ module interface_rx
     end
 
     always@(*)begin:next
+        next_state = state_reg;
+        
         case(state_reg)
             IDLE:
                 next_state = INSTRUCTIONS;
                 
             INSTRUCTIONS:
             begin
-                //https://www.javatpoint.com/verilog-file-operations
-                /* se usa el path relativo porque sino genera el archivo 
-                en la carpeta de simulacion, y la memoria utiliza el que esta
-                en la carpeta de recursos (sources) */
-                if(~is_open)
-                begin
-                    //$writememb(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
-                    fd = $fopen("C:/users/user/desktop/programa.mem", "w");
-                    is_open = 1'b1;
-                end
-                
+           
                 if(rx_done)
-                begin
-                    $fdisplayb(fd, i_rx_data);
-                
+                begin          
+                    instrucciones[i] = i_rx_data;  
+                    i = i + 1;
+                    
                     if(i_rx_data == {N_BITS {1'b1}}) //halt
                     begin
-                        $fclose(fd);
+                        $writememb("C:/users/user/desktop/programa.mem", instrucciones, 0, i-1);
                         next_state = EXEC_MODE;
                     end
-                end                 
+                end                
             end
             
             EXEC_MODE:

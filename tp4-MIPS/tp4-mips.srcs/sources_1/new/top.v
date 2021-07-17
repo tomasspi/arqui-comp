@@ -1,3 +1,11 @@
+    /*
+        VAMOS A PROBAR INSTANCIAR LOS MODULOS EN 
+        EL TESTBENCH PARA PODER TRACKEAR LAS SEÑALES
+        DE TODOS LOS MODULOS, VAMOS A VER
+        MEJOR: ya que el receptor anda, vamos a comentarlo
+        y ver si realmente esta leyendo y ejecutando las
+        instrucciones del archivo/memoria.
+    */
 module top
 (
     input wire i_clk, i_reset, i_valid,
@@ -13,7 +21,9 @@ module top
     output wire o_done,
     output wire o_tx, 
     output wire [31:0] rx_data,
-    output wire [1:0] estado
+    output wire [1:0] estado,
+    output wire [2:0] estadoT,
+    output wire ohalt
 );
 
     //INTERFAZ
@@ -44,7 +54,7 @@ module top
         .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc), .i_registros(registros), 
         .i_memoria(data_memory), .i_ciclos(ciclos), .i_halt(halt), .i_tx_done(o_tx_done), 
         .i_exec_mode(exec_mode), .i_step(step),
-        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done)
+        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done), .estadoT(estadoT)
     );   
     
     interface_rx u_interfaz_rx
@@ -70,6 +80,6 @@ module top
         .clk_out1(clk_out),
         .locked(locked)
     );
-    
+    assign ohalt = halt;
     assign o_done = done;
 endmodule

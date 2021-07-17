@@ -5,6 +5,7 @@ module tb_pipeline();
     localparam F_CLOCK  = 50E6;
     localparam BAUDRATE = 9600;
     localparam SAMPLING = 16;
+    localparam N_BITS = 32;
         
     // INPUTS
     reg clk_out;
@@ -12,10 +13,10 @@ module tb_pipeline();
     reg locked;    
     reg exec_mode, step;
     
-    wire pc;
-    wire registros;
-    wire data_memory;
-    wire ciclos;
+    wire [N_BITS-1:0]        pc;
+    wire [N_BITS*N_BITS-1:0] registros;
+    wire [N_BITS-1:0]        data_memory;
+    wire [N_BITS-1:0]        ciclos;
     wire halt;
     
     
