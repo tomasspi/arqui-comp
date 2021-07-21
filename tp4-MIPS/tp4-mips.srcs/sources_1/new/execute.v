@@ -152,38 +152,23 @@ module execute#
 	
 	always@(posedge i_clk)begin:lectura
 	   if(i_reset)
-	   begin
-	       o_branch      <= 1'b0;
-	       o_mem_read    <= 1'b0;
-	       o_mem_write   <= 1'b0;
-	       o_mem_to_reg  <= 1'b0;
-	       o_reg_write   <= 1'b0;
-	       o_halt        <= 1'b0;
-	       
-	       o_pc_4        <= {N_BITS{1'b0}};
-	       o_pc_branch   <= {N_BITS{1'b0}};
-	       o_alu_result  <= {N_BITS{1'b0}};
-	       o_read_data_2 <= {N_BITS{1'b0}};
-	       o_rt_rd       <= {N_BITS_REG{1'b0}};
-	       o_zero        <= {N_BITS_REG{1'b0}};
-	       
+	   begin 
 	       halt          <= 1'b0;
 	       branch        <= 1'b0;
 	       mem_read      <= 1'b0;
 	       mem_write     <= 1'b0;
 	       mem_to_reg    <= 1'b0;
 	       reg_write     <= 1'b0;
-	       jump          <= 2'b0;
-	       
+	       jump          <= 2'b0;	       
 	       pc_4          <= {N_BITS{1'b0}};
-	       dato_a        <= {N_BITS{1'b0}};
-	       dato_b        <= {N_BITS{1'b0}}; 
-           pc_branch     <= {N_BITS{1'b0}};
-           read_data_2   <= {N_BITS{1'b0}};
-           opcode        <= {N_BITS_REG+1{1'b0}};
-           rt_rd         <= {N_BITS_REG{1'b0}};
-           
-           dato_b_fowarding <= {N_BITS{1'b0}};
+	       pc_branch     <= {N_BITS{1'b0}};
+	       opcode        <= {N_BITS_REG+1{1'b0}};
+	       read_data_2   <= {N_BITS{1'b0}};
+	       
+//	       dato_a        <= {N_BITS{1'b0}};
+//	       dato_b        <= {N_BITS{1'b0}};
+//           rt_rd         <= {N_BITS_REG{1'b0}};
+//           dato_b_fowarding <= {N_BITS{1'b0}};
 	   end
 	   else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
 	   begin
@@ -202,7 +187,25 @@ module execute#
 	end	
 	
 	always@(negedge i_clk)begin:esc
-	   if(i_valid && ~i_flush)
+	   if(i_reset)
+	   begin
+	       o_branch      <= 1'b0;
+	       o_mem_read    <= 1'b0;
+	       o_mem_write   <= 1'b0;
+	       o_mem_to_reg  <= 1'b0;
+	       o_reg_write   <= 1'b0;
+	       o_jump        <= 2'b0;
+	       o_halt        <= 1'b0;
+	       
+	       o_opcode      <= {N_BITS_REG+1{1'b0}};
+	       o_pc_4        <= {N_BITS{1'b0}};
+	       o_pc_branch   <= {N_BITS{1'b0}};
+	       o_alu_result  <= {N_BITS{1'b0}};
+	       o_read_data_2 <= {N_BITS{1'b0}};
+	       o_rt_rd       <= {N_BITS_REG{1'b0}};
+	       o_zero        <= {N_BITS_REG{1'b0}};
+	   end
+	   else if(i_valid && ~i_flush)
 	   begin
            if(i_exec_mode == 1'b0 || (i_exec_mode && i_step))
            begin

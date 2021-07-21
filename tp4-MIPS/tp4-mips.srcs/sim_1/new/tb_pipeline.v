@@ -2,9 +2,6 @@
 
 module tb_pipeline();   
     
-    localparam F_CLOCK  = 50E6;
-    localparam BAUDRATE = 9600;
-    localparam SAMPLING = 16;
     localparam N_BITS = 32;
         
     // INPUTS
@@ -21,6 +18,31 @@ module tb_pipeline();
     
     
     //PARA MODO CONTINUO
+    initial begin
+        clk_out = 1'b0;
+        reset   = 1'b1;
+        locked  = 1'b0;
+        
+        #60
+        reset = 1'b0;
+        locked  = 1'b1;
+        
+        
+        #20
+        exec_mode = 1'b0;
+        step = 1'b0;
+        
+        #1000
+        $finish;
+    end
+
+    /* 
+        PARA MODO PASO A PASO:
+        pone el modo paso a paso, espera 2 ciclos 
+        y hace un step. Luego, espera 5 ciclos para
+        hacer el segundo step y después de 2 ciclos
+        ejecuta todo el programa 
+    */
 //    initial begin
 //        clk_out = 1'b0;
 //        reset   = 1'b1;
@@ -31,48 +53,24 @@ module tb_pipeline();
         
         
 //        #20
-//        exec_mode = 1'b0;
+//        exec_mode = 1'b1;
+        
+//        #40
+//        step = 1'b1;
+//        #20
 //        step = 1'b0;
+        
+//        #100
+//        step = 1'b1;
+//        #20
+//        step = 1'b0;
+        
+//        #40
+//        step = 1'b1;
         
 //        #600
 //        $finish;
 //    end
-
-    /* 
-        PARA MODO PASO A PASO:
-        pone el modo paso a paso, espera 2 ciclos 
-        y hace un step. Luego, espera 5 ciclos para
-        hacer el segundo step y después de 2 ciclos
-        ejecuta todo el programa 
-    */
-    initial begin
-        clk_out = 1'b0;
-        reset   = 1'b1;
-        locked  = 1'b1;
-        
-        #60
-        reset = 1'b0;
-        
-        
-        #20
-        exec_mode = 1'b1;
-        
-        #40
-        step = 1'b1;
-        #20
-        step = 1'b0;
-        
-        #100
-        step = 1'b1;
-        #20
-        step = 1'b0;
-        
-        #40
-        step = 1'b1;
-        
-        #600
-        $finish;
-    end
 
     top_pipeline u_top
     (

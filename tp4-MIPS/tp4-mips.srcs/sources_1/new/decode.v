@@ -89,6 +89,22 @@ module decode#
     always@(posedge i_clk)begin:leer_entradas
         if(i_reset)
         begin
+            instruccion   <= 32'b0;
+            pc_4          <= 32'b0;
+            halt          <= 1'b0;
+        end
+        else 
+        if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
+        begin
+            instruccion <= i_instruccion;
+            pc_4        <= i_pc_4;
+            halt        <= i_halt;
+        end
+    end
+    
+    always@(negedge i_clk)begin:escribir_salidas
+        if(i_reset)
+        begin
             o_alu_op      <= 3'b0;
             o_alu_src     <= 1'b0;
             o_reg_dst     <= 1'b0;
@@ -101,10 +117,7 @@ module decode#
             o_halt        <= 1'b0;
             o_flush       <= 1'b0;
             
-            halt          <= 1'b0;
             write_data    <= 32'b0;
-            instruccion   <= 32'b0;
-            pc_4          <= 32'b0;
             rs            <= 5'b0;
             rt            <= 5'b0;
             rd            <= 5'b0;
@@ -112,15 +125,6 @@ module decode#
             offset        <= 16'b0;
             instr_index   <= 20'b0;
         end
-        else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
-        begin
-            instruccion <= i_instruccion;
-            pc_4        <= i_pc_4;
-            halt        <= i_halt;
-        end
-    end
-    
-    always@(negedge i_clk)begin:escribir_salidas
         if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             rs          <= instruccion[25:21];
@@ -129,7 +133,7 @@ module decode#
             sa          <= instruccion[10:6];
             offset      <= instruccion[15:0];
             instr_index <= instruccion[25:0];
-            write_data  <= i_write_data;  
+            write_data  <= i_write_data;
             
             if(o_stall || i_flush)
             begin
@@ -158,7 +162,7 @@ module decode#
                 o_mem_to_reg <= mem_to_reg;
                 o_reg_write  <= reg_write;
                 o_halt       <= halt;
-             end
+            end  
         end
     end  
     

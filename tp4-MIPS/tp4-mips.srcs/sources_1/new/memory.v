@@ -54,15 +54,7 @@ module memory#
 	
     always@(posedge i_clk)begin:lectura
         if(i_reset)
-        begin
-            o_mem_to_reg <= 1'b0;
-            o_reg_write  <= 1'b0;
-			o_halt       <= 1'b0;
-			o_jump       <= 2'b0;
-			o_alu_result <= {N_BITS{1'b0}};
-			o_pc_4       <= {N_BITS{1'b0}};
-            o_rt_rd      <= {N_BITS_REG{1'b0}};
-            
+        begin           
 			halt         <= 1'b0;
 			mem_to_reg	 <= 1'b0;
 			reg_write	 <= 1'b0;
@@ -84,6 +76,18 @@ module memory#
     end
     
 	always@(negedge i_clk)begin:escritura
+	   if(i_reset)
+	   begin
+	        o_mem_to_reg <= 1'b0;
+            o_reg_write  <= 1'b0;
+			o_halt       <= 1'b0;
+			o_jump       <= 2'b0;
+			o_alu_result <= {N_BITS{1'b0}};
+			o_pc_4       <= {N_BITS{1'b0}};
+			o_read_data  <= {N_BITS{1'b0}};
+            o_rt_rd      <= {N_BITS_REG{1'b0}};            
+       end
+       else
 	   if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
 	   begin
            o_halt       <= halt;

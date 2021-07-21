@@ -37,7 +37,7 @@ module writeback#
 	reg 		         reg_write;
 	reg                  stop;
 	reg [N_BITS-1:0]     read_data;
-	reg [N_BITS-1:0]     alu_result;
+//	reg [N_BITS-1:0]     alu_result;
 	reg [N_BITS-1:0]     write_data;
 	reg [N_BITS_REG-1:0] rd_rt;
 
@@ -81,16 +81,10 @@ module writeback#
     
     always@(posedge i_clk)begin:lectura
         if(i_reset)
-        begin
-            o_mem_to_reg <= 1'b0;
-            o_reg_write  <= 1'b0;
-            
-            stop         <= 1'b0;
-            
-            o_write_data <= {N_BITS{1'b0}};
-            o_rd_rt      <= {N_BITS_REG{1'b0}};
-            read_data    <= {N_BITS{1'b0}};
-            alu_result   <= {N_BITS{1'b0}};
+        begin           
+            mem_to_reg <= 1'b0;
+            reg_write  <= 1'b0;
+            read_data  <= {N_BITS{1'b0}};
         end
         else if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
@@ -101,6 +95,13 @@ module writeback#
     end
     
     always@(negedge i_clk)begin:escritura
+        if(i_reset)
+        begin
+            o_mem_to_reg <= 1'b0;
+            o_reg_write  <= 1'b0;
+            o_rd_rt      <= {N_BITS_REG{1'b0}};
+        end
+        else
         if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             o_mem_to_reg <= mem_to_reg;
@@ -111,6 +112,8 @@ module writeback#
 
     //lógica para el contador de ciclos
     always@(*)begin
+        if(i_reset)
+            stop <= 1'b0;
         if(i_halt)
             stop <= 1'b1;
     end
