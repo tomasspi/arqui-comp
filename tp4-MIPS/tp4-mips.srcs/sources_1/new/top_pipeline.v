@@ -97,9 +97,9 @@ module top_pipeline
         if(i_valid)
         begin
             if(pc_src)
-                pc_salto <= pc_branch;
+                pc_salto = pc_branch;
             else 
-                pc_salto <= pc_jump;           
+                pc_salto = pc_jump;           
         end
     end 
     

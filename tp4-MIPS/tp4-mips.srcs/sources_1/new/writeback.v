@@ -35,20 +35,20 @@ module writeback#
 
     reg 	  	         mem_to_reg;
 	reg 		         reg_write;
-	reg                  stop;
 	reg [N_BITS-1:0]     read_data;
-//	reg [N_BITS-1:0]     alu_result;
 	reg [N_BITS-1:0]     write_data;
 	reg [N_BITS_REG-1:0] rd_rt;
+	
+	reg                  stop = 1'b0;
 
     //MUX 4 decide entre el dato leido y el resultado de la alu
     always@(*) begin
         if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             if(i_mem_to_reg)
-                write_data <= read_data;
+                write_data = read_data;
             else
-                write_data <= i_alu_result;
+                write_data = i_alu_result;
         end
     end
     
@@ -60,20 +60,20 @@ module writeback#
             case(i_jump)
             2'b01:
             begin
-                o_write_data <= i_pc_4;
-                rd_rt        <= 5'b11111;
+                o_write_data = i_pc_4;
+                rd_rt        = 5'b11111;
             end
             
             2'b10:
             begin
-                o_write_data <= i_pc_4;
-                rd_rt        <= i_rd_rt;
+                o_write_data = i_pc_4;
+                rd_rt        = i_rd_rt;
             end
             
             default:
             begin
-                o_write_data <= write_data;
-                rd_rt        <= i_rd_rt;
+                o_write_data = write_data;
+                rd_rt        = i_rd_rt;
             end
             endcase           
         end
@@ -112,10 +112,8 @@ module writeback#
 
     //lógica para el contador de ciclos
     always@(*)begin
-        if(i_reset)
-            stop <= 1'b0;
         if(i_halt)
-            stop <= 1'b1;
+            stop = 1'b1;
     end
 
     assign o_stop = stop;

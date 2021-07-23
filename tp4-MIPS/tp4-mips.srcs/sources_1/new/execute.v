@@ -91,16 +91,16 @@ module execute#
 	   begin
 	       case(aluctrl)
 	       4'b0110,4'b1011,4'b1010:
-	           dato_a <= i_read_data_2;
+	           dato_a = i_read_data_2;
 	       
 	       default:
                case(i_mux_A)
                2'b00:
-                   dato_a <= i_read_data_1;
+                   dato_a = i_read_data_1;
                2'b01:
-                   dato_a <= i_data_memory;
+                   dato_a = i_data_memory;
                2'b10:
-                   dato_a <= i_alu_result;
+                   dato_a = i_alu_result;
                endcase
            endcase
 	   end
@@ -112,11 +112,11 @@ module execute#
 	   begin
 	       case(i_mux_B)
 	       2'b00:
-	           dato_b_fowarding <= i_read_data_2;
+	           dato_b_fowarding = i_read_data_2;
 	       2'b01:
-	           dato_b_fowarding <= i_data_memory;
+	           dato_b_fowarding = i_data_memory;
 	       2'b10:
-	           dato_b_fowarding <= i_alu_result;
+	           dato_b_fowarding = i_alu_result;
 	       endcase
 	   end
 	end
@@ -126,14 +126,14 @@ module execute#
         if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             if(i_alu_src)
-                dato_b <= i_extended;
+                dato_b = i_extended;
             else 
             begin
                 case(aluctrl)
                 4'b0110,4'b1011,4'b1010: //sll,sra,srl
-                    dato_b <= i_sa;
+                    dato_b = i_sa;
                 default:
-                    dato_b <= dato_b_fowarding;
+                    dato_b = dato_b_fowarding;
                 endcase
             end 
         end
@@ -141,12 +141,14 @@ module execute#
 	
 	//MUX 2 decide el valor de i_write_reg (si es rt o rd)
     always@(*) begin
+        if(i_reset)
+            rt_rd = {N_BITS_REG{1'b0}};
         if(i_valid && (i_exec_mode == 1'b0 || (i_exec_mode && i_step)))
         begin
             if(i_reg_dst)
-                rt_rd <= i_rd;
+                rt_rd = i_rd;
             else
-                rt_rd <= i_rt;
+                rt_rd = i_rt;
         end
     end
 	

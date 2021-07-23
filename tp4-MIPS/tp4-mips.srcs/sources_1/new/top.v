@@ -1,11 +1,3 @@
-    /*
-        VAMOS A PROBAR INSTANCIAR LOS MODULOS EN 
-        EL TESTBENCH PARA PODER TRACKEAR LAS SEÑALES
-        DE TODOS LOS MODULOS, VAMOS A VER
-        MEJOR: ya que el receptor anda, vamos a comentarlo
-        y ver si realmente esta leyendo y ejecutando las
-        instrucciones del archivo/memoria.
-    */
 module top
 (
     input wire i_clk, i_reset, i_valid,

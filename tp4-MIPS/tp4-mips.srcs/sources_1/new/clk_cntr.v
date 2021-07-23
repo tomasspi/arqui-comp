@@ -11,7 +11,7 @@ module clk_cntr
     output wire [31:0]  o_count
 );
     reg [31:0] count;
-    reg        halt;
+    reg        halt = 1'b0;
     
     always@(posedge i_clk)begin:contar
         if(i_reset)
@@ -27,9 +27,9 @@ module clk_cntr
     
     always@(*)begin:leer_instruccion
         if(i_reset)
-            halt  <= 1'b0;
-        if(i_instruccion == {32{1'b1}})
-            halt <= 1'b1;
+            halt = 1'b0;
+        else if(i_instruccion == {32{1'b1}})
+            halt = 1'b1;
     end
     
     assign o_count = count;

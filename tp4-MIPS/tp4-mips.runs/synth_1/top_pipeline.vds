@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Tue Jul 20 20:13:32 2021
-# Process ID: 4044
+# Start of session at: Fri Jul 23 19:58:02 2021
+# Process ID: 640
 # Current directory: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1
 # Command line: vivado.exe -log top_pipeline.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_pipeline.tcl
 # Log file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top_pipeline.vds
@@ -16,9 +16,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 804
+INFO: [Synth 8-7075] Helper process launched with PID 11272
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1015.445 ; gain = 0.000
+Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1034.664 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top_pipeline' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:1]
 	Parameter N_BITS bound to: 32 - type: integer 
@@ -89,17 +89,17 @@ INFO: [Synth 8-6157] synthesizing module 'fowarding_unit' [T:/Repositorios/arqui
 INFO: [Synth 8-6155] done synthesizing module 'fowarding_unit' (16#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fowarding_unit.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'top_pipeline' (17#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:1]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1015.445 ; gain = 0.000
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1034.664 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1015.445 ; gain = 0.000
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1034.664 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1015.445 ; gain = 0.000
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1034.664 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 WARNING: [Synth 8-327] inferring latch for variable 'ram_data_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:45]
@@ -116,7 +116,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'o_flush_reg' [T:/Tom/Facult
 WARNING: [Synth 8-327] inferring latch for variable 'o_jump_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:48]
 WARNING: [Synth 8-327] inferring latch for variable 'o_opcode_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:73]
 WARNING: [Synth 8-327] inferring latch for variable 'o_alu_ctrl_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v:23]
-WARNING: [Synth 8-327] inferring latch for variable 'rt_rd_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:147]
+WARNING: [Synth 8-327] inferring latch for variable 'rt_rd_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:145]
 WARNING: [Synth 8-327] inferring latch for variable 'dato_a_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:94]
 WARNING: [Synth 8-327] inferring latch for variable 'dato_b_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:129]
 WARNING: [Synth 8-327] inferring latch for variable 'dato_b_fowarding_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:115]
@@ -129,7 +129,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'write_data_reg' [T:/Reposit
 WARNING: [Synth 8-327] inferring latch for variable 'halt_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/clk_cntr.v:30]
 WARNING: [Synth 8-327] inferring latch for variable 'pc_salto_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:100]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 1015.445 ; gain = 0.000
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1034.664 ; gain = 0.000
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -154,14 +154,14 @@ Detailed RTL Component Info :
 	              32K Bit	(1024 X 32 bit)          RAMs := 1     
 +---Muxes : 
 	  32 Input   32 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 12    
+	   2 Input   32 Bit        Muxes := 10    
 	  15 Input   32 Bit        Muxes := 1     
 	   4 Input   32 Bit        Muxes := 2     
 	   3 Input   32 Bit        Muxes := 1     
 	   2 Input    6 Bit        Muxes := 2     
 	  14 Input    6 Bit        Muxes := 1     
 	  20 Input    5 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 2     
 	   3 Input    5 Bit        Muxes := 1     
 	  21 Input    4 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 1     
@@ -192,7 +192,7 @@ No constraint files found.
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:00:58 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -214,7 +214,7 @@ No constraint files found.
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:00:59 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Timing Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -234,7 +234,7 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:51 ; elapsed = 00:01:03 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Technology Mapping : Time (s): cpu = 00:00:48 ; elapsed = 00:00:52 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -246,19 +246,19 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:11 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:11 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:12 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -274,39 +274,37 @@ Report Cell Usage:
 +------+----------+------+
 |      |Cell      |Count |
 +------+----------+------+
-|1     |BUFG      |     9|
+|1     |BUFG      |     7|
 |2     |CARRY4    |    60|
 |3     |LUT1      |    35|
-|4     |LUT2      |   126|
-|5     |LUT3      |   309|
-|6     |LUT4      |   191|
-|7     |LUT5      |   306|
-|8     |LUT6      |   898|
+|4     |LUT2      |   112|
+|5     |LUT3      |   304|
+|6     |LUT4      |   187|
+|7     |LUT5      |   299|
+|8     |LUT6      |   908|
 |9     |MUXF7     |   320|
-|10    |MUXF8     |    64|
-|11    |RAM256X1S |   128|
-|12    |FDRE      |  1713|
-|13    |FDSE      |     1|
-|14    |LD        |   336|
-|15    |LDC       |    10|
-|16    |LDP       |     2|
-|17    |IBUF      |     5|
-|18    |OBUF      |  1121|
+|10    |RAM256X1S |   128|
+|11    |FDRE      |  1713|
+|12    |FDSE      |     1|
+|13    |LD        |   273|
+|14    |LDC       |    75|
+|15    |IBUF      |     5|
+|16    |OBUF      |  1121|
 +------+----------+------+
 
 Report Instance Areas: 
 +------+-------------------+----------------------+------+
 |      |Instance           |Module                |Cells |
 +------+-------------------+----------------------+------+
-|1     |top                |                      |  5634|
+|1     |top                |                      |  5548|
 |2     |  u_fetch          |fetch                 |   198|
 |3     |    u_i_mem1       |instruction_memory    |    54|
-|4     |  u_decode         |decode                |  2235|
-|5     |    u_register     |registers             |  2009|
+|4     |  u_decode         |decode                |  2149|
+|5     |    u_register     |registers             |  1923|
 |6     |    u_ctrl         |control_unit          |    49|
 |7     |    u_hdu          |hazard_detection_unit |     5|
 |8     |    u_jump_logic   |jump_logic            |    32|
-|9     |  u_exe            |execute               |  1340|
+|9     |  u_exe            |execute               |  1341|
 |10    |    u_alu1         |alu                   |   747|
 |11    |    u_alu_ctrl1    |alu_ctrl              |    21|
 |12    |  u_mem            |memory                |   384|
@@ -317,29 +315,28 @@ Report Instance Areas:
 |17    |  u_fw             |fowarding_unit        |    14|
 +------+-------------------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:12 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 26 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:59 ; elapsed = 00:01:12 . Memory (MB): peak = 1059.000 ; gain = 43.555
-Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:12 . Memory (MB): peak = 1059.000 ; gain = 43.555
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
+Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1064.004 ; gain = 29.340
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.115 . Memory (MB): peak = 1059.000 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 920 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.275 . Memory (MB): peak = 1064.004 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 856 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 128 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1076.953 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1078.918 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 476 instances were transformed.
-  LD => LDCE: 336 instances
-  LDC => LDCE: 10 instances
-  LDP => LDPE: 2 instances
+  LD => LDCE: 273 instances
+  LDC => LDCE: 75 instances
   RAM256X1S => RAM256X1S (inverted pins: WCLK) (MUXF7(x2), MUXF8, RAMS64E(x4)): 128 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
 50 Infos, 26 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:08 ; elapsed = 00:01:23 . Memory (MB): peak = 1076.953 ; gain = 61.508
+synth_design: Time (s): cpu = 00:01:06 ; elapsed = 00:01:14 . Memory (MB): peak = 1078.918 ; gain = 44.254
 INFO: [Common 17-1381] The checkpoint 'T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top_pipeline.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_pipeline_utilization_synth.rpt -pb top_pipeline_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jul 20 20:15:15 2021...
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 23 19:59:29 2021...
