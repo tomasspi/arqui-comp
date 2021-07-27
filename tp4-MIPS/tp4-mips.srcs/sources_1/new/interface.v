@@ -43,13 +43,7 @@ module interface_tx
 	//cambios de estado
 	always@(posedge i_clk) begin:check_state
 		if(i_reset)
-		begin
             state_reg  <= IDLE;
-            data       <= 32'b0;
-            o_tx_start <= 1'b0;
-            tx_done    <= 1'b0;
-            o_done     <= 1'b0;
-        end
 		else
 			state_reg <= next_state;			
 	end//check_state

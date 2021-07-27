@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1627081078">
-  <File Type="PA-TCL" Name="top_pipeline.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="top_pipeline_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="top_pipeline_reports.tcl"/>
-  <File Type="RDS-RDS" Name="top_pipeline.vds"/>
-  <File Type="RDS-UTIL" Name="top_pipeline_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="top_pipeline_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="top_pipeline.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="top_pipeline_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="top_pipeline_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1627082921">
+  <File Type="PA-TCL" Name="top.tcl"/>
+  <File Type="REPORTS-TCL" Name="top_reports.tcl"/>
+  <File Type="RDS-RDS" Name="top.vds"/>
+  <File Type="RDS-UTIL" Name="top_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="top_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="top.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v">
@@ -19,6 +16,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../../../Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -95,6 +99,20 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/interface.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/interface_rx.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/jump_logic.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -116,7 +134,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/writeback.v">
+    <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -130,41 +148,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/interface.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/interface_rx.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -172,7 +157,13 @@
     </File>
     <File Path="E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/writeback.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -180,7 +171,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/top.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -218,7 +208,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="top_pipeline"/>
+      <Option Name="TopModule" Val="top"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -239,4 +229,5 @@
       <Option Id="FlattenHierarchy">1</Option>
     </Step>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
 </GenRun>

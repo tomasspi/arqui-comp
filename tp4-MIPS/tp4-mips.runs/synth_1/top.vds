@@ -1,0 +1,467 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Fri Jul 23 20:28:45 2021
+# Process ID: 9780
+# Current directory: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1
+# Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top.vds
+# Journal file: T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
+Command: synth_design -top top -part xc7a35tcpg236-1 -flatten_hierarchy none
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 11272
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1036.199 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'top_pipeline' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter NB_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fetch' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fetch.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'instruction_memory' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:8]
+	Parameter RAM_WIDTH bound to: 32 - type: integer 
+	Parameter RAM_DEPTH bound to: 2048 - type: integer 
+	Parameter INIT_FILE bound to: C:/users/user/desktop/programa.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'C:/users/user/desktop/programa.mem' is read successfully [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'instruction_memory' (1#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'fetch' (2#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fetch.v:1]
+INFO: [Synth 8-6157] synthesizing module 'decode' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'registers' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+	Parameter BITS_CONTADOR bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'registers' (3#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v:1]
+INFO: [Synth 8-6157] synthesizing module 'control_unit' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:2]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_OP bound to: 6 - type: integer 
+	Parameter N_BITS_FUNC bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'control_unit' (4#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:2]
+INFO: [Synth 8-6157] synthesizing module 'hazard_detection_unit' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/hazard_detection_unit.v:1]
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hazard_detection_unit' (5#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/hazard_detection_unit.v:1]
+INFO: [Synth 8-6157] synthesizing module 'jump_logic' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/jump_logic.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'jump_logic' (6#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/jump_logic.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'decode' (7#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/decode.v:1]
+INFO: [Synth 8-6157] synthesizing module 'execute' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:97]
+INFO: [Synth 8-155] case statement is not full and has no default [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:113]
+INFO: [Synth 8-6157] synthesizing module 'alu' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v:3]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_CONTROL bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'alu' (8#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu.v:3]
+INFO: [Synth 8-6157] synthesizing module 'alu_ctrl' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v:3]
+	Parameter N_BITS bound to: 6 - type: integer 
+	Parameter N_BITS_CTRL bound to: 5 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'alu_ctrl' (9#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'execute' (10#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:1]
+INFO: [Synth 8-6157] synthesizing module 'memory' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/memory.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'branch_logic' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/branch_logic.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'branch_logic' (11#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/branch_logic.v:3]
+INFO: [Synth 8-6157] synthesizing module 'data_memory' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v:6]
+	Parameter RAM_WIDTH bound to: 32 - type: integer 
+	Parameter RAM_DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'data_memory' (12#1) [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'memory' (13#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/memory.v:1]
+INFO: [Synth 8-6157] synthesizing module 'writeback' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'writeback' (14#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clk_cntr' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/clk_cntr.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'clk_cntr' (15#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/clk_cntr.v:3]
+INFO: [Synth 8-6157] synthesizing module 'fowarding_unit' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fowarding_unit.v:1]
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fowarding_unit' (16#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/fowarding_unit.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'top_pipeline' (17#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:1]
+INFO: [Synth 8-6157] synthesizing module 'interface_tx' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+	Parameter IDLE bound to: 3'b000 
+	Parameter PC bound to: 3'b001 
+	Parameter REG bound to: 3'b010 
+	Parameter MEM bound to: 3'b011 
+	Parameter CNTR bound to: 3'b100 
+INFO: [Synth 8-155] case statement is not full and has no default [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'interface_tx' (18#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:1]
+INFO: [Synth 8-6157] synthesizing module 'interface_rx' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:1]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter N_BITS_REG bound to: 5 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter INSTRUCTIONS bound to: 2'b01 
+	Parameter EXEC_MODE bound to: 2'b10 
+	Parameter STEP bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'interface_rx' (19#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:1]
+INFO: [Synth 8-6157] synthesizing module 'top_uart' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v:3]
+	Parameter N_BITS bound to: 32 - type: integer 
+	Parameter F_CLOCK bound to: 50000000.000000 - type: double 
+	Parameter BAUDRATE bound to: 9600 - type: integer 
+	Parameter SAMPLING bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'rx_uart' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v:3]
+	Parameter DATA_BITS bound to: 32 - type: integer 
+	Parameter N_TICKS bound to: 16 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter START bound to: 2'b01 
+	Parameter DATA bound to: 2'b10 
+	Parameter STOP bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'rx_uart' (20#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v:3]
+INFO: [Synth 8-6157] synthesizing module 'tx_uart' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v:3]
+	Parameter DATA_BITS bound to: 32 - type: integer 
+	Parameter N_TICKS bound to: 16 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter START bound to: 2'b01 
+	Parameter DATA bound to: 2'b10 
+	Parameter STOP bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'tx_uart' (21#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/tx_uart.v:3]
+INFO: [Synth 8-6157] synthesizing module 'baudrate_generator' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
+	Parameter F_CLOCK bound to: 50000000.000000 - type: double 
+	Parameter BAUDRATE bound to: 9600 - type: integer 
+	Parameter SAMPLING bound to: 16 - type: integer 
+	Parameter CUENTA bound to: 325.520833 - type: double 
+	Parameter N_BITS bound to: 63 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'baudrate_generator' (22#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/baudrate_generator.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top_uart' (23#1) [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/top_uart.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-9780-Archimedes/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (24#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/.Xil/Vivado-9780-Archimedes/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'top' (25#1) [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top.v:1]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1077.059 ; gain = 40.859
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1077.059 ; gain = 40.859
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1077.059 ; gain = 40.859
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.126 . Memory (MB): peak = 1077.059 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'u_clock'
+WARNING: [Vivado 12-584] No ports matched ''. [t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc:1]
+WARNING: [Vivado 12-584] No ports matched ''. [t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc:4]
+Finished Parsing XDC File [t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'u_clock'
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1209.203 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.095 . Memory (MB): peak = 1209.203 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for i_clk. (constraint file  t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for i_clk. (constraint file  t:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 6).
+Applied set_property DONT_TOUCH = true for u_clock. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'interface_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'interface_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'rx_uart'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'tx_uart'
+WARNING: [Synth 8-327] inferring latch for variable 'ram_data_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/instruction_memory.v:45]
+WARNING: [Synth 8-327] inferring latch for variable 'o_read_data_1_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v:43]
+WARNING: [Synth 8-327] inferring latch for variable 'o_read_data_2_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/registers.v:44]
+WARNING: [Synth 8-327] inferring latch for variable 'o_alu_op_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:44]
+WARNING: [Synth 8-327] inferring latch for variable 'o_alu_src_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:46]
+WARNING: [Synth 8-327] inferring latch for variable 'o_reg_dst_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:40]
+WARNING: [Synth 8-327] inferring latch for variable 'o_branch_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:41]
+WARNING: [Synth 8-327] inferring latch for variable 'o_mem_read_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:42]
+WARNING: [Synth 8-327] inferring latch for variable 'o_mem_write_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:45]
+WARNING: [Synth 8-327] inferring latch for variable 'o_reg_write_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:47]
+WARNING: [Synth 8-327] inferring latch for variable 'o_flush_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:49]
+WARNING: [Synth 8-327] inferring latch for variable 'o_jump_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:48]
+WARNING: [Synth 8-327] inferring latch for variable 'o_opcode_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/control_unit.v:73]
+WARNING: [Synth 8-327] inferring latch for variable 'o_alu_ctrl_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/alu_ctrl.v:23]
+WARNING: [Synth 8-327] inferring latch for variable 'rt_rd_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:145]
+WARNING: [Synth 8-327] inferring latch for variable 'dato_a_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:94]
+WARNING: [Synth 8-327] inferring latch for variable 'dato_b_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:129]
+WARNING: [Synth 8-327] inferring latch for variable 'dato_b_fowarding_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/execute.v:115]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pc_src_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/branch_logic.v:18]
+WARNING: [Synth 8-327] inferring latch for variable 'ram_data_reg' [T:/Tom/Facultad/Materias/arqui/practico/tpfinal/data_memory.v:39]
+WARNING: [Synth 8-327] inferring latch for variable 'stop_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:116]
+WARNING: [Synth 8-327] inferring latch for variable 'o_write_data_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:63]
+WARNING: [Synth 8-327] inferring latch for variable 'rd_rt_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:64]
+WARNING: [Synth 8-327] inferring latch for variable 'write_data_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/writeback.v:49]
+WARNING: [Synth 8-327] inferring latch for variable 'halt_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/clk_cntr.v:30]
+WARNING: [Synth 8-327] inferring latch for variable 'pc_salto_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/top_pipeline.v:100]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                            00001 |                              000
+                      PC |                            00010 |                              001
+                     REG |                            00100 |                              010
+                     MEM |                            01000 |                              011
+                    CNTR |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'one-hot' in module 'interface_tx'
+WARNING: [Synth 8-327] inferring latch for variable 'o_tx_start_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:58]
+WARNING: [Synth 8-327] inferring latch for variable 'o_done_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:59]
+WARNING: [Synth 8-327] inferring latch for variable 'data_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:57]
+WARNING: [Synth 8-327] inferring latch for variable 'i_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface.v:77]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+            INSTRUCTIONS |                               01 |                               01
+               EXEC_MODE |                               10 |                               10
+                    STEP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'interface_rx'
+WARNING: [Synth 8-327] inferring latch for variable 'o_exec_mode_reg' [T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.srcs/sources_1/new/interface_rx.v:67]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                   START |                               01 |                               01
+                    DATA |                               10 |                               10
+                    STOP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'rx_uart'
+WARNING: [Synth 8-327] inferring latch for variable 'data_out_reg' [E:/Arqui/tp2-uart/tp2-uart.srcs/sources_1/new/rx_uart.v:112]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                   START |                               01 |                               01
+                    DATA |                               10 |                               10
+                    STOP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'tx_uart'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 4     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 2     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 52    
+	               20 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                6 Bit    Registers := 4     
+	                5 Bit    Registers := 10    
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 5     
+	                1 Bit    Registers := 38    
++---RAMs : 
+	              32K Bit	(1024 X 32 bit)          RAMs := 1     
++---Muxes : 
+	  32 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 10    
+	  15 Input   32 Bit        Muxes := 1     
+	   4 Input   32 Bit        Muxes := 3     
+	   3 Input   32 Bit        Muxes := 1     
+	   5 Input   32 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	  14 Input    6 Bit        Muxes := 1     
+	   4 Input    6 Bit        Muxes := 2     
+	  20 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 3     
+	   3 Input    5 Bit        Muxes := 1     
+	  21 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 4     
+	   7 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	  14 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 6     
+	   3 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 55    
+	  14 Input    1 Bit        Muxes := 7     
+	  10 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 7     
+	   4 Input    1 Bit        Muxes := 15    
+	   3 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:02 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping	Report (see note below)
++-------------------------+------------+-----------+----------------------+------------------+
+|Module Name              | RTL Object | Inference | Size (Depth x Width) | Primitives       | 
++-------------------------+------------+-----------+----------------------+------------------+
+|u_mips/u_mem/u_data_mem1 | DRAM_reg   | Implied   | 1 K x 32             | RAM256X1S x 128	 | 
++-------------------------+------------+-----------+----------------------+------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:10 ; elapsed = 00:01:13 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:12 ; elapsed = 00:01:15 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping	Report
++-------------------------+------------+-----------+----------------------+------------------+
+|Module Name              | RTL Object | Inference | Size (Depth x Width) | Primitives       | 
++-------------------------+------------+-----------+----------------------+------------------+
+|u_mips/u_mem/u_data_mem1 | DRAM_reg   | Implied   | 1 K x 32             | RAM256X1S x 128	 | 
++-------------------------+------------+-----------+----------------------+------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:15 ; elapsed = 00:01:19 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:21 ; elapsed = 00:01:25 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:21 ; elapsed = 00:01:25 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:22 ; elapsed = 00:01:25 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |clk_wiz   |     1|
+|2     |BUFG      |     9|
+|3     |CARRY4    |    76|
+|4     |LUT1      |   101|
+|5     |LUT2      |   160|
+|6     |LUT3      |   357|
+|7     |LUT4      |   239|
+|8     |LUT5      |   356|
+|9     |LUT6      |  1176|
+|10    |MUXF7     |   448|
+|11    |MUXF8     |    64|
+|12    |RAM256X1S |   128|
+|13    |FDRE      |  1868|
+|14    |FDSE      |     7|
+|15    |LD        |   347|
+|16    |LDC       |    75|
+|17    |IBUF      |     3|
+|18    |OBUF      |    42|
++------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:22 ; elapsed = 00:01:25 . Memory (MB): peak = 1209.203 ; gain = 173.004
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 32 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:03 ; elapsed = 00:01:20 . Memory (MB): peak = 1209.203 ; gain = 40.859
+Synthesis Optimization Complete : Time (s): cpu = 00:01:22 ; elapsed = 00:01:25 . Memory (MB): peak = 1209.203 ; gain = 173.004
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.149 . Memory (MB): peak = 1215.430 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1138 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1215.430 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 550 instances were transformed.
+  LD => LDCE: 347 instances
+  LDC => LDCE: 75 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 128 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+77 Infos, 34 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:30 ; elapsed = 00:01:35 . Memory (MB): peak = 1215.430 ; gain = 179.230
+INFO: [Common 17-1381] The checkpoint 'T:/Repositorios/arqui2020/tp4-MIPS/tp4-mips.runs/synth_1/top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 23 20:30:29 2021...

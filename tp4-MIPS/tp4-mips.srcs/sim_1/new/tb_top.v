@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 module tb_top();
 
@@ -30,6 +30,7 @@ module tb_top();
         valid = 1'b0;
         reset = 1'b1;
         data_to_send = 32'b0;
+        rx = 1'b1;
         
         #100
         reset = 1'b0;

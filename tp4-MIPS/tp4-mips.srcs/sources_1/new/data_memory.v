@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 //  Xilinx Single Port No Change RAM
 //  This code implements a parameterizable single-port no-change memory where when data is written
 //  to the memory, the output remains unchanged.  This is the most power efficient write mode.
@@ -32,16 +30,19 @@ module data_memory
     reg [RAM_WIDTH-1:0] ram_index;
     initial begin
         for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          DRAM[ram_index] = {ram_index};
+          DRAM[ram_index] = 3;//32'b0;//{ram_index};
     end
  endgenerate
-	//!!!!!!!!!!!---------------WARNING------------!!!!!!!!!!!!!!!!
-  always @(negedge i_clk) 
-    if (enable && i_valid)
-      if (i_write_enable)
-        DRAM[i_address] <= i_write_data;
-      else if(i_read_enable)
-        ram_data <= DRAM[i_address];
+	
+ always @(*)begin:lectura
+    if (i_valid && i_read_enable)
+    ram_data <= DRAM[i_address];
+ end  
+ 
+ always@(negedge i_clk)begin:escrtura
+    if (i_valid && i_write_enable)
+       DRAM[i_address] <= i_write_data;
+ end
 
  assign o_read_data = ram_data;
 

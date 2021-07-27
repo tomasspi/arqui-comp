@@ -9,7 +9,7 @@ module instruction_memory
 #(
   parameter RAM_WIDTH = 32,                  // Specify RAM data width
   parameter RAM_DEPTH = 2048,                // Specify RAM depth (number of entries)
-  parameter INIT_FILE = "programa.mem"       // Specify name/location of RAM initialization file if using one (leave blank if not)
+  parameter INIT_FILE = "C:/users/user/desktop/programa.mem"       // Specify name/location of RAM initialization file if using one (leave blank if not)
  )
 (
   input  wire                 i_valid,
@@ -19,34 +19,32 @@ module instruction_memory
 );
 
   wire [RAM_WIDTH-1:0] input_data   = 0; // RAM input data
-  wire                 write_enable = 0; // Write enable
   wire                 enable       = 1; // RAM Enable, for additional power savings, disable port when not in use
   wire                 reset        = 0; // Output reset (does not affect memory contents)
   wire                 reg_enable   = 1; // Output register enable
 
   reg [RAM_WIDTH-1:0] PRAM [RAM_DEPTH-1:0];
   reg [RAM_WIDTH-1:0] ram_data = {RAM_WIDTH{1'b0}};
-
+  reg load_done = 1'b0;
+  
   // The following code either initializes the memory values to a specified file or to all zeros to match hardware
-  generate
-    if (INIT_FILE != "") begin: use_init_file
-      initial
-        $readmemb(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
-    end else begin: init_bram_to_zero
-      integer ram_index;
-      initial
-        for (ram_index = 0; ram_index < RAM_DEPTH; ram_index = ram_index + 1)
-          PRAM[ram_index] = 32'b00000010001100100100000000100000; 
+  always@(*)begin:load_file
+    if(i_valid)
+    begin
+        if (~load_done && INIT_FILE != "")
+        begin
+            $readmemb(INIT_FILE, PRAM, 0, RAM_DEPTH-1);
+            load_done = 1'b1;
+        end
     end
-  endgenerate
-
-  always @(posedge i_clk)
-    if (enable)
-      if (write_enable)
-        PRAM[i_addr] <= input_data;
-      else
+  end
+  
+  always @(*)
+  begin
+    if (enable && i_valid)
         ram_data <= PRAM[i_addr];
-
+  end
+  
   // The following is a 1 clock cycle read latency at the cost of a longer clock-to-out timing
   assign o_instruccion = ram_data;
 

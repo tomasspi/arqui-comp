@@ -22,18 +22,14 @@ module interface_rx
 
     reg [1:0]  state_reg, next_state;
     reg        rx_done;
-    reg        is_open;
+    reg        step;
     reg [31:0] instrucciones [2047:0];
     reg [31:0] i = 0;   
     
     always@(posedge i_clk)begin:check_state
         if(i_reset)
         begin
-            state_reg   <= IDLE;
-            rx_done     <= rx_done;         
-            is_open     <= 1'b0;
-            o_step      <= 1'b0;
-            o_exec_mode <= 1'b0;
+            state_reg   <= IDLE;   
         end
         else
             state_reg <= next_state;
@@ -80,7 +76,7 @@ module interface_rx
                    entrada i_rx_data
                  */
                 if(rx_done)
-                    o_step = i_rx_data;                
+                    step = i_rx_data;                
             end
        endcase
     end
@@ -93,8 +89,10 @@ module interface_rx
             rx_done <= 1'b0;
         
         /* aca setea el step */
-        if(o_step)
+        if(step)
             o_step <= 1'b0;
+        else
+            o_step <= step;
     end
 
     assign estado = state_reg;
