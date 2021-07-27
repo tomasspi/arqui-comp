@@ -25,10 +25,10 @@ if(not defined $input
 	die print_help();
 }
 
-my $R_type 		= '000000';
-my $sa	   		= '00000';
-my $line_cntr   = 0;
-my %labels		= ();
+my $R_type 	  = '000000';
+my $sa	   	  = '00000';
+my $line_cntr = 0;
+my %labels	  = ();
 
 my ($code, $rs, $rt, $rd, $funct, $base, $offset, $immediate);
 
@@ -126,7 +126,7 @@ sub decode
 			$base   = $registers{$word[3]};
 			$offset = sprintf("%.16b", $word[2]);
 					
-			print("En binario: ");		
+			#print("En binario: ");		
 			
 			$binary = sprintf("%s%s%s%s\n", $code, $base, $rt, 
 							  $offset);
@@ -162,6 +162,23 @@ sub decode
 					$binary = sprintf("%s%s%s%s%s%s\n", 
 									  $code, $sa, $rt, $rd, $rs, 
 									  $funct);
+				}
+				elsif($instructions{uc $word[0]}{funct} eq 
+				      $instructions{SLLV}{funct} || 
+				      $instructions{uc $word[0]}{funct} eq 
+				      $instructions{SRAV}{funct} ||
+				      $instructions{uc $word[0]}{funct} eq 
+				      $instructions{SRLV}{funct})
+				{
+					$code  = $instructions{uc $word[0]}{opcode};
+					$rs    = sprintf("%.5b", $word[3]);
+					$rt    = $registers{$word[2]};
+					$rd	   = $registers{$word[1]};
+					$funct = $instructions{uc $word[0]}{funct};
+					
+					$binary = sprintf("%s%s%s%s%s%s\n", 
+									  $code, $rs, $rt, $rd, $sa, 
+									  $funct);					
 				}
 				else
 				{
@@ -210,14 +227,29 @@ sub decode
 										  $instructions{uc $word[0]}{opcode});
 					}
 				}
-				elsif(uc $word[0] eq "JR")
+				elsif($instructions{uc $word[0]}{opcode} eq 
+				      $instructions{JR}{opcode})
 				{
 					$binary = sprintf("%s%s%s%s%s%s\n",
 									  $R_type, $registers{$word[1]},
 									  $sa, $sa, $sa, 
 									  $instructions{uc $word[0]}{opcode});
+				} 
+				elsif($instructions{uc $word[0]}{opcode} eq 
+				      $instructions{BEQ}{opcode} ||
+				      $instructions{uc $word[0]}{opcode} eq 
+				      $instructions{BNE}{opcode})
+				{
+					$code   = $instructions{uc $word[0]}{opcode};
+					$rs     = $registers{$word[1]};
+					$rt     = $registers{$word[2]};
+					$offset = sprintf("%.16b", $labels{$word[3]});
+					
+					$binary = sprintf("%s%s%s%s\n",
+									  $code, $rs, $rt, $offset);
 				}
-				elsif(uc $word[0] eq "LUI")
+				elsif($instructions{uc $word[0]}{opcode} eq 
+				      $instructions{LUI}{opcode})
 				{
 					$code = $instructions{uc $word[0]}{opcode};
 					$rs   = $sa;
@@ -238,15 +270,15 @@ sub decode
 							  $immediate);
 				}
 			}
-			print("En binario: ");
+			#print("En binario: ");
 		}
 	}
 	
-	print($binary);
+	#print($binary);
 	
 	#escribe en el archivo la instruccion decodificada
 	print OUT $binary; 
-	print("===============================\n");
+	#print("===============================\n");
 }
 
 sub find_labels
@@ -270,6 +302,7 @@ sub find_labels
 	elsif((uc $word[0]) =~ /BEQ|BNE/)
 	{
 		$labels{$word[3]} = 0;
+		print "$word[3]\n";
 	}
 }
 
@@ -295,7 +328,6 @@ foreach my $line (@lines) #recorre el array
 		#actualizo la posicion del label
 		$labels{$label} = $line_cntr;
 	}
-	
 	$line_cntr++;
 }
 
@@ -303,9 +335,6 @@ foreach my $line (@lines)
 {
 	decode($line);
 }
-#my @values = values %labels;
 
-#print @values;
-#print @lines;
 close(OUT) or die "ERROR: $!";
 print("Archivo '$output' creado existosamente.\n");
