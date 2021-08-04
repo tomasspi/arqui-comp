@@ -47,7 +47,9 @@ module fetch
     end
     
     always@(negedge i_clk)begin:escritura
-        if(i_valid && ~i_stall)
+        if(i_reset)
+            o_pc_4 <= 1'b1;
+        else if(i_valid && ~i_stall)
         begin
             if(i_exec_mode == 1'b0 || (i_exec_mode && i_step))
             begin

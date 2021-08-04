@@ -3,83 +3,74 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_top_time_synth.wdb" id="1">
+      <db_ref path="tb_pipeline_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_top" />
+            <top_module name="tb_pipeline" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="48564142034fs"></ZoomEndTime>
-      <Cursor1Time time="15057855922fs"></Cursor1Time>
+      <ZoomEndTime time="921984fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="118"></NameColumnWidth>
+      <NameColumnWidth column_width="136"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
-   <wvobject fp_name="/tb_top/u_top/i_clk" type="logic">
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/tb_pipeline/u_top/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/u_clock/clk_out1" type="logic">
-      <obj_property name="ElementShortName">clk_out1</obj_property>
-      <obj_property name="ObjectShortName">clk_out1</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_top/u_top/i_reset" type="logic">
+   <wvobject fp_name="/tb_pipeline/u_top/i_reset" type="logic">
       <obj_property name="ElementShortName">i_reset</obj_property>
       <obj_property name="ObjectShortName">i_reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/i_valid" type="logic">
+   <wvobject fp_name="/tb_pipeline/u_top/i_valid" type="logic">
       <obj_property name="ElementShortName">i_valid</obj_property>
       <obj_property name="ObjectShortName">i_valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/o_done" type="logic">
-      <obj_property name="ElementShortName">o_done</obj_property>
-      <obj_property name="ObjectShortName">o_done</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/o_pc" type="array">
+      <obj_property name="ElementShortName">o_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_pc[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/data_to_send" type="array">
-      <obj_property name="ElementShortName">data_to_send[31:0]</obj_property>
-      <obj_property name="ObjectShortName">data_to_send[31:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/u_fetch/o_instruccion" type="array">
+      <obj_property name="ElementShortName">o_instruccion[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_instruccion[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/i_rx" type="logic">
-      <obj_property name="ElementShortName">i_rx</obj_property>
-      <obj_property name="ObjectShortName">i_rx</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_top/u_top/o_rx_done" type="logic">
-      <obj_property name="ElementShortName">o_rx_done</obj_property>
-      <obj_property name="ObjectShortName">o_rx_done</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_top/u_top/o_tx" type="logic">
-      <obj_property name="ElementShortName">o_tx</obj_property>
-      <obj_property name="ObjectShortName">o_tx</obj_property>
+   <wvobject fp_name="/tb_pipeline/registro" type="array">
+      <obj_property name="ElementShortName">registro[31:0]</obj_property>
+      <obj_property name="ObjectShortName">registro[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CustomSignalColor">#FFFF00</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/rx_data" type="array">
-      <obj_property name="ElementShortName">rx_data[31:0]</obj_property>
-      <obj_property name="ObjectShortName">rx_data[31:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/o_data_memory" type="array">
+      <obj_property name="ElementShortName">o_data_memory[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data_memory[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/estado" type="array">
-      <obj_property name="ElementShortName">estado[1:0]</obj_property>
-      <obj_property name="ObjectShortName">estado[1:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/o_ciclos" type="array">
+      <obj_property name="ElementShortName">o_ciclos[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_ciclos[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/estadoT" type="array">
-      <obj_property name="ElementShortName">estadoT[2:0]</obj_property>
-      <obj_property name="ObjectShortName">estadoT[2:0]</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/o_halt" type="logic">
+      <obj_property name="ElementShortName">o_halt</obj_property>
+      <obj_property name="ObjectShortName">o_halt</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_top/u_top/ohalt" type="logic">
-      <obj_property name="ElementShortName">ohalt</obj_property>
-      <obj_property name="ObjectShortName">ohalt</obj_property>
+   <wvobject fp_name="/tb_pipeline/u_top/u_exe/dato_a" type="array">
+      <obj_property name="ElementShortName">dato_a[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dato_a[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_exe/dato_b" type="array">
+      <obj_property name="ElementShortName">dato_b[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dato_b[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/u_top/u_exe/o_alu_result" type="array">
+      <obj_property name="ElementShortName">o_alu_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_alu_result[31:0]</obj_property>
    </wvobject>
 </wave_config>

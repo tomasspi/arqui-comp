@@ -1,30 +1,32 @@
 module interface_rx
 #(
-    parameter N_BITS = 32,
-    parameter N_BITS_REG = 5
+    parameter N_BITS = 8,
+    parameter N_BITS_REG = 5,
+    parameter N_BITS_INSTR = 32
 )
 (
     input wire i_clk, i_reset,
     
-    //Valores para enviar al UART
+    //Valores para recibir
     input wire [N_BITS-1:0] i_rx_data,
     input wire              i_rx_done,
-    
-    output wire [1:0] estado,
+
     output reg o_exec_mode, //si es continuo o paso a paso
     output reg o_step       //ejecutar un paso
 );
 
-    localparam [1:0] IDLE = 2'b00;
+    localparam [1:0] IDLE         = 2'b00;
     localparam [1:0] INSTRUCTIONS = 2'b01;
-    localparam [1:0] EXEC_MODE = 2'b10;
-    localparam [1:0] STEP = 2'b11;
+    localparam [1:0] EXEC_MODE    = 2'b10;
+    localparam [1:0] STEP         = 2'b11;
 
     reg [1:0]  state_reg, next_state;
     reg        rx_done;
     reg        step;
     reg [31:0] instrucciones [2047:0];
-    reg [31:0] i = 0;   
+    reg [31:0] instruccion = 32'b0;
+    reg [31:0] i = 0; // numero de instruccion           
+    reg [2:0]  j = 0; // numero de byte de una instruccion
     
     always@(posedge i_clk)begin:check_state
         if(i_reset)
@@ -44,13 +46,19 @@ module interface_rx
                 
             INSTRUCTIONS:
             begin
-           
                 if(rx_done)
                 begin          
-                    instrucciones[i] = i_rx_data;  
-                    i = i + 1;
+                    instruccion[(N_BITS*j)+:N_BITS] = i_rx_data;
+                    j = j + 1;
                     
-                    if(i_rx_data == {N_BITS {1'b1}}) //halt
+                    if(j == 4)
+                    begin
+                        instrucciones[i] = instruccion;  
+                        i = i + 1;
+                        j = 0;
+                    end
+                    
+                    if(instruccion == {N_BITS_INSTR {1'b1}}) //halt
                     begin
                         $writememb("C:/users/user/desktop/programa.mem", instrucciones, 0, i-1);
                         next_state = EXEC_MODE;
@@ -73,8 +81,7 @@ module interface_rx
             begin
                 /* en caso que sea un paso a paso (1), se
                    genera un step automaticamente por la
-                   entrada i_rx_data
-                 */
+                   entrada i_rx_data */
                 if(rx_done)
                     step = i_rx_data;                
             end

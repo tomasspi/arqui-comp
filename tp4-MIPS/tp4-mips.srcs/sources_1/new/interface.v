@@ -1,8 +1,9 @@
 module interface_tx
 #
 (
-    parameter N_BITS = 32,
-    parameter N_BITS_REG = 5
+    parameter N_BITS_INSTR = 32,
+    parameter N_BITS_UART  = 8,
+    parameter N_BITS_REG   = 5
 )
 (
     input wire i_clk, i_reset,
@@ -11,22 +12,17 @@ module interface_tx
     input wire i_step,      //ejecutar un paso
     
     //Valores para enviar al UART
-    input wire [N_BITS-1:0]        i_pc,
-    input wire [N_BITS*N_BITS-1:0] i_registros,
-    input wire [N_BITS-1:0]        i_memoria,
-    input wire [N_BITS-1:0]        i_ciclos,
+    input wire [N_BITS_INSTR-1:0]              i_pc,
+    input wire [N_BITS_INSTR*N_BITS_INSTR-1:0] i_registros,
+    input wire [N_BITS_INSTR-1:0]              i_memoria,
+    input wire [N_BITS_INSTR-1:0]              i_ciclos,
     
     input wire i_halt,
     input wire i_tx_done,
     
-    output reg               o_tx_start,
-    output reg               o_done,
-    output wire [N_BITS-1:0] o_data_to_send,
-    output wire [2:0] estadoT 
-    
-    //flags debugger
-//    output reg o_exec_mode, //paso a paso o continuo 
-//    output reg o_step       //ejecutar el step
+    output reg                    o_tx_start,
+    output reg                    o_done,
+    output wire [N_BITS_UART-1:0] o_data_to_send
 );
 	//declaracion de los estados
 	localparam [2:0] IDLE = 3'b000;
@@ -35,10 +31,11 @@ module interface_tx
 	localparam [2:0] MEM  = 3'b011;
 	localparam [2:0] CNTR = 3'b100;
 	
-	reg [N_BITS_REG-1:0] i = 5'b0;
-	reg [2:0]            state_reg, next_state;
-    reg [N_BITS-1:0]     data;
-    reg                  tx_done;
+	reg [N_BITS_REG-1:0]   i = 5'b0;
+	reg [N_BITS_REG-1:0]   reg_num = 5'b0;
+	reg [2:0]              state_reg, next_state;
+    reg [N_BITS_INSTR-1:0] data;
+    reg                    tx_done;
     
 	//cambios de estado
 	always@(posedge i_clk) begin:check_state
@@ -68,25 +65,38 @@ module interface_tx
             
             if(tx_done)
             begin
-                next_state = REG;
-                o_tx_start = 1'b0;
+                i = i + 1;
+                
+                if(i == 4)
+                begin
+                    i = 5'b0;
+                    next_state = REG;
+                    o_tx_start = 1'b0;
+                end
             end
         end
         REG: //manda los regs uno por uno sin usar un for
         begin            
-            data = i_registros[(N_BITS*i)+:N_BITS];
+            data = i_registros[(N_BITS_INSTR*reg_num)+:N_BITS_INSTR];
             o_tx_start = 1'b1;
             
             if(tx_done)
             begin
-                o_tx_start = 1'b0;                
-                if(i == N_BITS-1)
+                i = i + 1;
+                o_tx_start = 1'b0;
+                
+                if(i == 4)
                 begin
-                    next_state = MEM;
-                    i = 5'b0;
+                    i = 5'b0;           
+                                        
+                    if(reg_num == N_BITS_INSTR-1)
+                    begin                        
+                        next_state = MEM;
+                        reg_num = 5'b0;
+                    end
+                    else
+                        reg_num = reg_num + 1;
                 end
-                else
-                    i = i + 1;
             end
         end
         MEM:
@@ -96,8 +106,14 @@ module interface_tx
             
             if(tx_done)
             begin
-                next_state = CNTR;
-                o_tx_start = 1'b0;
+                i = i + 1;
+                
+                if(i == 4)
+                begin
+                    i = 5'b0;
+                    next_state = CNTR;
+                    o_tx_start = 1'b0;
+                end
             end
         end
         CNTR:
@@ -107,8 +123,14 @@ module interface_tx
             
             if(tx_done)
             begin
-                next_state = IDLE;
-                o_done     = 1'b1;
+                i = i + 1;
+                
+                if(i == 4)
+                begin
+                    i = 5'b0;
+                    next_state = IDLE;
+                    o_done     = 1'b1;
+                end
             end
         end
         endcase       
@@ -121,7 +143,6 @@ module interface_tx
         else
             tx_done <= 1'b0;
     end
-   
-    assign estadoT = state_reg;
-    assign o_data_to_send = data;
+
+    assign o_data_to_send = data[(N_BITS_UART*i)+:N_BITS_UART];
 endmodule

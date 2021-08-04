@@ -10,9 +10,11 @@ module top_pipeline
     input wire i_step,      //ejecutar un paso
     
     output wire [N_BITS-1:0]        o_pc,
-    output wire [N_BITS*N_BITS-1:0] o_registros,
+//    output wire [N_BITS*N_BITS-1:0] o_registros,
+    output wire [N_BITS-1:0]        o_registro,
     output wire [N_BITS-1:0]        o_data_memory,
     output wire [N_BITS-1:0]        o_ciclos,
+    output wire [4:0]               o_n_reg,
     output wire                     o_halt
 );
 
@@ -190,8 +192,20 @@ module top_pipeline
         .o_mux_A(muxA), .o_mux_B(muxB)
     );
     
+    reg [4:0]  i = 5'b0;
+    reg [31:0] old_count = 32'b0;
+    
+    always@(negedge i_clk)begin:print_reg
+        if(old_count == count && count != 1) 
+            i <= i + 1;
+        else 
+            old_count <= count;
+    end
+    
     assign o_pc = pc_4 - 1'b1;
-    assign o_registros = registros;
+//    assign o_registros = registros;
+    assign o_n_reg = i;  
+    assign o_registro = registros[N_BITS*i+:N_BITS];
     assign o_data_memory = data_memory;
     assign o_ciclos = count;
     assign o_halt = halt;

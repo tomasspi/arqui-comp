@@ -12,14 +12,12 @@ module top
     */
     output wire o_done,
     output wire o_tx, 
-    output wire [31:0] rx_data,
-    output wire [1:0] estado,
-    output wire [2:0] estadoT,
+    output wire [7:0] rx_data,
     output wire ohalt
 );
 
     //INTERFAZ
-    wire [31:0] data_to_send;
+    wire [7:0] data_to_send;
     wire done;
     //UART
 //    wire [31:0] rx_data;
@@ -46,14 +44,14 @@ module top
         .i_clk(clk_out), .i_reset(i_reset), .i_pc(pc), .i_registros(registros), 
         .i_memoria(data_memory), .i_ciclos(ciclos), .i_halt(halt), .i_tx_done(o_tx_done), 
         .i_exec_mode(exec_mode), .i_step(step),
-        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done), .estadoT(estadoT)
+        .o_tx_start(tx_start), .o_data_to_send(data_to_send), .o_done(done)
     );   
     
     interface_rx u_interfaz_rx
     (
         .i_clk(clk_out), .i_reset(i_reset), 
         .i_rx_data(rx_data), .i_rx_done(o_rx_done), 
-        .o_exec_mode(exec_mode), .o_step(step), .estado(estado)
+        .o_exec_mode(exec_mode), .o_step(step)
     );
     
     top_uart u_uart

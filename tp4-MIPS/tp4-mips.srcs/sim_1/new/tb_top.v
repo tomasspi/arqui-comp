@@ -9,12 +9,9 @@ module tb_top();
     
     wire done;
     
-    integer fd, i, ii;
+    integer fd, i, ii, j;
     reg  [31:0] data_to_send;
-    wire [31:0] rx_data;
-    wire [1:0] estado;
-    wire [2:0] estadoT;
-    
+    wire [7:0] rx_data;    
     
     always #5 clk = ~clk;  // Simulacion de clock 100MHz
 
@@ -44,18 +41,20 @@ module tb_top();
             //lee linea y la asigna al dato a enviar            
             $fscanf(fd,"%b",data_to_send);
             
-                
-            //comienza el envio del dato
-            #104320
-            rx = 1'b0; //bit de inicio
-                
-            //comienzo a enviar la instruccion de N_BITS bits
-            //de LSB a MSB
-            for(ii = 0; ii < 32; ii = ii + 1)
-                #104320 rx = data_to_send[ii];
-                
-            #104320
-            rx = 1'b1; //bit de stop
+            for(j = 0; j < 4; j = j + 1)
+            begin    
+                //comienza el envio del dato
+                #104320
+                rx = 1'b0; //bit de inicio
+                    
+                //comienzo a enviar la instruccion de N_BITS bits
+                //de LSB a MSB                
+                for(ii = 0; ii < 8; ii = ii + 1)
+                    #104320 rx = data_to_send[(8*j)+ii];
+                    
+                #104320
+                rx = 1'b1; //bit de stop
+            end
         end
         
         //ya envio el programa, cierra el archivo
@@ -70,7 +69,7 @@ module tb_top();
             
         //comienzo a enviar el dato de N_BITS bits
         //de LSB a MSB
-        for(ii = 0; ii < 32; ii = ii + 1)
+        for(ii = 0; ii < 8; ii = ii + 1)
             #104320 rx = 1'b0;
             
         #104320
@@ -82,7 +81,7 @@ module tb_top();
             
         //comienzo a enviar el dato de N_BITS bits
         //de LSB a MSB
-        for(ii = 0; ii < 32; ii = ii + 1)
+        for(ii = 0; ii < 8; ii = ii + 1)
             #104320 rx = 1'b0;
             
         #104320
@@ -101,7 +100,7 @@ module tb_top();
 //        #104320
 //        rx = 1'b1; //modo paso a paso
         
-//        for(ii = 0; ii < 31; ii = ii + 1)
+//        for(ii = 0; ii < 8; ii = ii + 1)
 //            #104320 rx = 1'b0;
             
 //        #104320
@@ -123,7 +122,7 @@ module tb_top();
 //            #104320
 //            rx = 1'b1; //step propiamente dicho
             
-//            for(ii = 0; ii < 31; ii = ii + 1)
+//            for(ii = 0; ii < 7; ii = ii + 1)
 //                #104320 rx = 1'b0;
                 
 //            #104320
@@ -140,7 +139,7 @@ module tb_top();
         .i_clk(clk), .i_reset(reset), .i_valid(valid),
         .i_rx(rx), .o_tx(tx), 
         .o_rx_done(rx_done), .o_tx_done(tx_done),  
-        .o_done(done), .rx_data(rx_data), .estado(estado), .estadoT(estadoT)
+        .o_done(done), .rx_data(rx_data)
     );
 
 endmodule
