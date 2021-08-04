@@ -140,7 +140,6 @@ sub decode
 			
 			if($instructions{uc $word[0]}{opcode} eq $R_type)
 			{
-				print "R: $word[0]\n";
 				if($instructions{uc $word[0]}{funct} eq 
 				   $instructions{SLL}{funct} || 
 				   $instructions{uc $word[0]}{funct} eq 
@@ -195,7 +194,7 @@ sub decode
 			{
 				$code   = $instructions{uc $word[0]}{opcode};
 				$offset = sprintf("%.26b", $labels{$word[1]});
-				print "$word[0] - $labels{'salto2'}\n";
+				
 				$binary = sprintf("%s%s\n", $code, $offset);
 			}
 			elsif($instructions{uc $word[0]}{opcode} eq 
@@ -219,8 +218,7 @@ sub decode
 									  $instructions{uc $word[0]}{opcode});
 				}
 			}
-			elsif($instructions{uc $word[0]}{opcode} eq 
-			      $instructions{JR}{opcode})
+			elsif($word[0] eq "jr")
 			{
 				$binary = sprintf("%s%s%s%s%s%s\n",
 								  $R_type, $registers{$word[1]},
@@ -253,7 +251,6 @@ sub decode
 			}
 			else
 			{
-				print "I: $word[0]\n";
 				$code      = $instructions{uc $word[0]}{opcode};
 				$rs        = $registers{$word[2]};
 				$rt  	   = $registers{$word[1]};
@@ -263,10 +260,7 @@ sub decode
 						  $immediate);
 			}
 		}
-			#print("En binario: ");
 	}
-	
-	#print($binary);
 	
 	#escribe en el archivo la instruccion decodificada
 	print OUT $binary; 
@@ -285,15 +279,14 @@ sub find_labels
 	}
 		
 	#detecta instrucciones de salto
-	#y guarda el label con el numero 
-	#de linea en el que se encuentra
-	if((uc $word[0]) =~ /J|JAL/)
+	#y guarda el label
+	if((uc $word[0]) =~ /J/)
 	{
-		$labels{$word[1]} = 0;
+		$labels{$word[1]};
 	}
 	elsif((uc $word[0]) =~ /BEQ|BNE/)
 	{
-		$labels{$word[3]} = 0;
+		$labels{$word[3]};
 	}
 }
 
@@ -308,24 +301,19 @@ foreach my $line (@lines) #recorre el array
 	$line =~ s/\s+/,/g;		#reemplaza espacios con ','
 	$line =~ s/\$//g;		#elimina el simbolo '$'	
 	
-	find_labels($line, $line_cntr);
+	find_labels($line);
 	
 	if($line =~ /:/)
 	{
 		#obtengo el label
 		my $label = substr($line, 0, index($line, ":"));
 		#elimina el campo 'label:'
-		$line =~ s/^.*://g; 
+		$line =~ s/^.*:,//g; 
 		#actualizo la posicion del label
-		print "$line - $line_cntr\n";
 		$labels{$label} = $line_cntr;
-		print "$labels{$label}\n";
 	}
 	$line_cntr++;
-}
-
-foreach my $line (@lines)
-{
+	
 	decode($line);
 }
 
