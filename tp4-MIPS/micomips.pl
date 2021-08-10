@@ -23,6 +23,7 @@ my $R_type 	  = '000000';
 my $sa	   	  = '00000';
 my $line_cntr = 0;
 my %labels	  = ();
+my $label	  = "";
 
 my ($code, $rs, $rt, $rd, $funct, $base, $offset, $immediate);
 
@@ -83,7 +84,6 @@ my %instructions = (
 open(FILE, '<', $input) or die "ERROR: $!"; #abrir archivo
 chomp(my @lines = <FILE>);					#array[i] = linea i
 close(FILE) or die "ERROR: $!";				#cerrar archivo
-
 
 sub decode
 {
@@ -306,14 +306,17 @@ foreach my $line (@lines) #recorre el array
 	if($line =~ /:/)
 	{
 		#obtengo el label
-		my $label = substr($line, 0, index($line, ":"));
+		$label = substr($line, 0, index($line, ":"));
 		#elimina el campo 'label:'
 		$line =~ s/^.*:,//g; 
 		#actualizo la posicion del label
-		$labels{$label} = $line_cntr;
+		$labels{$label} = $line_cntr;		
 	}
 	$line_cntr++;
-	
+}
+
+foreach my $line (@lines)
+{
 	decode($line);
 }
 
